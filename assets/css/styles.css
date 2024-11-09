@@ -1,0 +1,420 @@
+/*********************************
+ * GENERAL LINK STYLING
+ *********************************/
+
+ a {
+    text-decoration: none;
+    color: inherit;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+/*********************************
+ * HEADER SECTION STYLES
+ *********************************/
+
+.top-bar {
+    background-color: #262A2B;
+    color: #FFFFFF;
+    font-size: 0.9rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 15px;
+}
+
+.top-bar .contact-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.top-bar .contact-info span {
+    color: #FFFFFF;
+    transition: color 0.3s ease;
+}
+
+.social-icons {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.top-bar a,
+.top-bar i {
+    color: #FFFFFF;
+    transition: color 0.3s ease;
+}
+
+.top-bar .contact-info span:hover,
+.top-bar a:hover,
+.social-icons .social-link:hover i {
+    color: #F2BA1E;
+}
+
+.social-icons .social-link {
+    color: #FFFFFF;
+    font-size: 1.2rem;
+    transition: color 0.3s ease;
+}
+
+/*********************************
+ * MAIN NAVBAR STYLES
+ *********************************/
+
+.main-nav {
+    background-color: #F9F9F9;
+    border-bottom: 8px solid #F2BA1E;
+    padding: 5px 15px;
+}
+
+.logo {
+    height: 55px;
+    transition: transform 0.3s ease;
+    margin-left: 10px;
+}
+
+.navbar-toggler {
+    margin-right: 10px;
+}
+
+.navbar-nav .nav-link {
+    color: #333;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+}
+
+.navbar-collapse {
+    text-align: center;
+}
+
+.navbar-nav .nav-link:hover {
+    color: #F2BA1E !important;
+}
+
+.navbar-brand:hover .logo {
+    transform: scale(1.05);
+}
+
+/*********************************
+ * FAQ & CONTACT ALIGNMENT FIX
+ *********************************/
+
+.contact-page .container {
+    display: flex;
+    align-items: flex-start;
+    gap: 30px;
+    justify-content: space-between;
+}
+
+/*********************************
+ * FAQ SECTION STYLES
+ *********************************/
+
+.faqs-section {
+    margin-bottom: 30px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.faq-container {
+    background-color: #d1d9dd;
+    padding: 20px;
+    border-radius: 10px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.faq {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    overflow: hidden;
+}
+
+.faq-question {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    font-weight: bold;
+    cursor: pointer;
+    color: #333;
+    background-color: #fff;
+    transition: background-color 0.3s ease;
+}
+
+.faq-question:hover {
+    background-color: #f8f9fa;
+}
+
+.faq-question i {
+    margin-right: 10px;
+    transition: color 0.3s ease;
+}
+
+.faq-question i.fa-angle-down {
+    color: #F2BA1E;
+}
+
+.faq-answer {
+    padding: 10px 15px;
+    background-color: #f8f9fa;
+    display: none;
+}
+
+.show {
+    display: block;
+}
+
+.see-more-btn {
+    background-color: #5a5a5a;
+    color: #ffffff;
+    border-radius: 5px;
+    padding: 8px 20px;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    margin-top: 10px;
+}
+
+.see-more-btn:hover {
+    background-color: #F2BA1E;
+    transform: scale(1.05);
+}
+
+/*********************************
+ * CONTACT SECTION STYLES
+ *********************************/
+
+.contact-section {
+    background-color: #d1d9dd;
+    padding: 0px;
+    border-radius: 10px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.contact-form {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.contact-form .form-control {
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.contact-form button[type="submit"] {
+    background-color: #5a5a5a;
+    color: #FFFFFF;
+    border-radius: 5px;
+    border: none;
+    padding: 10px;
+    font-size: 1rem;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    cursor: pointer;
+}
+
+.contact-form button[type="submit"]:hover {
+    background-color: #F2BA1E;
+    transform: scale(1.05);
+}
+
+/*********************************
+ * SOCIAL ICON STYLES
+ *********************************/
+
+.social-icons a {
+    color: #000000 !important;
+    font-size: 1.5rem;
+    margin-right: 15px;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.social-icons a:hover {
+    color: #F2BA1E;
+    transform: scale(1.1);
+}
+
+/*********************************
+ * FOOTER SECTION STYLES
+ *********************************/
+
+ .footer {
+    background-color: #d1d9dd;
+    padding: 40px 10%; /* Centers content with padding */
+    display: flex;
+    flex-direction: column; /* Stack elements vertically */
+    color: #333;
+}
+
+.footer .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: nowrap;
+    gap: 20px;
+}
+
+/* Centering the logo both vertically and horizontally */
+.footer-logo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centers vertically */
+    align-items: center; /* Centers horizontally */
+    max-width: 150px;
+    margin-right: 0px;
+    margin-left: 0px;
+    height: 100%; /* Makes the container take full height */
+    text-align: center;
+}
+
+.footer-logo img {
+    max-width: 100px;
+    margin-bottom: 10px;
+    margin-top: 30px;
+}
+
+/* Map Section with rounded corners */
+.map {
+    flex: 1;
+    max-width: 350px;
+    height: 200px;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid #ccc;
+}
+
+/* Quick Links Section */
+.quick-links {
+    flex: 1;
+    max-width: 150px;
+    text-align: left;
+    margin-right: 20px;
+}
+
+.footer h5 {
+    font-size: 1.1rem;
+    color: #333;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+.footer .quick-links ul,
+.footer .policies ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer .quick-links ul li,
+.footer .policies ul li {
+    margin-bottom: 10px;
+}
+
+.footer .quick-links ul li a,
+.footer .policies ul li a {
+    color: #333;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer .quick-links ul li a:hover,
+.footer .policies ul li a:hover {
+    color: #F2BA1E;
+}
+
+/* Policies Section */
+.policies {
+    flex: 1;
+    max-width: 150px;
+    text-align: left;
+}
+
+/* Footer Bottom Text */
+.footer-bottom {
+    text-align: center;
+    font-size: 0.9rem;
+    color: #333;
+    padding-top: 20px;
+    border-top: 1px solid #ccc;
+    margin-top: 20px;
+}
+
+.footer-bottom p {
+    margin: 0;
+}
+
+/*********************************
+ * RESPONSIVE STYLES
+ *********************************/
+
+@media (max-width: 768px) {
+    .top-bar {
+        font-size: 0.8rem;
+        padding: 5px 10px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .navbar-nav .nav-link {
+        font-size: 0.9rem;
+    }
+
+    .logo {
+        height: 30px;
+    }
+
+    .contact-page .container {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .faqs-section,
+    .contact-section {
+        margin-bottom: 20px;
+    }
+
+    .navbar-collapse {
+        text-align: center;
+    }
+
+    .navbar-nav {
+        margin: 0 auto;
+    }
+
+    .footer .container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .footer-logo,
+    .map,
+    .quick-links,
+    .policies {
+        max-width: 100%;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .footer .map {
+        order: -1; /* Moves map to the top on mobile */
+    }
+
+    .footer-bottom {
+        padding-top: 15px;
+    }
+}

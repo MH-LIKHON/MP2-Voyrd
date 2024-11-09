@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voyrd - Your Travel Companion</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+
+    <!-- Header Include -->
+    <div id="header"></div>
+
+    <!-- Hero Section -->
+    <section class="hero text-center py-5">
+        <div class="container">
+            <h1 class="display-4">Voyrd - Your One-Stop Travel Shop</h1>
+            <p class="lead">Providing comprehensive services for every journey. Enjoy a seamless travel experience every time.</p>
+        </div>
+    </section>
+
+    <!-- Quote & Book Section -->
+    <section id="quote" class="quote-section py-5">
+        <div class="container text-center">
+            <h2 class="mb-4">Quote & Book</h2>
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <form id="quoteForm">
+                        <div class="form-row">
+                            <div class="col">
+                                <input type="text" class="form-control mb-2" id="pickupLocation" placeholder="Enter pickup location">
+                            </div>
+                            <div class="col">
+                                <input type="text" class="form-control mb-2" id="dropoffLocation" placeholder="Enter dropoff location">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col">
+                                <input type="date" class="form-control mb-2" id="date">
+                            </div>
+                            <div class="col">
+                                <input type="time" class="form-control mb-2" id="time">
+                            </div>
+                        </div>
+                        <button type="button" class="btn btn-primary btn-block">Calculate Price</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Include -->
+    <div id="footer"></div>
+
+    <!-- jQuery and Bootstrap Bundle (includes Popper) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+    <!-- JavaScript to Load Header and Footer -->
+    <script>
+        $(function() {
+            $("#header").load("header.html");  // Load header
+            $("#footer").load("footer.html");  // Load footer
+        });
+    </script>
+    <!-- Custom JavaScript for Page-Specific Logic -->
+    <script src="assets/js/main.js"></script>
+</body>
+</html>
