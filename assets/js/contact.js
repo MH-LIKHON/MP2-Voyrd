@@ -1,8 +1,10 @@
 document.addEventListener("DOMContentLoaded", function() {
+    // Get references to the FAQ dropdown and the answer display box
     const faqDropdown = document.getElementById("faqDropdown");
     const faqAnswerBox = document.getElementById("faqAnswer");
 
     // FAQ answers stored as key-value pairs
+    // Each key represents a question ID, and the value is the answer text
     const faqAnswers = {
         "1": "Voyrd is a platform offering a range of travel booking services, including hotels, flights, car rentals, and more, helping travelers explore the United Kingdom and beyond.",
         "2": "Voyrd provides services for booking hotels, flights, car rentals, and other travel-related services to make your journey convenient and enjoyable.",
@@ -23,9 +25,10 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Listen for changes in the dropdown selection
     faqDropdown.addEventListener("change", function() {
+        // Get the selected value from the dropdown
         const selectedValue = faqDropdown.value;
         
-        // Display the corresponding answer
+        // Display the corresponding answer if available; clear box if not
         if (selectedValue && faqAnswers[selectedValue]) {
             faqAnswerBox.textContent = faqAnswers[selectedValue];
         } else {

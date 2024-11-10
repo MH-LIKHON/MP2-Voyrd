@@ -2,11 +2,13 @@
  * GENERAL LINK STYLING
  *********************************/
 
- a {
+/* Removes underline and inherits color for all links */
+a {
     text-decoration: none;
     color: inherit;
 }
 
+/* Keeps link styling consistent on hover */
 a:hover {
     text-decoration: none;
 }
@@ -15,94 +17,108 @@ a:hover {
  * HEADER SECTION STYLES
  *********************************/
 
+/* Top bar styling - fixed at top, spanning full width with dark background */
 .top-bar {
-    background-color: #262A2B;
-    color: #FFFFFF;
-    font-size: 0.9rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 5px 15px;
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 1000;
+    background-color: #262A2B; /* Dark background color */
+    color: #FFFFFF; /* White text color */
+    font-size: 0.9rem; /* Smaller font size */
+    display: flex; /* Horizontal layout */
+    justify-content: space-between; /* Spreads content to edges */
+    align-items: center; /* Centers vertically */
+    padding: 5px 15px; /* Padding for spacing */
+    position: fixed; /* Fixes bar at top */
+    top: 0; /* Positions at top of the page */
+    width: 100%; /* Full width */
+    z-index: 1000; /* High stacking order */
 }
 
+/* Styling for contact information within top bar */
 .top-bar .contact-info {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    flex-wrap: wrap;
+    display: flex; /* Horizontal layout */
+    align-items: center; /* Vertical alignment */
+    gap: 15px; /* Space between items */
+    flex-wrap: wrap; /* Wraps items on smaller screens */
 }
 
+/* Span within contact info - white color with hover transition */
 .top-bar .contact-info span {
     color: #FFFFFF;
-    transition: color 0.3s ease;
+    transition: color 0.3s ease; /* Smooth color change on hover */
 }
 
+/* Social icon container within top bar */
 .social-icons {
-    display: flex;
+    display: flex; /* Horizontal layout */
     align-items: center;
-    gap: 15px;
+    gap: 15px; /* Space between icons */
 }
 
+/* Styling for links and icons within top bar */
 .top-bar a,
 .top-bar i {
-    color: #FFFFFF;
-    transition: color 0.3s ease;
+    color: #FFFFFF; /* White color */
+    transition: color 0.3s ease; /* Smooth color transition */
 }
 
+/* Hover color change for contact info, links, and social icons */
 .top-bar .contact-info span:hover,
 .top-bar a:hover,
 .social-icons .social-link:hover i {
-    color: #F2BA1E;
+    color: #F2BA1E; /* Gold color on hover */
 }
 
+/* Social icons specific styling for size and color */
 .social-icons .social-link {
-    color: #FFFFFF;
-    font-size: 1.2rem;
-    transition: color 0.3s ease;
+    color: #FFFFFF; /* White color */
+    font-size: 1.2rem; /* Slightly larger font size */
+    transition: color 0.3s ease; /* Smooth color transition */
 }
 
 /*********************************
  * MAIN NAVBAR STYLES
  *********************************/
 
+/* Main navigation bar styling, fixed below top bar */
 .main-nav {
-    background-color: #F9F9F9;
-    border-bottom: 8px solid #F2BA1E;
+    background-color: #F9F9F9; /* Light background color */
+    border-bottom: 8px solid #F2BA1E; /* Gold bottom border */
     padding: 5px 15px;
-    position: fixed;
-    top: 40px; /* Adjust based on the height of .top-bar */
-    width: 100%;
-    z-index: 1000;
+    position: fixed !important; /* Fixed at top */
+    top: 40px; /* Positioned below .top-bar */
+    width: 100%; /* Full width */
+    z-index: 999; /* High stacking order */
 }
 
+/* Logo styling within navbar */
 .logo {
-    height: 55px;
-    transition: transform 0.3s ease;
+    height: 55px; /* Logo height */
+    transition: transform 0.3s ease; /* Smooth scaling on hover */
     margin-left: 10px;
 }
 
+/* Navbar toggler button */
 .navbar-toggler {
-    margin-right: 10px;
+    margin-right: 10px; /* Margin for spacing */
 }
 
+/* Link styling within navbar */
 .navbar-nav .nav-link {
-    color: #333;
+    color: #333; /* Dark text color */
     font-size: 1rem;
-    transition: color 0.3s ease;
+    transition: color 0.3s ease; /* Smooth color transition on hover */
 }
 
+/* Centering content in the navbar collapse (responsive menu) */
 .navbar-collapse {
     text-align: center;
 }
 
+/* Hover effect for navbar links */
 .navbar-nav .nav-link:hover {
-    color: #F2BA1E !important;
+    color: #F2BA1E !important; /* Gold color on hover */
 }
 
+/* Slightly scale logo on navbar brand hover */
 .navbar-brand:hover .logo {
     transform: scale(1.05);
 }
@@ -111,10 +127,11 @@ a:hover {
  * FAQ & CONTACT ALIGNMENT FIX
  *********************************/
 
+/* Flexbox layout for FAQ and contact section for alignment */
 .contact-page .container {
     display: flex;
     align-items: flex-start;
-    gap: 30px;
+    gap: 30px; /* Space between FAQ and contact sections */
     justify-content: space-between;
 }
 
@@ -122,6 +139,7 @@ a:hover {
  * FAQ SECTION STYLES
  *********************************/
 
+/* FAQ section layout */
 .faqs-section {
     margin-bottom: 30px;
     flex: 1;
@@ -130,8 +148,9 @@ a:hover {
     justify-content: flex-start;
 }
 
+/* Container for individual FAQ items */
 .faq-container {
-    background-color: #d1d9dd;
+    background-color: #d1d9dd; /* Light grey background */
     padding: 20px;
     border-radius: 10px;
     flex-grow: 1;
@@ -140,49 +159,57 @@ a:hover {
     justify-content: flex-start;
 }
 
+/* Styling for each FAQ question */
 .faq {
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    border: 1px solid #ccc; /* Light border */
+    border-radius: 5px; /* Rounded corners */
     margin-bottom: 10px;
-    overflow: hidden;
+    overflow: hidden; /* Hides overflow */
 }
 
+/* FAQ question styling */
 .faq-question {
     display: flex;
     align-items: center;
     padding: 10px 15px;
     font-weight: bold;
-    cursor: pointer;
-    color: #333;
+    cursor: pointer; /* Clickable pointer */
+    color: #333; /* Dark text color */
     background-color: #fff;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease; /* Smooth background change */
 }
 
+/* Hover effect for FAQ question */
 .faq-question:hover {
-    background-color: #f8f9fa;
+    background-color: #f8f9fa; /* Slightly darker background on hover */
 }
 
+/* Arrow icon in FAQ question */
 .faq-question i {
     margin-right: 10px;
-    transition: color 0.3s ease;
+    transition: color 0.3s ease; /* Smooth color transition */
 }
 
+/* Color of down arrow icon */
 .faq-question i.fa-angle-down {
-    color: #F2BA1E;
+    color: #F2BA1E; /* Gold color */
 }
 
+/* FAQ answer styling - hidden by default */
 .faq-answer {
     padding: 10px 15px;
     background-color: #f8f9fa;
-    display: none;
+    display: none; /* Hidden by default */
 }
 
+/* Class to show the FAQ answer */
 .show {
-    display: block;
+    display: block; /* Shows the answer */
 }
 
+/* Button for "see more" option */
 .see-more-btn {
-    background-color: #5a5a5a;
+    background-color: #5a5a5a; /* Dark grey background */
     color: #ffffff;
     border-radius: 5px;
     padding: 8px 20px;
@@ -193,17 +220,19 @@ a:hover {
     margin-top: 10px;
 }
 
+/* Hover effect for see-more button */
 .see-more-btn:hover {
-    background-color: #F2BA1E;
-    transform: scale(1.05);
+    background-color: #F2BA1E; /* Gold background on hover */
+    transform: scale(1.05); /* Slight scale on hover */
 }
 
 /*********************************
  * CONTACT SECTION STYLES
  *********************************/
 
+/* Contact section container */
 .contact-section {
-    background-color: #d1d9dd;
+    background-color: #d1d9dd; /* Light grey background */
     padding: 0px;
     border-radius: 10px;
     flex: 1;
@@ -212,17 +241,20 @@ a:hover {
     justify-content: flex-start;
 }
 
+/* Contact form layout */
 .contact-form {
     flex-grow: 1;
     display: flex;
     flex-direction: column;
 }
 
+/* Form control styling */
 .contact-form .form-control {
     border-radius: 5px;
     margin-bottom: 10px;
 }
 
+/* Submit button styling */
 .contact-form button[type="submit"] {
     background-color: #5a5a5a;
     color: #FFFFFF;
@@ -234,6 +266,7 @@ a:hover {
     cursor: pointer;
 }
 
+/* Hover effect for submit button */
 .contact-form button[type="submit"]:hover {
     background-color: #F2BA1E;
     transform: scale(1.05);
@@ -243,6 +276,7 @@ a:hover {
  * SOCIAL ICON STYLES
  *********************************/
 
+/* Social icon styling for footer */
 .social-icons a {
     color: #000000 !important;
     font-size: 1.5rem;
@@ -250,6 +284,7 @@ a:hover {
     transition: color 0.3s ease, transform 0.3s ease;
 }
 
+/* Hover effect for social icons */
 .social-icons a:hover {
     color: #F2BA1E;
     transform: scale(1.1);
@@ -259,7 +294,8 @@ a:hover {
  * FOOTER SECTION STYLES
  *********************************/
 
- .footer {
+/* Footer main container */
+.footer {
     background-color: #d1d9dd;
     padding: 40px 10%;
     color: #333;
@@ -268,30 +304,32 @@ a:hover {
     align-items: center;
 }
 
+/* Footer grid layout for logo, map, and policies */
 .footer .footer-container {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr; /* Three equal columns */
+    grid-template-columns: 1fr 1fr 1fr; /* Three columns */
     width: 100%;
     max-width: 1200px;
     gap: 20px;
-    align-items: center; /* Center items vertically */
+    align-items: center;
 }
 
-/* Logo styling - aligns logo to the far left */
+/* Footer logo section styling */
 .footer-logo {
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    grid-column: 1 / 2; /* Places logo in the first column */
+    grid-column: 1 / 2; /* First column */
 }
 
+/* Logo image sizing */
 .footer-logo img {
     max-width: 120px;
     margin-top: 30px;
     margin-bottom: 10px;
 }
 
-/* Map styling - centers map in the middle column */
+/* Map container styling */
 .map {
     display: flex;
     justify-content: center;
@@ -301,19 +339,20 @@ a:hover {
     border-radius: 8px;
     overflow: hidden;
     border: 1px solid #ccc;
-    grid-column: 2 / 3; /* Places map in the center column */
+    grid-column: 2 / 3; /* Center column */
 }
 
-/* Policies section - aligns policies to the far right */
+/* Footer links styling */
 .footer-links {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: flex-end;
     text-align: right;
-    grid-column: 3 / 4; /* Places policies in the third column */
+    grid-column: 3 / 4; /* Last column */
 }
 
+/* Heading within footer links */
 .footer-links h5 {
     font-size: 1.1rem;
     color: #333;
@@ -321,27 +360,31 @@ a:hover {
     font-weight: bold;
 }
 
+/* List styling within footer links */
 .footer-links ul {
     list-style: none;
     padding: 0;
     margin: 0;
 }
 
+/* List item styling within footer links */
 .footer-links ul li {
     margin-bottom: 10px;
 }
 
+/* Link styling within footer links */
 .footer-links ul li a {
     color: #333;
     text-decoration: none;
     transition: color 0.3s ease;
 }
 
+/* Hover effect for footer links */
 .footer-links ul li a:hover {
     color: #F2BA1E;
 }
 
-/* Footer Bottom Text */
+/* Footer bottom text styling */
 .footer-bottom {
     text-align: center;
     font-size: 0.9rem;
@@ -352,6 +395,7 @@ a:hover {
     width: 100%;
 }
 
+/* Margin reset for paragraph within footer-bottom */
 .footer-bottom p {
     margin: 0;
 }
@@ -360,7 +404,9 @@ a:hover {
  * RESPONSIVE STYLES
  *********************************/
 
+/* Responsive adjustments for smaller screens */
 @media (max-width: 767px) {
+    /* Top bar adjustments for smaller font and padding */
     .top-bar {
         font-size: 0.8rem;
         padding: 5px 10px;
@@ -370,75 +416,87 @@ a:hover {
         align-items: center;
     }
 
+    /* Navbar link font-size adjustment */
     .navbar-nav .nav-link {
         font-size: 0.9rem;
     }
 
+    /* Logo height adjustment for smaller screens */
     .logo {
         height: 30px;
     }
 
+    /* Flex layout adjustment for contact and FAQ */
     .contact-page .container {
         flex-direction: column;
         align-items: stretch;
     }
 
+    /* FAQ and contact section margin adjustment */
     .faqs-section,
     .contact-section {
         margin-bottom: 20px;
     }
 
+    /* Center navbar collapse content */
     .navbar-collapse {
         text-align: center;
     }
 
+    /* Center navbar nav items */
     .navbar-nav {
         margin: 0 auto;
     }
 
-    /* Footer main container styling */
-    .footer .footer-container {
-        grid-template-columns: 1fr 1fr; /* Two-column layout */
-        grid-template-rows: auto auto; /* Map will span full width in row 2 */
-        gap: 20px;
-        text-align: center;
-    }
-
-    /* Logo on the left */
-    .footer-logo {
-        justify-content: flex-start;
-        grid-column: 1 / 2;
-        grid-row: 1 / 2;
+    /* Footer container grid layout for two columns */
+    .footer-container {
+        display: flex;
+        flex-direction: column;
         align-items: center;
+        gap: 20px;
     }
 
-    /* Policies on the right */
+    /* Wrapper to hold the logo and policies in a row */
+    .footer-top-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+    }
+
+    /* Logo alignment to the left in mobile view */
+    .footer-logo {
+        text-align: left;
+        margin-right: auto;
+    }
+
+    /* Policies alignment to the right in mobile view */
     .footer-links {
-        align-items: flex-end;
         text-align: right;
-        grid-column: 2 / 3;
-        grid-row: 1 / 2;
+        margin-left: auto;
     }
 
-    /* Map centered and spanning full width under logo and policies */
+    /* Map positioning below the logo and policies in mobile view */
     .map {
-        grid-column: 1 / -1; /* Span both columns */
-        grid-row: 2 / 3;
+        width: 100%;
+        display: flex;
         justify-content: center;
         align-items: center;
         margin-top: 20px;
     }
 
-    /* Adjust text sizes for mobile */
+    /* Footer header text size reduction */
     .footer h5 {
-        font-size: 1rem; /* Smaller header size */
+        font-size: 1rem;
     }
 
+    /* Footer links text size reduction */
     .footer-links ul li {
-        font-size: 0.9rem; /* Smaller text size for policy links */
+        font-size: 0.9rem;
     }
 
+    /* Footer bottom text size reduction */
     .footer-bottom {
-        font-size: 0.7rem; /* Smaller text size for footer bottom text */
+        font-size: 0.7rem;
     }
 }
