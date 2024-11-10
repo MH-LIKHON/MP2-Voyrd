@@ -450,55 +450,68 @@ a:hover {
         margin: 0 auto;
     }
 
-    /* Footer container grid layout for two columns */
+    /* Footer container for mobile view, aligning items vertically and centering content */
     .footer-container {
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: 20px;
+        gap: 0px;
+        padding: 0px 0;
     }
 
-    /* Wrapper to hold the logo and policies in a row */
+    /* Wrapper to hold logo and footer links in a centered row on mobile */
     .footer-top-row {
         display: flex;
-        justify-content: space-between;
+        justify-content: center;
         align-items: center;
         width: 100%;
+        gap: 10px;
+        max-width: 600px;
     }
 
-    /* Logo alignment to the left in mobile view */
+    /* Center footer logo in its container */
     .footer-logo {
-        text-align: left;
-        margin-right: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        text-align: center;
     }
 
-    /* Policies alignment to the right in mobile view */
+    /* Center footer links in their container */
     .footer-links {
-        text-align: right;
-        margin-left: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        text-align: center;
     }
 
-    /* Map positioning below the logo and policies in mobile view */
+    /* Center map below logo and links, spanning the full width */
     .map {
         width: 100%;
         display: flex;
         justify-content: center;
         align-items: center;
-        margin-top: 20px;
+        margin-top: 10px;
     }
 
-    /* Footer header text size reduction */
+    /* Footer header text size reduction and centering */
     .footer h5 {
         font-size: 1rem;
+        text-align: center;
     }
 
-    /* Footer links text size reduction */
+    /* Footer links text size reduction and centering */
     .footer-links ul li {
         font-size: 0.9rem;
+        text-align: center;
     }
 
-    /* Footer bottom text size reduction */
+    /* Footer bottom text size reduction and centering */
     .footer-bottom {
         font-size: 0.7rem;
+        text-align: center;
+        margin-top: 10px;
     }
 }
