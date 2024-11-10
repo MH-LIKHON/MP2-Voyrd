@@ -23,6 +23,10 @@ a:hover {
     justify-content: space-between;
     align-items: center;
     padding: 5px 15px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
 }
 
 .top-bar .contact-info {
@@ -69,6 +73,10 @@ a:hover {
     background-color: #F9F9F9;
     border-bottom: 8px solid #F2BA1E;
     padding: 5px 15px;
+    position: fixed;
+    top: 40px; /* Adjust based on the height of .top-bar */
+    width: 100%;
+    z-index: 1000;
 }
 
 .logo {
@@ -253,93 +261,84 @@ a:hover {
 
  .footer {
     background-color: #d1d9dd;
-    padding: 40px 10%; /* Centers content with padding */
-    display: flex;
-    flex-direction: column; /* Stack elements vertically */
+    padding: 40px 10%;
     color: #333;
-}
-
-.footer .container {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    flex-wrap: nowrap;
-    gap: 20px;
-}
-
-/* Centering the logo both vertically and horizontally */
-.footer-logo {
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Centers vertically */
-    align-items: center; /* Centers horizontally */
-    max-width: 150px;
-    margin-right: 0px;
-    margin-left: 0px;
-    height: 100%; /* Makes the container take full height */
-    text-align: center;
+    align-items: center;
+}
+
+.footer .footer-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr; /* Three equal columns */
+    width: 100%;
+    max-width: 1200px;
+    gap: 20px;
+    align-items: center; /* Center items vertically */
+}
+
+/* Logo styling - aligns logo to the far left */
+.footer-logo {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    grid-column: 1 / 2; /* Places logo in the first column */
 }
 
 .footer-logo img {
-    max-width: 100px;
-    margin-bottom: 10px;
+    max-width: 120px;
     margin-top: 30px;
+    margin-bottom: 10px;
 }
 
-/* Map Section with rounded corners */
+/* Map styling - centers map in the middle column */
 .map {
-    flex: 1;
-    max-width: 350px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 500px;
     height: 200px;
     border-radius: 8px;
     overflow: hidden;
     border: 1px solid #ccc;
+    grid-column: 2 / 3; /* Places map in the center column */
 }
 
-/* Quick Links Section */
-.quick-links {
-    flex: 1;
-    max-width: 150px;
-    text-align: left;
-    margin-right: 20px;
+/* Policies section - aligns policies to the far right */
+.footer-links {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    text-align: right;
+    grid-column: 3 / 4; /* Places policies in the third column */
 }
 
-.footer h5 {
+.footer-links h5 {
     font-size: 1.1rem;
     color: #333;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
     font-weight: bold;
 }
 
-.footer .quick-links ul,
-.footer .policies ul {
+.footer-links ul {
     list-style: none;
     padding: 0;
     margin: 0;
 }
 
-.footer .quick-links ul li,
-.footer .policies ul li {
+.footer-links ul li {
     margin-bottom: 10px;
 }
 
-.footer .quick-links ul li a,
-.footer .policies ul li a {
+.footer-links ul li a {
     color: #333;
     text-decoration: none;
     transition: color 0.3s ease;
 }
 
-.footer .quick-links ul li a:hover,
-.footer .policies ul li a:hover {
+.footer-links ul li a:hover {
     color: #F2BA1E;
-}
-
-/* Policies Section */
-.policies {
-    flex: 1;
-    max-width: 150px;
-    text-align: left;
 }
 
 /* Footer Bottom Text */
@@ -350,6 +349,7 @@ a:hover {
     padding-top: 20px;
     border-top: 1px solid #ccc;
     margin-top: 20px;
+    width: 100%;
 }
 
 .footer-bottom p {
@@ -360,7 +360,7 @@ a:hover {
  * RESPONSIVE STYLES
  *********************************/
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
     .top-bar {
         font-size: 0.8rem;
         padding: 5px 10px;
@@ -396,25 +396,49 @@ a:hover {
         margin: 0 auto;
     }
 
-    .footer .container {
-        flex-direction: column;
+    /* Footer main container styling */
+    .footer .footer-container {
+        grid-template-columns: 1fr 1fr; /* Two-column layout */
+        grid-template-rows: auto auto; /* Map will span full width in row 2 */
+        gap: 20px;
+        text-align: center;
+    }
+
+    /* Logo on the left */
+    .footer-logo {
+        justify-content: flex-start;
+        grid-column: 1 / 2;
+        grid-row: 1 / 2;
         align-items: center;
     }
 
-    .footer-logo,
-    .map,
-    .quick-links,
-    .policies {
-        max-width: 100%;
-        text-align: center;
-        margin-bottom: 20px;
+    /* Policies on the right */
+    .footer-links {
+        align-items: flex-end;
+        text-align: right;
+        grid-column: 2 / 3;
+        grid-row: 1 / 2;
     }
 
-    .footer .map {
-        order: -1; /* Moves map to the top on mobile */
+    /* Map centered and spanning full width under logo and policies */
+    .map {
+        grid-column: 1 / -1; /* Span both columns */
+        grid-row: 2 / 3;
+        justify-content: center;
+        align-items: center;
+        margin-top: 20px;
+    }
+
+    /* Adjust text sizes for mobile */
+    .footer h5 {
+        font-size: 1rem; /* Smaller header size */
+    }
+
+    .footer-links ul li {
+        font-size: 0.9rem; /* Smaller text size for policy links */
     }
 
     .footer-bottom {
-        padding-top: 15px;
+        font-size: 0.8rem; /* Smaller text size for footer bottom text */
     }
 }
