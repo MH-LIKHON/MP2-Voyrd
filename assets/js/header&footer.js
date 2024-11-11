@@ -17,38 +17,51 @@ function showFaqAnswer(selectedValue) {
 
 // Initialize FAQ display with the first answer visible on page load
 document.addEventListener("DOMContentLoaded", function() {
-    showFaqAnswer(document.getElementById("faqDropdown").value);
-});
+    const faqDropdown = document.getElementById("faqDropdown");
+    if (faqDropdown) {
+        showFaqAnswer(faqDropdown.value);
+        faqDropdown.addEventListener("change", function(event) {
+            showFaqAnswer(event.target.value);
+        });
+    }
 
-// ========== Contact Form Submission with EmailJS ==========
+    // ========== Contact Form Submission and Success Modal ==========
 
-/**
- * Initializes EmailJS with the provided public key and sets up the contact form submission.
- */
-document.addEventListener("DOMContentLoaded", function() {
-    // Initialize EmailJS with the public key
-    emailjs.init("Nr-v4qaxoSS5p_zDP");
-
-    // Select the contact form
     const contactForm = document.querySelector('.contact-form');
+    const successModal = document.getElementById("successModal");
+    const closeModalButton = document.querySelector(".close-btn");
 
-    // Add submit event listener to the contact form
-    contactForm.addEventListener('submit', function(event) {
-        event.preventDefault(); // Prevent the default form submission behavior
+    // Ensure the modal is hidden initially
+    successModal.style.display = "none";
 
-        // Send the form data using EmailJS
-        emailjs.sendForm('service_c2fa08i', 'template_0h7vmqw', contactForm)
-            .then(
-                function(response) {
-                    // On success, show a confirmation message and reset the form fields
-                    alert("Your message has been sent successfully!");
-                    contactForm.reset(); // Clear the form fields
-                },
-                function(error) {
-                    // On error, log the issue and show an error message
-                    console.error("Error sending email:", error);
-                    alert("There was an issue sending your message. Please try again later.");
-                }
-            );
-    });
+    if (contactForm) {
+        // Handle form submission
+        contactForm.addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevent page reload
+            console.log("Form submitted successfully.");
+
+            // Show the success modal
+            successModal.style.display = "flex";
+            console.log("Success modal displayed after form submission.");
+
+            // Reset the form fields after submission
+            contactForm.reset();
+        });
+
+        // Close the modal when the close button is clicked
+        closeModalButton.addEventListener("click", function(event) {
+            successModal.style.display = "none";
+            console.log("Close button clicked - success modal hidden.");
+        });
+
+        // Close the modal if the user clicks outside the modal content
+        window.addEventListener("click", function(event) {
+            if (event.target === successModal) {
+                successModal.style.display = "none";
+                console.log("Clicked outside modal - success modal hidden.");
+            }
+        });
+    } else {
+        console.error("Contact form not found!");
+    }
 });
