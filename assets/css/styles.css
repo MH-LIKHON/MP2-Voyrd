@@ -16,8 +16,8 @@ a:hover {
 /* Body background color */
 body {
     background-color: #d1d9dd !important;
-    margin: 0;
-    padding: 0;
+    margin: 100px;
+    padding: 100px 0 0 0;
 }
 
 /*********************************
@@ -69,7 +69,7 @@ body {
 .social-icons {
     display: flex;
     align-items: center;
-    gap: 15px;
+    gap: 30px;
 }
 
 /* Link and icon color transition within top bar */
