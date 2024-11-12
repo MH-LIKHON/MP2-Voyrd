@@ -161,10 +161,13 @@ a:hover {
     justify-content: center;
     align-items: center;
     margin-bottom: 20px;
+    width: 100%;
+    max-width: 200px; /* Ensure logo doesn't overflow */
 }
 
 /* Footer logo image styling */
 .footer-logo img {
+    width: 100%; /* Responsive logo size */
     max-width: 150px;
     margin: 10px 0;
 }
@@ -192,6 +195,7 @@ a:hover {
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 100%;
     max-width: 600px;
     height: 200px;
     border-radius: 8px;
@@ -244,14 +248,14 @@ a:hover {
 
 /* Modal overlay styling */
 .modal {
-    display: none;
+    display: none; /* Hidden initially */
     position: fixed;
     z-index: 10000;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.6);
+    background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent background */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -265,7 +269,7 @@ a:hover {
     text-align: center;
     max-width: 400px;
     position: relative;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow effect */
 }
 
 /* Close button styling */
