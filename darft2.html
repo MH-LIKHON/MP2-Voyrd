@@ -1,0 +1,495 @@
+<!-- Booking Tool Container -->
+<div class="container d-flex align-items-center vh-100">
+    <div id="quote-book-tool" class="quote-book-tool text-center">
+        <h2>Quote & Book</h2>
+
+        <!-- Tab Buttons -->
+        <ul class="nav nav-tabs justify-content-center">
+            <li class="nav-item">
+                <a class="nav-link active" data-toggle="tab" href="#flight">Flights</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#hotel">Hotels</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#taxi">Taxis</a>
+            </li>
+        </ul>
+
+        <!-- Tab Content Area -->
+        <div class="tab-content p-3">
+            <!-- Flight Tab -->
+            <div id="flight" class="tab-pane active">
+                <form id="flight-form">
+                    <div class="form-group-inline">
+                        <!-- Departure Airport -->
+                        <div class="form-group">
+                            <label for="departure-airport">Departure Airport:</label>
+                            <select id="departure-airport" class="form-control" required>
+                                <option value="">Select Airport</option>
+                                <!-- Complete List of Major UK Airports -->
+                                <option>London Heathrow (LHR) - T1</option>
+                                <option>London Heathrow (LHR) - T2</option>
+                                <option>London Heathrow (LHR) - T3</option>
+                                <option>London Heathrow (LHR) - T4</option>
+                                <option>London Heathrow (LHR) - T5</option>
+                                <option>Gatwick Airport (LGW) - North Terminal</option>
+                                <option>Gatwick Airport (LGW) - South Terminal</option>
+                                <option>Manchester Airport (MAN) - Terminal 1</option>
+                                <option>Manchester Airport (MAN) - Terminal 2</option>
+                                <option>Manchester Airport (MAN) - Terminal 3</option>
+                                <option>Edinburgh Airport (EDI)</option>
+                                <option>Birmingham Airport (BHX)</option>
+                                <option>Glasgow Airport (GLA)</option>
+                                <option>Bristol Airport (BRS)</option>
+                                <option>Belfast International Airport (BFS)</option>
+                                <option>Belfast City Airport (BHD)</option>
+                                <option>Newcastle Airport (NCL)</option>
+                                <option>London City Airport (LCY)</option>
+                                <option>Leeds Bradford Airport (LBA)</option>
+                                <option>Liverpool John Lennon Airport (LPL)</option>
+                                <option>East Midlands Airport (EMA)</option>
+                                <option>Aberdeen Airport (ABZ)</option>
+                                <option>Southampton Airport (SOU)</option>
+                                <option>Cardiff Airport (CWL)</option>
+                                <option>Doncaster Sheffield Airport (DSA)</option>
+                                <option>Exeter Airport (EXT)</option>
+                                <option>Norwich Airport (NWI)</option>
+                                <option>Inverness Airport (INV)</option>
+                            </select>
+                        </div>
+                        <!-- Arrival Airport -->
+                        <div class="form-group">
+                            <label for="arrival-airport">Arrival Airport:</label>
+                            <select id="arrival-airport" class="form-control" required>
+                                <option value="">Select Airport</option>
+                                <!-- Complete List of Major UK Airports -->
+                                <option>London Heathrow (LHR) - T1</option>
+                                <option>London Heathrow (LHR) - T2</option>
+                                <option>London Heathrow (LHR) - T3</option>
+                                <option>London Heathrow (LHR) - T4</option>
+                                <option>London Heathrow (LHR) - T5</option>
+                                <option>Gatwick Airport (LGW) - North Terminal</option>
+                                <option>Gatwick Airport (LGW) - South Terminal</option>
+                                <option>Manchester Airport (MAN) - Terminal 1</option>
+                                <option>Manchester Airport (MAN) - Terminal 2</option>
+                                <option>Manchester Airport (MAN) - Terminal 3</option>
+                                <option>Edinburgh Airport (EDI)</option>
+                                <option>Birmingham Airport (BHX)</option>
+                                <option>Glasgow Airport (GLA)</option>
+                                <option>Bristol Airport (BRS)</option>
+                                <option>Belfast International Airport (BFS)</option>
+                                <option>Belfast City Airport (BHD)</option>
+                                <option>Newcastle Airport (NCL)</option>
+                                <option>London City Airport (LCY)</option>
+                                <option>Leeds Bradford Airport (LBA)</option>
+                                <option>Liverpool John Lennon Airport (LPL)</option>
+                                <option>East Midlands Airport (EMA)</option>
+                                <option>Aberdeen Airport (ABZ)</option>
+                                <option>Southampton Airport (SOU)</option>
+                                <option>Cardiff Airport (CWL)</option>
+                                <option>Doncaster Sheffield Airport (DSA)</option>
+                                <option>Exeter Airport (EXT)</option>
+                                <option>Norwich Airport (NWI)</option>
+                                <option>Inverness Airport (INV)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Return Flight Option -->
+                    <div class="form-group-inline mt-3">
+                        <label for="return-flight" class="form-group">Return Flight?</label>
+                        <input type="checkbox" id="return-flight" class="form-group">
+                    </div>
+                    
+                    <div id="return-section" class="mt-3" style="display:none;">
+                        <div class="form-group-inline">
+                            <!-- Return Date -->
+                            <div class="form-group">
+                                <label for="return-date">Return Date:</label>
+                                <input type="date" id="return-date" class="form-control">
+                            </div>
+                            <!-- Return Time -->
+                            <div class="form-group">
+                                <label for="return-time">Return Time:</label>
+                                <input type="time" id="return-time" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group-inline">
+                        <!-- Date -->
+                        <div class="form-group">
+                            <label for="flight-date">Date:</label>
+                            <input type="date" id="flight-date" class="form-control" required>
+                        </div>
+                        <!-- Time -->
+                        <div class="form-group">
+                            <label for="flight-time">Time:</label>
+                            <input type="time" id="flight-time" class="form-control" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group-inline">
+                        <!-- Number of Adults -->
+                        <div class="form-group">
+                            <label for="num-adults">Number of Adults:</label>
+                            <input type="number" id="num-adults" class="form-control" min="1" max="10" required>
+                        </div>
+                        <!-- Number of Children -->
+                        <div class="form-group">
+                            <label for="num-children">Number of Children:</label>
+                            <input type="number" id="num-children" class="form-control" min="0" max="10" required>
+                        </div>
+                    </div>
+
+                    <!-- Cabin Type -->
+                    <div class="form-group">
+                        <label for="cabin-type">Cabin Type:</label>
+                        <select id="cabin-type" class="form-control" required>
+                            <option value="">Select Cabin Type</option>
+                            <option>Economy</option>
+                            <option>Business</option>
+                            <option>First Class</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Hotel Tab -->
+            <div id="hotel" class="tab-pane fade">
+                <form id="hotel-form">
+                    <div class="form-group-inline">
+                        <!-- Hotel Selection -->
+                        <div class="form-group">
+                            <label for="hotel-name">Hotel:</label>
+                            <select id="hotel-name" class="form-control" required>
+                                <option value="">Select Hotel</option><option>Sofitel London Heathrow</option>
+                                <option>Hilton London Gatwick</option>
+                                <option>Radisson Blu Manchester Airport</option>
+                                <option>Novotel Birmingham Airport</option>
+                                <option>DoubleTree by Hilton Edinburgh Airport</option>
+                                <option>The Ritz London</option>
+                                <option>Holiday Inn London - Kensington</option>
+                                <option>Park Plaza Westminster Bridge London</option>
+                                <option>Hotel Indigo - Manchester</option>
+                                <option>DoubleTree by Hilton Liverpool</option>
+                                <option>Hampton by Hilton Edinburgh</option>
+                                <option>Macdonald Burlington Hotel Birmingham</option>
+                                <option>Malmaison Oxford Castle</option>
+                                <option>The Grand York</option>
+                                <option>InterContinental London Park Lane</option>
+                                <option>Leonardo Royal Hotel London St Paul’s</option>
+                                <option>Novotel London Tower Bridge</option>
+                                <option>Hard Rock Hotel London</option>
+                                <option>Hotel Du Vin & Bistro Brighton</option>
+                                <option>Hilton Garden Inn Glasgow</option>
+                            </select>
+                        </div>
+                        <!-- Room Type -->
+                        <div class="form-group">
+                            <label for="room-type">Room Type:</label>
+                            <select id="room-type" class="form-control" required>
+                                <option value="">Select Room Type</option>
+                                <option>Single</option>
+                                <option>Double</option>
+                                <option>Family Suite</option>
+                                <option>Executive Suite</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group-inline">
+                        <!-- Check-in Date -->
+                        <div class="form-group">
+                            <label for="checkin-date">Check-in Date:</label>
+                            <input type="date" id="checkin-date" class="form-control" required>
+                        </div>
+                        <!-- Check-out Date -->
+                        <div class="form-group">
+                            <label for="checkout-date">Check-out Date:</label>
+                            <input type="date" id="checkout-date" class="form-control" required>
+                        </div>
+                    </div>
+
+                    <!-- Number of Guests -->
+                    <div class="form-group-inline">
+                        <div class="form-group">
+                            <label for="num-guests">Number of Guests:</label>
+                            <input type="number" id="num-guests" class="form-control" min="1" max="10" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="num-rooms">Number of Rooms:</label>
+                            <input type="number" id="num-rooms" class="form-control" min="1" max="10" required>
+                        </div>
+                    </div>
+
+                    <!-- Additional Requirements -->
+                    <div class="form-group">
+                        <label>Additional Requirements:</label><br>
+                        <input type="checkbox" id="baby-bed"> <label for="baby-bed">Baby Bed</label><br>
+                        <input type="checkbox" id="extra-bed"> <label for="extra-bed">Extra Bed</label>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Taxi Tab -->
+            <div id="taxi" class="tab-pane fade">
+                <form id="taxi-form">
+                    <div class="form-group-inline">
+                        <!-- Pickup Location -->
+                        <div class="form-group">
+                            <label for="pickup-postcode">Pickup Postcode:</label>
+                            <input type="text" id="pickup-postcode" class="form-control" placeholder="Enter postcode" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="pickup-airport">Pickup Airport:</label>
+                            <select id="pickup-airport" class="form-control">
+                                <option value="">Select Airport</option>
+                                <option value="TW6 1QG">London Heathrow (LHR) - Terminal 1</option>
+                                <option value="TW6 1QG">London Heathrow (LHR) - Terminal 2</option>
+                                <option value="TW6 1QG">London Heathrow (LHR) - Terminal 3</option>
+                                <option value="TW6 1QG">London Heathrow (LHR) - Terminal 4</option>
+                                <option value="TW6 1QG">London Heathrow (LHR) - Terminal 5</option>
+                                <option value="RH6 0NP">Gatwick Airport (LGW) - North Terminal</option>
+                                <option value="RH6 0NP">Gatwick Airport (LGW) - South Terminal</option>
+                                <option value="M90 1QX">Manchester Airport (MAN) - Terminal 1</option>
+                                <option value="M90 1QX">Manchester Airport (MAN) - Terminal 2</option>
+                                <option value="M90 1QX">Manchester Airport (MAN) - Terminal 3</option>
+                                <option value="EH12 9DN">Edinburgh Airport (EDI)</option>
+                                <option value="B26 3QJ">Birmingham Airport (BHX)</option>
+                                <option value="PA3 2SW">Glasgow Airport (GLA)</option>
+                                <option value="BS48 3DY">Bristol Airport (BRS)</option>
+                                <option value="BT29 4AB">Belfast International Airport (BFS)</option>
+                                <option value="E16 2PX">London City Airport (LCY)</option>
+                                <option value="LS19 7TU">Leeds Bradford Airport (LBA)</option>
+                                <option value="L24 1YD">Liverpool John Lennon Airport (LPL)</option>
+                                <option value="SO18 2NL">Southampton Airport (SOU)</option>
+                                <option value="CF62 3BD">Cardiff Airport (CWL)</option>
+                                <option value="EX5 2BD">Exeter Airport (EXT)</option>
+                                <option value="LU2 9LY">London Luton Airport (LTN)</option>
+                                <option value="CM24 1QW">London Stansted Airport (STN)</option>
+                                <option value="BH23 6SE">Bournemouth Airport (BOH)</option>
+                                <option value="AB21 7DU">Aberdeen Airport (ABZ)</option>
+                                <option value="NCL">Newcastle Airport (NCL)</option>
+                                <option value="HUY">Humberside Airport (HUY)</option>
+                                <option value="NWI">Norwich Airport (NWI)</option>
+                                <option value="EMA">East Midlands Airport (EMA)</option>
+                                <option value="PIK">Glasgow Prestwick Airport (PIK)</option>
+                                <option value="SEN">London Southend Airport (SEN)</option>
+                                <option value="MME">Teesside International Airport (MME)</option>
+                                <option value="LDY">City of Derry Airport (LDY)</option>
+                                <option value="INV">Inverness Airport (INV)</option>
+                                <option value="KOI">Kirkwall Airport (KOI)</option>
+                                <option value="LSI">Sumburgh Airport (LSI)</option>
+                                <option value="SYY">Stornoway Airport (SYY)</option>
+                                <option value="ISC">Isles of Scilly St Mary's Airport (ISC)</option>
+                                <option value="LEQ">Land's End Airport (LEQ)</option>
+                                <option value="TRE">Tiree Airport (TRE)</option>
+                                <option value="BEB">Benbecula Airport (BEB)</option>
+                                <option value="DND">Dundee Airport (DND)</option>
+                                <option value="OBN">Oban Airport (OBN)</option>
+                                <option value="FIE">Fair Isle Airport (FIE)</option>
+                                <option value="BRR">Barra Airport (BRR)</option>
+                                <option value="ILY">Islay Airport (ILY)</option>
+                                <option value="FOA">Foula Airport (FOA)</option>
+                                <option value="CAL">Campbeltown Airport (CAL)</option>
+                                <option value="WIC">Wick Airport (WIC)</option>
+                                <option value="CSA">Colonsay Airport (CSA)</option>
+                                <option value="COL">Coll Airport (COL)</option>
+                                <option value="CBG">Cambridge Airport (CBG)</option>
+                                <option value="FAB">Farnborough Airport (FAB)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group-inline">
+                        <!-- Dropoff Location -->
+                        <div class="form-group">
+                            <label for="dropoff-postcode">Drop-off Postcode:</label>
+                            <input type="text" id="dropoff-postcode" class="form-control" placeholder="Enter postcode" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="dropoff-airport">Drop-off Airport:</label>
+                            <select id="dropoff-airport" class="form-control">
+                                <option value="">Select Airport</option>
+                                <option value="TW6 1QG">London Heathrow (LHR) - Terminal 1</option>
+                                <option value="TW6 1QG">London Heathrow (LHR) - Terminal 2</option>
+                                <option value="TW6 1QG">London Heathrow (LHR) - Terminal 3</option>
+                                <option value="TW6 1QG">London Heathrow (LHR) - Terminal 4</option>
+                                <option value="TW6 1QG">London Heathrow (LHR) - Terminal 5</option>
+                                <option value="RH6 0NP">Gatwick Airport (LGW) - North Terminal</option>
+                                <option value="RH6 0NP">Gatwick Airport (LGW) - South Terminal</option>
+                                <option value="M90 1QX">Manchester Airport (MAN) - Terminal 1</option>
+                                <option value="M90 1QX">Manchester Airport (MAN) - Terminal 2</option>
+                                <option value="M90 1QX">Manchester Airport (MAN) - Terminal 3</option>
+                                <option value="EH12 9DN">Edinburgh Airport (EDI)</option>
+                                <option value="B26 3QJ">Birmingham Airport (BHX)</option>
+                                <option value="PA3 2SW">Glasgow Airport (GLA)</option>
+                                <option value="BS48 3DY">Bristol Airport (BRS)</option>
+                                <option value="BT29 4AB">Belfast International Airport (BFS)</option>
+                                <option value="E16 2PX">London City Airport (LCY)</option>
+                                <option value="LS19 7TU">Leeds Bradford Airport (LBA)</option>
+                                <option value="L24 1YD">Liverpool John Lennon Airport (LPL)</option>
+                                <option value="SO18 2NL">Southampton Airport (SOU)</option>
+                                <option value="CF62 3BD">Cardiff Airport (CWL)</option>
+                                <option value="EX5 2BD">Exeter Airport (EXT)</option>
+                                <option value="LU2 9LY">London Luton Airport (LTN)</option>
+                                <option value="CM24 1QW">London Stansted Airport (STN)</option>
+                                <option value="BH23 6SE">Bournemouth Airport (BOH)</option>
+                                <option value="AB21 7DU">Aberdeen Airport (ABZ)</option>
+                                <option value="NCL">Newcastle Airport (NCL)</option>
+                                <option value="HUY">Humberside Airport (HUY)</option>
+                                <option value="NWI">Norwich Airport (NWI)</option>
+                                <option value="EMA">East Midlands Airport (EMA)</option>
+                                <option value="PIK">Glasgow Prestwick Airport (PIK)</option>
+                                <option value="SEN">London Southend Airport (SEN)</option>
+                                <option value="MME">Teesside International Airport (MME)</option>
+                                <option value="LDY">City of Derry Airport (LDY)</option>
+                                <option value="INV">Inverness Airport (INV)</option>
+                                <option value="KOI">Kirkwall Airport (KOI)</option>
+                                <option value="LSI">Sumburgh Airport (LSI)</option>
+                                <option value="SYY">Stornoway Airport (SYY)</option>
+                                <option value="ISC">Isles of Scilly St Mary's Airport (ISC)</option>
+                                <option value="LEQ">Land's End Airport (LEQ)</option>
+                                <option value="TRE">Tiree Airport (TRE)</option>
+                                <option value="BEB">Benbecula Airport (BEB)</option>
+                                <option value="DND">Dundee Airport (DND)</option>
+                                <option value="OBN">Oban Airport (OBN)</option>
+                                <option value="FIE">Fair Isle Airport (FIE)</option>
+                                <option value="BRR">Barra Airport (BRR)</option>
+                                <option value="ILY">Islay Airport (ILY)</option>
+                                <option value="FOA">Foula Airport (FOA)</option>
+                                <option value="CAL">Campbeltown Airport (CAL)</option>
+                                <option value="WIC">Wick Airport (WIC)</option>
+                                <option value="CSA">Colonsay Airport (CSA)</option>
+                                <option value="COL">Coll Airport (COL)</option>
+                                <option value="CBG">Cambridge Airport (CBG)</option>
+                                <option value="FAB">Farnborough Airport (FAB)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Date and Time -->
+                    <div class="form-group-inline">
+                        <div class="form-group">
+                            <label for="taxi-date">Date:</label>
+                            <input type="date" id="taxi-date" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="taxi-time">Time:</label>
+                            <input type="time" id="taxi-time" class="form-control" required>
+                        </div>
+                    </div>
+
+                    <!-- Return Taxi Option -->
+                    <div class="form-group-inline mt-3">
+                        <label for="return-taxi" class="form-group">Return Taxi?</label>
+                        <input type="checkbox" id="return-taxi" class="form-group">
+                    </div>
+
+                    <div id="taxi-return-section" class="mt-3" style="display:none;">
+                        <div class="form-group-inline">
+                            <!-- Return Date -->
+                            <div class="form-group">
+                                <label for="taxi-return-date">Return Date:</label>
+                                <input type="date" id="taxi-return-date" class="form-control">
+                            </div>
+                            <!-- Return Time -->
+                            <div class="form-group">
+                                <label for="taxi-return-time">Return Time:</label>
+                                <input type="time" id="taxi-return-time" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Number of Passengers and Car Type -->
+                    <div class="form-group-inline">
+                        <div class="form-group">
+                            <label for="num-taxi-passengers">Number of Passengers:</label>
+                            <input type="number" id="num-taxi-passengers" class="form-control" min="1" max="6" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="car-type">Car Type:</label>
+                            <select id="car-type" class="form-control" required>
+                                <option value="">Select Car Type</option>
+                                <option>Standard</option>
+                                <option>Luxury</option>
+                                <option>Van</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Child Seat -->
+                    <div class="form-group">
+                        <label>Child Seat:</label>
+                        <input type="checkbox" id="child-seat">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Booking Summary -->
+<div class="booking-summary" id="booking-summary">
+    <h5>Booking Summary</h5>
+    <ul id="booking-summary-list">
+        <!-- Booking details will be dynamically added here -->
+    </ul>
+    <!-- New "Book Your Journey" Button -->
+    <button class="btn btn-primary mt-3" id="book-your-journey">Book Your Journey</button>
+</div>
+
+<!-- Confirmation Popup -->
+<div id="confirmationPopup" class="confirmation-popup">
+    <p>Thank you! 😊<br>Your booking request has been received successfully. We will get back to you shortly!</p>
+    <button class="make-another-booking" id="makeAnotherBooking">Make Another Booking</button>
+    <button class="close-cross" id="closePopup">&times;</button>
+</div>
+
+<!-- Customer Information Section (Initially Hidden) -->
+<div id="customer-info-section" class="quote-book-tool text-center hidden" style="display: none;">
+    <h3>Customer Information</h3>
+    <form id="customer-info-form">
+        <div class="form-group">
+            <label for="customer-name">Customer Name:</label>
+            <input type="text" id="customer-name" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="customer-address">Address:</label>
+            <input type="text" id="customer-address" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="customer-mobile">Mobile Number:</label>
+            <input type="tel" id="customer-mobile" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="customer-email">Email:</label>
+            <input type="email" id="customer-email" class="form-control" required>
+        </div>
+        <div id="guest-container" style="display: none;">
+            <h4>Guest Information</h4>
+            <div class="guest-details">
+                <div class="form-group">
+                    <label for="guest-name">Guest Name:</label>
+                    <input type="text" class="form-control guest-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="guest-mobile">Guest Mobile:</label>
+                    <input type="tel" class="form-control guest-mobile" required>
+                </div>
+                <div class="form-group">
+                    <label for="guest-email">Guest Email:</label>
+                    <input type="email" class="form-control guest-email" required>
+                </div>
+                <div class="form-group">
+                    <label for="flight-number">Flight Number (Optional):</label>
+                    <input type="text" class="form-control flight-number">
+                </div>
+            </div>
+        </div>
+        <button type="button" id="add-guest" class="btn btn-secondary mt-3">Add Another Guest</button>
+        <button type="submit" id="submit-customer-info" class="btn btn-primary mt-3">Book Now</button>
+    </form>
+</div>
