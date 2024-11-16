@@ -1,482 +1,871 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quote & Book</title>
-    
+    <title>Modern Booking System</title>
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <!-- Bootstrap CSS -->
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    
-    <!-- Custom CSS -->
-    <style>
-        /* Fullscreen YouTube video background styling */
-        .video-background {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            z-index: -1;
-            overflow: hidden;
-        }
-        .video-background iframe {
-            width: 120vw;
-            height: 120vh;
-            position: absolute;
-            top: -10vh;
-            left: -10vw;
-            pointer-events: none;
-        }
-        /* Centralized booking tool container styling */
-        .quote-book-tool {
-            background: rgba(255, 255, 255, 0.95);
-            padding: 20px;
-            border-radius: 8px;
-            max-width: 800px;
-            margin: auto;
-            z-index: 1;
-            box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);
-            transition: opacity 0.5s ease-in-out;
-        }
-        .quote-book-tool.hidden {
-            opacity: 0;
-            visibility: hidden;
-        }
-        /* Form Group Inline Styling */
-        .form-group-inline {
-            display: flex;
-            gap: 20px;
-        }
-        .form-group-inline .form-group {
-            flex: 1;
-        }
-        /* Button Styling */
-        .btn-custom {
-            background-color: #5a5a5a;
-            color: #FFFFFF;
-        }
-        .btn-custom:hover {
-            color: #F2BA1E;
-        }
-        /* Popup Confirmation Styling */
-        .confirmation-popup {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: rgba(255, 255, 255, 0.95);
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.3);
-            text-align: center;
-            display: none;
-            z-index: 10;
-        }
-        /* Booking Summary Box */
-        .booking-summary {
-            background: rgba(255, 255, 255, 0.9);
-            padding: 20px;
-            border-radius: 8px;
-            max-width: 300px;
-            position: fixed;
-            right: 20px;
-            top: 20px;
-            box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);
-            z-index: 1;
-        }
-        .booking-summary h5 {
-            margin-bottom: 20px;
-            text-align: center;
-        }
-    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <!-- Google Maps API -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 </head>
-<body>
 
-    <!-- YouTube Video Background Embed -->
+<body style="background-color: #d1d9dd;">
+
+    <!-- Fullscreen Background Video -->
     <div class="video-background">
-        <iframe src="https://www.youtube.com/embed/8YtDUED47Rs?autoplay=1&mute=1&loop=1&playlist=8YtDUED47Rs&controls=0&showinfo=0&rel=0&modestbranding=1" frameborder="0" allow="autoplay; loop; fullscreen"></iframe>
-    </div>
+        <iframe
+            src="https://www.youtube.com/embed/8YtDUED47Rs?autoplay=1&mute=1&loop=1&playlist=8YtDUED47Rs&controls=0&showinfo=0&modestbranding=1"
+            frameborder="0"
+            allow="autoplay; encrypted-media"
+            allowfullscreen>
+        </iframe>
+    </div>    
+    
+    <!-- Booking System -->
+    <div class="container mt-5">
+        <div class="quote-book-tool p-4 bg-white rounded shadow">
+            <h2 class="text-center mb-4">Plan & Book Your Journey</h2>
 
-    <!-- Booking Tool Container -->
-    <div class="container d-flex align-items-center vh-100">
-        <div id="quote-book-tool" class="quote-book-tool text-center">
-            <h2>Quote & Book</h2>
-            
-            <!-- Tab Buttons -->
-            <ul class="nav nav-tabs justify-content-center">
+            <!-- Tab Navigation -->
+            <ul class="nav nav-tabs" role="tablist">
                 <li class="nav-item">
-                    <a class="nav-link active" data-toggle="tab" href="#flight">Flights</a>
+                    <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#flight-tab" type="button" role="tab">
+                        <i class="fas fa-plane"></i> Flights
+                    </button>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#hotel">Hotels</a>
+                    <button class="nav-link" data-bs-toggle="tab" data-bs-target="#hotel-tab" type="button" role="tab">
+                        <i class="fas fa-hotel"></i> Hotels
+                    </button>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#taxi">Taxis</a>
+                    <button class="nav-link" data-bs-toggle="tab" data-bs-target="#chauffeur-tab" type="button" role="tab">
+                        <i class="fas fa-car"></i> Chauffeurs
+                    </button>
+                </li>
+                <li class="nav-item">
+                    <button class="nav-link" data-bs-toggle="tab" data-bs-target="#tour-tab" type="button" role="tab">
+                        <i class="fas fa-route"></i> Tours
+                    </button>
+                </li>
+                <li class="nav-item">
+                    <button class="nav-link" data-bs-toggle="tab" data-bs-target="#summary-tab" type="button" role="tab">
+                        <i class="fas fa-list-alt"></i> Booking Summary
+                    </button>
                 </li>
             </ul>
 
-            <!-- Tab Content Area -->
-            <div class="tab-content p-3">
-                <!-- Flight Tab -->
-                <div id="flight" class="tab-pane active">
+            <!-- Tab Content -->
+            <div class="tab-content mt-4">
+                <!-- Flights Tab -->
+                <div class="tab-pane fade show active" id="flight-tab" role="tabpanel">
                     <form id="flight-form">
-                        <div class="form-group-inline">
+                        <h4>Flight Details</h4>
+                        <div class="row">
                             <!-- Departure Airport -->
-                            <div class="form-group">
-                                <label for="departure-airport">Departure Airport:</label>
-                                <select id="departure-airport" class="form-control" required>
+                            <div class="col-md-6">
+                                <label for="departure-airport" class="form-label">Departure Airport</label>
+                                <select id="departure-airport" class="form-select" required>
                                     <option value="">Select Airport</option>
-                                    <!-- List of Major UK Airports -->
-                                    <option>London Heathrow (LHR) - Terminal 1</option>
-                                    <option>London Heathrow (LHR) - Terminal 2</option>
-                                    <option>London Heathrow (LHR) - Terminal 3</option>
-                                    <option>London Heathrow (LHR) - Terminal 4</option>
-                                    <option>London Heathrow (LHR) - Terminal 5</option>
-                                    <option>Gatwick Airport (LGW) - North Terminal</option>
-                                    <option>Gatwick Airport (LGW) - South Terminal</option>
-                                    <option>Manchester Airport (MAN) - Terminal 1</option>
-                                    <option>Manchester Airport (MAN) - Terminal 2</option>
-                                    <option>Manchester Airport (MAN) - Terminal 3</option>
-                                    <option>Edinburgh Airport (EDI)</option>
-                                    <option>Birmingham Airport (BHX)</option>
-                                    <option>Glasgow Airport (GLA)</option>
-                                    <option>Bristol Airport (BRS)</option>
-                                    <option>Belfast International Airport (BFS)</option>
-                                    <option>London City Airport (LCY)</option>
-                                    <option>Leeds Bradford Airport (LBA)</option>
-                                    <option>Liverpool John Lennon Airport (LPL)</option>
-                                    <option>Southampton Airport (SOU)</option>
-                                    <option>Cardiff Airport (CWL)</option>
-                                    <option>Exeter Airport (EXT)</option>
-                                    <option>London Luton Airport (LTN)</option>
-                                    <option>London Stansted Airport (STN)</option>
-                                    <option>Bournemouth Airport (BOH)</option>
-                                    <option>Aberdeen Airport (ABZ)</option>
-                                    <option>Newcastle Airport (NCL)</option>
-                                    <option>Humberside Airport (HUY)</option>
-                                    <option>Norwich Airport (NWI)</option>
-                                    <option>East Midlands Airport (EMA)</option>
-                                    <option>Glasgow Prestwick Airport (PIK)</option>
-                                    <option>London Southend Airport (SEN)</option>
-                                    <option>Teesside International Airport (MME)</option>
-                                    <option>City of Derry Airport (LDY)</option>
-                                    <option>Inverness Airport (INV)</option>
-                                    <option>Kirkwall Airport (KOI)</option>
-                                    <option>Sumburgh Airport (LSI)</option>
-                                    <option>Stornoway Airport (SYY)</option>
-                                    <option>Isles of Scilly St Mary's Airport (ISC)</option>
-                                    <option>Land's End Airport (LEQ)</option>
-                                    <option>Tiree Airport (TRE)</option>
-                                    <option>Benbecula Airport (BEB)</option>
-                                    <option>Dundee Airport (DND)</option>
-                                    <option>Oban Airport (OBN)</option>
-                                    <option>Fair Isle Airport (FIE)</option>
-                                    <option>Barra Airport (BRR)</option>
-                                    <option>Islay Airport (ILY)</option>
-                                    <option>Foula Airport (FOA)</option>
-                                    <option>Campbeltown Airport (CAL)</option>
-                                    <option>Wick Airport (WIC)</option>
-                                    <option>Colonsay Airport (CSA)</option>
-                                    <option>Coll Airport (COL)</option>
-                                    <option>Cambridge Airport (CBG)</option>
-                                    <option>Farnborough Airport (FAB)</option>                                    
+                                    <!-- Dynamically populated -->
                                 </select>
                             </div>
                             <!-- Arrival Airport -->
-                            <div class="form-group">
-                                <label for="arrival-airport">Arrival Airport:</label>
-                                <select id="arrival-airport" class="form-control" required>
+                            <div class="col-md-6">
+                                <label for="arrival-airport" class="form-label">Arrival Airport</label>
+                                <select id="arrival-airport" class="form-select" required>
                                     <option value="">Select Airport</option>
-                                    <!-- Same List for Taxi Matching -->
-                                    <option>London Heathrow (LHR) - Terminal 1</option>
-                                    <option>London Heathrow (LHR) - Terminal 2</option>
-                                    <option>London Heathrow (LHR) - Terminal 3</option>
-                                    <option>London Heathrow (LHR) - Terminal 4</option>
-                                    <option>London Heathrow (LHR) - Terminal 5</option>
-                                    <option>Gatwick Airport (LGW) - North Terminal</option>
-                                    <option>Gatwick Airport (LGW) - South Terminal</option>
-                                    <option>Manchester Airport (MAN) - Terminal 1</option>
-                                    <option>Manchester Airport (MAN) - Terminal 2</option>
-                                    <option>Manchester Airport (MAN) - Terminal 3</option>
-                                    <option>Edinburgh Airport (EDI)</option>
-                                    <option>Birmingham Airport (BHX)</option>
-                                    <option>Glasgow Airport (GLA)</option>
-                                    <option>Bristol Airport (BRS)</option>
-                                    <option>Belfast International Airport (BFS)</option>
-                                    <option>London City Airport (LCY)</option>
-                                    <option>Leeds Bradford Airport (LBA)</option>
-                                    <option>Liverpool John Lennon Airport (LPL)</option>
-                                    <option>Southampton Airport (SOU)</option>
-                                    <option>Cardiff Airport (CWL)</option>
-                                    <option>Exeter Airport (EXT)</option>
-                                    <option>London Luton Airport (LTN)</option>
-                                    <option>London Stansted Airport (STN)</option>
-                                    <option>Bournemouth Airport (BOH)</option>
-                                    <option>Aberdeen Airport (ABZ)</option>
-                                    <option>Newcastle Airport (NCL)</option>
-                                    <option>Humberside Airport (HUY)</option>
-                                    <option>Norwich Airport (NWI)</option>
-                                    <option>East Midlands Airport (EMA)</option>
-                                    <option>Glasgow Prestwick Airport (PIK)</option>
-                                    <option>London Southend Airport (SEN)</option>
-                                    <option>Teesside International Airport (MME)</option>
-                                    <option>City of Derry Airport (LDY)</option>
-                                    <option>Inverness Airport (INV)</option>
-                                    <option>Kirkwall Airport (KOI)</option>
-                                    <option>Sumburgh Airport (LSI)</option>
-                                    <option>Stornoway Airport (SYY)</option>
-                                    <option>Isles of Scilly St Mary's Airport (ISC)</option>
-                                    <option>Land's End Airport (LEQ)</option>
-                                    <option>Tiree Airport (TRE)</option>
-                                    <option>Benbecula Airport (BEB)</option>
-                                    <option>Dundee Airport (DND)</option>
-                                    <option>Oban Airport (OBN)</option>
-                                    <option>Fair Isle Airport (FIE)</option>
-                                    <option>Barra Airport (BRR)</option>
-                                    <option>Islay Airport (ILY)</option>
-                                    <option>Foula Airport (FOA)</option>
-                                    <option>Campbeltown Airport (CAL)</option>
-                                    <option>Wick Airport (WIC)</option>
-                                    <option>Colonsay Airport (CSA)</option>
-                                    <option>Coll Airport (COL)</option>
-                                    <option>Cambridge Airport (CBG)</option>
-                                    <option>Farnborough Airport (FAB)</option>  
+                                    <!-- Dynamically populated -->
                                 </select>
                             </div>
                         </div>
+                        <div class="row mt-3">
+                            <!-- Departure Date -->
+                            <div class="col-md-6">
+                                <label for="flight-date" class="form-label">Departure Date</label>
+                                <input type="date" id="flight-date" class="form-control" required>
+                            </div>
+                            <!-- Departure Time -->
+                            <div class="col-md-6">
+                                <label for="flight-time" class="form-label">Departure Time</label>
+                                <input type="time" id="flight-time" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <!-- Cabin Type -->
+                            <div class="col-md-6">
+                                <label for="cabin-type" class="form-label">Cabin Type</label>
+                                <select id="cabin-type" class="form-select" required>
+                                    <option value="">Select Cabin Type</option>
+                                    <option value="economy">Economy</option>
+                                    <option value="business">Business</option>
+                                    <option value="first">First Class</option>
+                                </select>
+                            </div>
+                            <!-- Number of Adults -->
+                            <div class="col-md-3">
+                                <label for="adults" class="form-label">Adults</label>
+                                <input type="number" id="adults" class="form-control" min="1" value="1" required>
+                            </div>
+                            <!-- Number of Children -->
+                            <div class="col-md-3">
+                                <label for="children" class="form-label">Children</label>
+                                <input type="number" id="children" class="form-control" min="0" value="0">
+                            </div>
+                        </div>
+                        <div id="return-flight-section" style="display: none;">
+                            <h5 class="mt-4">Return Flight Details</h5>
+                            <div class="row mt-3">
+                                <!-- Return Date -->
+                                <div class="col-md-6">
+                                    <label for="return-date" class="form-label">Return Date</label>
+                                    <input type="date" id="return-date" class="form-control">
+                                </div>
+                                <!-- Return Time -->
+                                <div class="col-md-6">
+                                    <label for="return-time" class="form-label">Return Time</label>
+                                    <input type="time" id="return-time" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Add Return Flight Checkbox -->
+                        <div class="form-check mt-3">
+                            <input class="form-check-input" type="checkbox" id="add-return-flight">
+                            <label class="form-check-label" for="add-return-flight">Add Return Flight</label>
+                        </div>
+                        <!-- Add to Booking Button -->
+                        <button type="button" class="btn btn-success w-100 mt-4" id="add-flight">Add to Booking</button>
                     </form>
+                    <!-- Map for Flights -->
+                    <div id="flight-map" style="height: 300px;" class="mt-4"></div>
                 </div>
 
                 <!-- Hotel Tab -->
-                <div id="hotel" class="tab-pane fade">
+                <div class="tab-pane fade" id="hotel-tab" role="tabpanel">
                     <form id="hotel-form">
-                        <div class="form-group">
-                            <label for="hotel-name">Hotel:</label>
-                            <select id="hotel-name" class="form-control" required>
-                                <option value="">Select Hotel</option>
-                                <option>Sofitel London Heathrow</option>
-                                <option>Hilton London Gatwick</option>
-                                <option>Radisson Blu Manchester Airport</option>
-                                <option>Novotel Birmingham Airport</option>
-                                <option>DoubleTree by Hilton Edinburgh Airport</option>
-                                <option>The Ritz London</option>
-                                <option>Holiday Inn London - Kensington</option>
-                                <option>Park Plaza Westminster Bridge London</option>
-                                <option>Hotel Indigo - Manchester</option>
-                                <option>DoubleTree by Hilton Liverpool</option>
-                                <option>Hampton by Hilton Edinburgh</option>
-                                <option>Macdonald Burlington Hotel Birmingham</option>
-                                <option>Malmaison Oxford Castle</option>
-                                <option>The Grand York</option>
-                                <option>InterContinental London Park Lane</option>
-                                <option>Leonardo Royal Hotel London St Paul’s</option>
-                                <option>Novotel London Tower Bridge</option>
-                                <option>Hard Rock Hotel London</option>
-                                <option>Hotel Du Vin & Bistro Brighton</option>
-                                <option>Hilton Garden Inn Glasgow</option>
-                            </select>
-                        </div>
-                    </form>
-                </div>
-
-                <!-- Taxi Tab -->
-                <div id="taxi" class="tab-pane fade">
-                    <form id="taxi-form">
-                        <div class="form-group-inline">
-                            <!-- Pickup Location -->
-                            <div class="form-group">
-                                <label for="pickup-postcode">Pickup Postcode:</label>
-                                <input type="text" id="pickup-postcode" class="form-control" placeholder="Enter postcode" required>
+                        <h4>Hotel Details</h4>
+                        <div class="row">
+                            <!-- Hotel Name -->
+                            <div class="col-md-6">
+                                <label for="hotel-name" class="form-label">Hotel Name</label>
+                                <select id="hotel-name" class="form-select" required>
+                                    <option value="">Select Hotel</option>
+                                    <!-- Dynamically populated -->
+                                </select>
                             </div>
-                            <div class="form-group">
-                                <label for="pickup-airport">Pickup Airport:</label>
-                                <select id="pickup-airport" class="form-control">
-                                    <option value="">Select Airport</option>
-                                    <option value="TW6 1QG">London Heathrow (LHR) - Terminal 1</option>
-                                    <option value="TW6 1QG">London Heathrow (LHR) - Terminal 2</option>
-                                    <option value="TW6 1QG">London Heathrow (LHR) - Terminal 3</option>
-                                    <option value="TW6 1QG">London Heathrow (LHR) - Terminal 4</option>
-                                    <option value="TW6 1QG">London Heathrow (LHR) - Terminal 5</option>
-                                    <option value="RH6 0NP">Gatwick Airport (LGW) - North Terminal</option>
-                                    <option value="RH6 0NP">Gatwick Airport (LGW) - South Terminal</option>
-                                    <option value="M90 1QX">Manchester Airport (MAN) - Terminal 1</option>
-                                    <option value="M90 1QX">Manchester Airport (MAN) - Terminal 2</option>
-                                    <option value="M90 1QX">Manchester Airport (MAN) - Terminal 3</option>
-                                    <option value="EH12 9DN">Edinburgh Airport (EDI)</option>
-                                    <option value="B26 3QJ">Birmingham Airport (BHX)</option>
-                                    <option value="PA3 2SW">Glasgow Airport (GLA)</option>
-                                    <option value="BS48 3DY">Bristol Airport (BRS)</option>
-                                    <option value="BT29 4AB">Belfast International Airport (BFS)</option>
-                                    <option value="E16 2PX">London City Airport (LCY)</option>
-                                    <option value="LS19 7TU">Leeds Bradford Airport (LBA)</option>
-                                    <option value="L24 1YD">Liverpool John Lennon Airport (LPL)</option>
-                                    <option value="SO18 2NL">Southampton Airport (SOU)</option>
-                                    <option value="CF62 3BD">Cardiff Airport (CWL)</option>
-                                    <option value="EX5 2BD">Exeter Airport (EXT)</option>
-                                    <option value="LU2 9LY">London Luton Airport (LTN)</option>
-                                    <option value="CM24 1QW">London Stansted Airport (STN)</option>
-                                    <option value="BH23 6SE">Bournemouth Airport (BOH)</option>
-                                    <option value="AB21 7DU">Aberdeen Airport (ABZ)</option>
-                                    <option value="NCL">Newcastle Airport (NCL)</option>
-                                    <option value="HUY">Humberside Airport (HUY)</option>
-                                    <option value="NWI">Norwich Airport (NWI)</option>
-                                    <option value="EMA">East Midlands Airport (EMA)</option>
-                                    <option value="PIK">Glasgow Prestwick Airport (PIK)</option>
-                                    <option value="SEN">London Southend Airport (SEN)</option>
-                                    <option value="MME">Teesside International Airport (MME)</option>
-                                    <option value="LDY">City of Derry Airport (LDY)</option>
-                                    <option value="INV">Inverness Airport (INV)</option>
-                                    <option value="KOI">Kirkwall Airport (KOI)</option>
-                                    <option value="LSI">Sumburgh Airport (LSI)</option>
-                                    <option value="SYY">Stornoway Airport (SYY)</option>
-                                    <option value="ISC">Isles of Scilly St Mary's Airport (ISC)</option>
-                                    <option value="LEQ">Land's End Airport (LEQ)</option>
-                                    <option value="TRE">Tiree Airport (TRE)</option>
-                                    <option value="BEB">Benbecula Airport (BEB)</option>
-                                    <option value="DND">Dundee Airport (DND)</option>
-                                    <option value="OBN">Oban Airport (OBN)</option>
-                                    <option value="FIE">Fair Isle Airport (FIE)</option>
-                                    <option value="BRR">Barra Airport (BRR)</option>
-                                    <option value="ILY">Islay Airport (ILY)</option>
-                                    <option value="FOA">Foula Airport (FOA)</option>
-                                    <option value="CAL">Campbeltown Airport (CAL)</option>
-                                    <option value="WIC">Wick Airport (WIC)</option>
-                                    <option value="CSA">Colonsay Airport (CSA)</option>
-                                    <option value="COL">Coll Airport (COL)</option>
-                                    <option value="CBG">Cambridge Airport (CBG)</option>
-                                    <option value="FAB">Farnborough Airport (FAB)</option>
+                            <!-- Check-in Date -->
+                            <div class="col-md-6">
+                                <label for="checkin-date" class="form-label">Check-in Date</label>
+                                <input type="date" id="checkin-date" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <!-- Check-out Date -->
+                            <div class="col-md-6">
+                                <label for="checkout-date" class="form-label">Check-out Date</label>
+                                <input type="date" id="checkout-date" class="form-control" required>
+                            </div>
+                            <!-- Room Type -->
+                            <div class="col-md-6">
+                                <label for="room-type" class="form-label">Room Type</label>
+                                <select id="room-type" class="form-select" required>
+                                    <option value="">Select Room Type</option>
+                                    <option value="single">Single</option>
+                                    <option value="double">Double</option>
+                                    <option value="suite">Suite</option>
                                 </select>
                             </div>
                         </div>
+                        <div class="row mt-3">
+                            <!-- Number of Rooms -->
+                            <div class="col-md-6">
+                                <label for="num-rooms" class="form-label">Number of Rooms</label>
+                                <input type="number" id="num-rooms" class="form-control" min="1" required>
+                            </div>
+                            <!-- Number of Guests -->
+                            <div class="col-md-6">
+                                <label for="num-guests" class="form-label">Number of Guests</label>
+                                <input type="number" id="num-guests" class="form-control" min="1" required>
+                            </div>
+                        </div>
+                        <!-- Additional Options -->
+                        <div class="mt-3">
+                            <h6>Additional Options</h6>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="baby-cot">
+                                <label class="form-check-label" for="baby-cot">Baby Cot</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="extra-bed">
+                                <label class="form-check-label" for="extra-bed">Extra Bed</label>
+                            </div>
+                        </div>
+                        <!-- Add to Booking Button -->
+                        <button type="button" class="btn btn-success w-100 mt-4" id="add-hotel">Add to Booking</button>
                     </form>
+                    <!-- Map for Hotels -->
+                    <div id="hotel-map" style="height: 300px;" class="mt-4"></div>
                 </div>
+
+                <!-- Chauffeur Tab -->
+                <div class="tab-pane fade" id="chauffeur-tab" role="tabpanel">
+                    <form id="chauffeur-form">
+                        <h4>Chauffeur Details</h4>
+                        <div class="row">
+                            <!-- Pickup Location -->
+                            <div class="col-md-6">
+                                <label for="pickup-location" class="form-label">Pickup Location</label>
+                                <select id="pickup-location" class="form-select" required>
+                                    <option value="">Select Pickup Location</option>
+                                    <!-- Dynamically populated -->
+                                </select>
+                            </div>
+                            <!-- Drop-off Location -->
+                            <div class="col-md-6">
+                                <label for="dropoff-location" class="form-label">Drop-off Location</label>
+                                <select id="dropoff-location" class="form-select" required>
+                                    <option value="">Select Drop-off Location</option>
+                                    <!-- Dynamically populated -->
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <!-- Pickup Date -->
+                            <div class="col-md-6">
+                                <label for="chauffeur-date" class="form-label">Pickup Date</label>
+                                <input type="date" id="chauffeur-date" class="form-control" required>
+                            </div>
+                            <!-- Pickup Time -->
+                            <div class="col-md-6">
+                                <label for="chauffeur-time" class="form-label">Pickup Time</label>
+                                <input type="time" id="chauffeur-time" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <!-- Vehicle Type -->
+                            <div class="col-md-6">
+                                <label for="vehicle-type" class="form-label">Vehicle Type</label>
+                                <select id="vehicle-type" class="form-select" required>
+                                    <option value="">Select Vehicle</option>
+                                    <option value="standard">Standard</option>
+                                    <option value="executive">Executive</option>
+                                    <option value="luxury">Luxury</option>
+                                    <option value="mpv">MPV</option>
+                                </select>
+                            </div>
+                            <!-- Number of Passengers -->
+                            <div class="col-md-6">
+                                <label for="num-passengers" class="form-label">Number of Passengers</label>
+                                <input type="number" id="num-passengers" class="form-control" min="1" max="7" required>
+                            </div>
+                        </div>
+                        <!-- Child Seats -->
+                        <div class="mt-3">
+                            <h6>Child Seats</h6>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="child-seat">
+                                <label class="form-check-label" for="child-seat">Child Seat</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="booster-seat">
+                                <label class="form-check-label" for="booster-seat">Booster Seat</label>
+                            </div>
+                        </div>
+                        <div id="return-chauffeur-section" style="display: none;">
+                            <h5 class="mt-4">Return Chauffeur Details</h5>
+                            <div class="row mt-3">
+                                <!-- Return Date -->
+                                <div class="col-md-6">
+                                    <label for="return-chauffeur-date" class="form-label">Return Date</label>
+                                    <input type="date" id="return-chauffeur-date" class="form-control">
+                                </div>
+                                <!-- Return Time -->
+                                <div class="col-md-6">
+                                    <label for="return-chauffeur-time" class="form-label">Return Time</label>
+                                    <input type="time" id="return-chauffeur-time" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Add Return Chauffeur Checkbox -->
+                        <div class="form-check mt-3">
+                            <input class="form-check-input" type="checkbox" id="add-return-chauffeur">
+                            <label class="form-check-label" for="add-return-chauffeur">Add Return Chauffeur</label>
+                        </div>
+                        <!-- Add to Booking Button -->
+                        <button type="button" class="btn btn-success w-100 mt-4" id="add-chauffeur">Add to Booking</button>
+                    </form>
+                    <!-- Map for Chauffeurs -->
+                    <div id="chauffeur-map" style="height: 300px;" class="mt-4"></div>
+                </div>
+
+                <!-- Tours Tab -->
+                <div class="tab-pane fade" id="tour-tab" role="tabpanel">
+                    <form id="tour-form">
+                        <h4>Tour Details</h4>
+                        <div class="row">
+                            <!-- Tour Destination -->
+                            <div class="col-md-6">
+                                <label for="tour-destination" class="form-label">Tour Destination</label>
+                                <select id="tour-destination" class="form-select" required>
+                                    <option value="">Select Destination</option>
+                                    <!-- Dynamically populated -->
+                                </select>
+                            </div>
+                            <!-- Tour Date -->
+                            <div class="col-md-6">
+                                <label for="tour-date" class="form-label">Tour Date</label>
+                                <input type="date" id="tour-date" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <!-- Number of People -->
+                            <div class="col-md-6">
+                                <label for="tour-num-people" class="form-label">Number of People</label>
+                                <input type="number" id="tour-num-people" class="form-control" min="1" required>
+                            </div>
+                            <!-- Tour Type -->
+                            <div class="col-md-6">
+                                <label for="tour-type" class="form-label">Tour Type</label>
+                                <select id="tour-type" class="form-select" required>
+                                    <option value="">Select Type</option>
+                                    <option value="educational">Educational</option>
+                                    <option value="adventure">Adventure</option>
+                                    <option value="luxury">Luxury</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <!-- Tour Level -->
+                            <div class="col-md-12">
+                                <label for="tour-level" class="form-label">Tour Level</label>
+                                <select id="tour-level" class="form-select" required>
+                                    <option value="">Select Level</option>
+                                    <option value="standard">Standard</option>
+                                    <option value="premium">Premium</option>
+                                    <option value="premium">Exclusive</option>
+                                    <option value="premium">Luxury</option>
+                                </select>
+                            </div>
+                        </div>
+                        <!-- Add to Booking Button -->
+                        <button type="button" class="btn btn-success w-100 mt-4" id="add-tour">Add to Booking</button>
+                    </form>
+                    <!-- Map for Tours -->
+                    <div id="tour-map" style="height: 300px;" class="mt-4"></div>
+                </div>
+
+                <!-- Booking Summary Tab -->
+                <div class="tab-pane fade" id="summary-tab" role="tabpanel">
+                    <div id="booking-summary">
+                        <h4 class="text-center">Booking Summary</h4>
+                        <ul id="summary-list" class="list-group"></ul>
+                        <button type="button" class="btn btn-primary w-100 mt-4" id="book-journey">Book Your Journey</button>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
 
-    <!-- Booking Summary -->
-    <div class="booking-summary" id="booking-summary">
-        <h5>Booking Summary</h5>
-        <ul id="booking-summary-list">
-            <!-- Booking details will be dynamically added here -->
-        </ul>
-        <!-- Book Now Button -->
-        <button id="book-now" class="btn btn-custom mt-3">Book Now</button>
+    <!-- Popup Message -->
+    <div id="popup-message" class="popup-container d-none">
+        <div class="popup-content text-center p-4 rounded shadow">
+            <button type="button" class="close-popup btn-close position-absolute top-0 end-0 m-2" aria-label="Close"></button>
+            <h5 class="mb-3">Yay! 🎉</h5>
+            <p>Your selection has been added to the Booking Summary! ✈️🏨🚗</p>
+            <div class="d-flex justify-content-center gap-3">
+                <a href="#summary-tab" class="btn btn-primary">Go to Booking Summary</a>
+                <button type="button" class="btn btn-secondary" id="add-more">Add More</button>
+            </div>
+        </div>
     </div>
-
-    <!-- Confirmation Popup -->
-    <div id="confirmationPopup" class="confirmation-popup">
-        <p>Thank you! 😊<br>Your booking request has been received successfully. We will get back to you shortly!</p>
-        <button class="btn btn-custom" id="makeAnotherBooking">Make Another Booking</button>
-        <button class="btn btn-custom" id="closePopup">&times;</button>
-    </div>
-
-    <!-- jQuery, Bootstrap, and JavaScript Libraries -->
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-    <script>
-        $(document).ready(function () {
-            // Set minimum date to today to prevent past date selection
-            const today = new Date().toISOString().split('T')[0];
-            $('input[type="date"]').attr('min', today);
-    
-            // Function to sync airport options for unique selection
-            function syncAirportOptions() {
-                const departureValue = $('#departure-airport').val();
-                const arrivalValue = $('#arrival-airport').val();
-    
-                // Enable all options first
-                $('#departure-airport option, #arrival-airport option, #pickup-airport option, #dropoff-airport option').prop('disabled', false);
-    
-                // Disable selected arrival in departure dropdown and vice-versa
-                if (arrivalValue) {
-                    $('#departure-airport option').filter(function () {
-                        return $(this).val() === arrivalValue;
-                    }).prop('disabled', true);
-                }
-    
-                if (departureValue) {
-                    $('#arrival-airport option').filter(function () {
-                        return $(this).val() === departureValue;
-                    }).prop('disabled', true);
-                }
-            }
-    
-            // Run sync function on changes
-            $('#departure-airport, #arrival-airport').on('change', syncAirportOptions);
-    
-            // Update booking summary dynamically based on user selections
-            function updateBookingSummary() {
-                $('#booking-summary-list').empty();
-    
-                $('form').each(function () {
-                    const formId = $(this).attr('id');
-                    let summaryContent = `<li><strong>${formId.replace('-form', '').toUpperCase()}</strong>:</li>`;
-                    let hasContent = false;
-    
-                    // Gather filled fields for the summary
-                    $(this).find('input, select').each(function () {
-                        const label = $(this).prev('label').text();
-                        const value = $(this).val();
-    
-                        if ($(this).is(':checkbox') && $(this).is(':checked')) {
-                            summaryContent += `<li>${label}</li>`;
-                            hasContent = true;
-                        } else if (value && !$(this).is(':checkbox')) {
-                            summaryContent += `<li>${label}: ${value}</li>`;
-                            hasContent = true;
-                        }
-                    });
-    
-                    // Add summary only if there's content
-                    if (hasContent) {
-                        $('#booking-summary-list').append(summaryContent);
-                    }
-                });
-            }
-    
-            // Attach change events to update booking summary in real-time
-            $('form input, form select').on('change input', updateBookingSummary);
-    
-            // Handle "Book Now" button to show customer info form in place of booking tool
-            $('#book-now').on('click', function () {
-                $('#quote-book-tool').hide();
-                $('#customer-info-section').show();
-            });
-    
-            // Handle customer information submission and show confirmation popup
-            $('#customer-info-form').on('submit', function (e) {
-                e.preventDefault();
-                $('#customer-info-section').hide();
-                $('#confirmationPopup').fadeIn();
-            });
-    
-            // Reset forms and summary when "Make Another Booking" or close button is clicked
-            $('#closePopup, #makeAnotherBooking').on('click', function () {
-                $('#confirmationPopup').fadeOut();
-                $('#quote-book-tool').show();
-                $('form').each(function () {
-                    this.reset();
-                });
-                $('#customer-info-section').hide();
-                $('#booking-summary-list').empty();
-                syncAirportOptions(); // Reset airport dropdown options
-            });
-    
-            // Allow adding additional guest information fields dynamically
-            $('#add-guest').on('click', function () {
-                const guestDetails = $('.guest-details:first').clone();
-                guestDetails.find('input').val('');
-                $('#guest-container').append(guestDetails);
-            });
-    
-            // Initial call to sync airport options on page load
-            syncAirportOptions();
-            $('#customer-info-section').hide(); // Initially hide customer info section
-        });
-    </script>    
 
 </body>
+
+<style>
+    /* General body styling for background and font */
+body {
+    background-color: #d1d9dd;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Styling for the fullscreen video background */
+.video-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.video-background iframe {
+    width: 120vw;
+    height: 120vh;
+    position: absolute;
+    top: -10vh;
+    left: -10vw;
+    pointer-events: none;
+}
+
+/* Styling for the booking tool container */
+.quote-book-tool {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    margin: auto;
+    max-width: 900px;
+}
+
+/* Styling for headings inside the booking tool */
+.quote-book-tool h2 {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #333;
+}
+
+/* Navigation tabs styling for active and default states */
+.nav-tabs .nav-link {
+    color: #333;
+    font-weight: bold;
+    border: none;
+}
+
+.nav-tabs .nav-link:hover {
+    background-color: #f2f2f2;
+}
+
+.nav-tabs .nav-link.active {
+    background-color: #F2BA1E;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+/* Tab content general styling */
+.tab-content {
+    margin-top: 20px;
+}
+
+/* Form elements styling */
+.form-label {
+    font-weight: bold;
+    color: #333;
+}
+
+.form-control, .form-select {
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    padding: 8px;
+    font-size: 0.9rem;
+}
+
+/* General button styling */
+.btn {
+    border-radius: 6px; /* Slightly rounded corners */
+    font-weight: bold; /* Bold text */
+    text-transform: uppercase; /* Capitalize all button text */
+    color: #FFFFFF; /* Default text color */
+    background-color: #5a5a5a; /* Default background color */
+}
+
+/* Hover effect for all buttons */
+.btn:hover {
+    background-color: #F2BA1E; /* Button hover background color */
+    color: #FFFFFF; /* Text color remains white on hover */
+}
+
+/* Success button specific styling */
+.btn-success {
+    background-color: #5a5a5a; /* Override default Bootstrap success button */
+    color: #FFFFFF;
+}
+
+/* Hover effect for success button */
+.btn-success:hover {
+    background-color: #F2BA1E; /* Success button hover color */
+    color: #FFFFFF;
+}
+
+/* Primary button specific styling */
+.btn-primary {
+    background-color: #5a5a5a; /* Override default Bootstrap primary button */
+    color: #FFFFFF;
+}
+
+/* Hover effect for primary button */
+.btn-primary:hover {
+    background-color: #F2BA1E; /* Primary button hover color */
+    color: #FFFFFF;
+}
+
+/* Secondary button specific styling */
+.btn-secondary {
+    background-color: #5a5a5a; /* Override default Bootstrap secondary button */
+    color: #FFFFFF;
+}
+
+/* Hover effect for secondary button */
+.btn-secondary:hover {
+    background-color: #F2BA1E; /* Secondary button hover color */
+    color: #FFFFFF;
+}
+
+/* Map sections with a defined height for visibility */
+#flight-map, #hotel-map, #chauffeur-map, #tour-map {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    height: 300px;
+}
+
+/* Popup message styling */
+#popup-message {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 20px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    border-radius: 12px;
+    z-index: 1000;
+}
+
+#popup-message .popup-content {
+    position: relative;
+}
+
+#popup-message h5 {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: #333;
+}
+
+#popup-message p {
+    font-size: 1rem;
+    color: #666;
+}
+
+#popup-message .btn {
+    font-size: 0.9rem;
+    padding: 10px 15px;
+}
+
+#popup-message .btn-close {
+    font-size: 1.2rem;
+    color: #333;
+    cursor: pointer;
+}
+
+/* Booking summary list styling */
+#summary-list {
+    list-style: none;
+    padding-left: 0;
+}
+
+#summary-list li {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+#summary-list li:last-child {
+    border-bottom: none;
+}
+
+/* Booking summary container styling */
+#booking-summary {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Additional form-check styling for checkboxes */
+.form-check-input {
+    margin-right: 10px;
+}
+
+.form-check-label {
+    font-size: 0.9rem;
+}
+
+/* Hover effect for interactive elements */
+.nav-tabs .nav-link i:hover {
+    transform: scale(1.1);
+    transition: transform 0.2s ease;
+}
+
+/* Responsive design adjustments */
+@media (max-width: 768px) {
+    .quote-book-tool {
+        padding: 20px;
+    }
+
+    .form-label {
+        font-size: 0.9rem;
+    }
+
+    .form-control, .form-select {
+        font-size: 0.8rem;
+    }
+
+    #popup-message {
+        width: 90%;
+    }
+
+    .nav-tabs .nav-link {
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 576px) {
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    .btn {
+        font-size: 0.8rem;
+    }
+
+    #popup-message h5 {
+        font-size: 1.2rem;
+    }
+}
+</style>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+    // ********** Data Initialization **********
+    const airports = [
+        "London Heathrow (LHR)",
+        "Gatwick Airport (LGW)",
+        "Manchester Airport (MAN)",
+        "Edinburgh Airport (EDI)",
+        "Birmingham Airport (BHX)",
+        "Glasgow Airport (GLA)",
+        "Bristol Airport (BRS)",
+        "Belfast International Airport (BFS)",
+        "Belfast City Airport (BHD)",
+        "Newcastle Airport (NCL)",
+        "London City Airport (LCY)",
+        "Leeds Bradford Airport (LBA)"
+    ];
+
+    const hotels = [
+        "Sofitel London Heathrow",
+        "Hilton Garden Inn London Heathrow",
+        "Radisson Blu Hotel Manchester",
+        "Clayton Hotel Manchester",
+        "DoubleTree by Hilton Edinburgh",
+        "Moxy Edinburgh",
+        "Novotel Birmingham",
+        "Ibis Birmingham",
+        "Holiday Inn Glasgow",
+        "Courtyard by Marriott Glasgow",
+        "Hampton by Hilton Bristol"
+    ];
+
+    const tours = [
+        "London Highlights Tour",
+        "Scotland Adventure Tour",
+        "UK Grand Tour",
+        "Complete UK Experience"
+    ];
+
+    // ********** Populate Dropdowns **********
+    airports.forEach((airport) => {
+        $('#departure-airport, #arrival-airport, #pickup-location, #dropoff-location').append(
+            `<option value="${airport}">${airport}</option>`
+        );
+    });
+
+    hotels.forEach((hotel) => {
+        $('#hotel-name').append(`<option value="${hotel}">${hotel}</option>`);
+    });
+
+    tours.forEach((tour) => {
+        $('#tour-destination').append(`<option value="${tour}">${tour}</option>`);
+    });
+
+    // ********** Utility Functions **********
+    function validateForm(formId) {
+        let isValid = true;
+        $(`#${formId} [required]`).each(function () {
+            if (!$(this).val()) {
+                $(this).addClass('is-invalid');
+                isValid = false;
+            } else {
+                $(this).removeClass('is-invalid');
+            }
+        });
+        return isValid;
+    }
+
+    function resetForm(formId) {
+        $(`#${formId}`)[0].reset();
+        $(`#${formId} .form-check-input`).prop('checked', false);
+        $(`#${formId} .is-invalid`).removeClass('is-invalid');
+    }
+
+    function disableArrivalAirport() {
+        const selected = $('#departure-airport').val();
+        $('#arrival-airport option').each(function () {
+            $(this).prop('disabled', $(this).val() === selected);
+        });
+    }
+
+    function showPopup(message) {
+        $('#popup-message .popup-content p').text(message);
+        $('#popup-message').removeClass('d-none');
+    }
+
+    $('.close-popup, #add-more').on('click', function () {
+        $('#popup-message').addClass('d-none');
+    });
+
+    $('#popup-message').on('click', '.go-to-summary', function () {
+        $('#popup-message').addClass('d-none');
+        $('html, body').animate(
+            {
+                scrollTop: $('#summary-tab').offset().top
+            },
+            500
+        );
+    });
+
+    const selectedBookings = {
+        flights: [],
+        hotels: [],
+        chauffeurs: [],
+        tours: []
+    };
+
+    function updateSummary() {
+        const summaryList = $('#summary-list');
+        summaryList.empty();
+
+        // Flights
+        selectedBookings.flights.forEach((flight, index) => {
+            summaryList.append(`
+                <li class="list-group-item">
+                    <strong>Flight:</strong> ${flight.departure} to ${flight.arrival}, ${flight.date} at ${flight.time}
+                    (Cabin: ${flight.cabin}, Adults: ${flight.adults}, Children: ${flight.children})
+                    ${flight.return ? `Return: ${flight.returnDate} at ${flight.returnTime}` : ''}
+                    <button class="btn btn-sm btn-danger float-end remove-item" data-type="flight" data-index="${index}">X</button>
+                </li>
+            `);
+        });
+
+        // Hotels
+        selectedBookings.hotels.forEach((hotel, index) => {
+            summaryList.append(`
+                <li class="list-group-item">
+                    <strong>Hotel:</strong> ${hotel.name}, Check-in: ${hotel.checkin}, Check-out: ${hotel.checkout},
+                    Rooms: ${hotel.rooms}, Guests: ${hotel.guests}, Extra: ${hotel.extra.join(", ")}
+                    <button class="btn btn-sm btn-danger float-end remove-item" data-type="hotel" data-index="${index}">X</button>
+                </li>
+            `);
+        });
+
+        // Chauffeurs
+        selectedBookings.chauffeurs.forEach((chauffeur, index) => {
+            summaryList.append(`
+                <li class="list-group-item">
+                    <strong>Chauffeur:</strong> ${chauffeur.pickup} to ${chauffeur.dropoff}, ${chauffeur.date} at ${chauffeur.time}
+                    (Vehicle: ${chauffeur.vehicle}, Passengers: ${chauffeur.passengers}, Seats: ${chauffeur.seats.join(", ")})
+                    ${chauffeur.return ? `Return: ${chauffeur.returnDate} at ${chauffeur.returnTime}` : ''}
+                    <button class="btn btn-sm btn-danger float-end remove-item" data-type="chauffeur" data-index="${index}">X</button>
+                </li>
+            `);
+        });
+
+        // Tours
+        selectedBookings.tours.forEach((tour, index) => {
+            summaryList.append(`
+                <li class="list-group-item">
+                    <strong>Tour:</strong> ${tour.destination}, ${tour.date}, People: ${tour.people}, Type: ${tour.type}, Level: ${tour.level}
+                    <button class="btn btn-sm btn-danger float-end remove-item" data-type="tour" data-index="${index}">X</button>
+                </li>
+            `);
+        });
+    }
+
+    // ********** Remove Item from Summary **********
+    $('#summary-list').on('click', '.remove-item', function () {
+        const type = $(this).data('type');
+        const index = $(this).data('index');
+        selectedBookings[type].splice(index, 1);
+        updateSummary();
+    });
+
+    // ********** Add to Booking Buttons **********
+    $('#add-flight').on('click', function () {
+        if (validateForm('flight-form')) {
+            const flight = {
+                departure: $('#departure-airport').val(),
+                arrival: $('#arrival-airport').val(),
+                date: $('#flight-date').val(),
+                time: $('#flight-time').val(),
+                cabin: $('#cabin-type').val(),
+                adults: $('#adults').val(),
+                children: $('#children').val() || 0,
+                return: $('#add-return-flight').is(':checked'),
+                returnDate: $('#return-date').val(),
+                returnTime: $('#return-time').val()
+            };
+            selectedBookings.flights.push(flight);
+            updateSummary();
+            showPopup('Flight added to booking summary!');
+            resetForm('flight-form');
+        }
+    });
+
+    $('#add-hotel').on('click', function () {
+        if (validateForm('hotel-form')) {
+            const hotel = {
+                name: $('#hotel-name').val(),
+                checkin: $('#checkin-date').val(),
+                checkout: $('#checkout-date').val(),
+                rooms: $('#num-rooms').val(),
+                guests: $('#num-guests').val(),
+                extra: [
+                    $('#baby-cot').is(':checked') ? "Baby Cot" : null,
+                    $('#extra-bed').is(':checked') ? "Extra Bed" : null
+                ].filter(Boolean)
+            };
+            selectedBookings.hotels.push(hotel);
+            updateSummary();
+            showPopup('Hotel added to booking summary!');
+            resetForm('hotel-form');
+        }
+    });
+
+    // ********** Return Flight Toggle **********
+    $('#add-return-flight').on('change', function () {
+        if ($(this).is(':checked')) {
+            $('#return-flight-section').slideDown();
+        } else {
+            $('#return-flight-section').slideUp();
+            $('#return-date, #return-time').val('');
+        }
+    });
+
+    // ********** Departure Airport Filtering **********
+    $('#departure-airport').on('change', disableArrivalAirport);
+});
+
+</script>
+
 </html>

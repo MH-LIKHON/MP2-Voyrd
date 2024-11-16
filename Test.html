@@ -178,10 +178,10 @@ label {
     float: right;
 }
 
-/* Customer Information Section Styling */
 #customer-info-section {
     visibility: hidden;
     opacity: 0;
+    transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
     background: rgba(255, 255, 255, 0.95);
     padding: 20px;
     border-radius: 8px;
@@ -189,13 +189,15 @@ label {
     margin: auto;
     box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);
     position: relative;
-    transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
+    z-index: 1;
 }
 
 #customer-info-section.show {
     visibility: visible;
     opacity: 1;
 }
+
+
 
 /* Button to return to the booking tool */
 #return-to-booking {
@@ -216,6 +218,24 @@ label {
 .optional-section.active {
     display: block;
 }
+
+#customer-info-section {
+    display: none;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+#customer-info-section.show {
+    display: block;
+    opacity: 1;
+    visibility: visible;
+}
+
+.hidden {
+    display: none !important;
+}
+
     </style>    
 </head>
 <body>
@@ -657,60 +677,6 @@ label {
                         <button type="button" id="add-taxi" class="btn btn-secondary mt-3">Add Taxi to Summary</button>
                     </form>
                 </div>
-                
-                <!-- Customer Information Tab -->
-                <div id="customer-info-section" class="quote-book-tool hidden" style="display: none;">
-                    <h3>Customer Information</h3>
-                    <form id="customer-info-form">
-                        <div class="form-group">
-                            <label for="customer-name">Customer Name:</label>
-                            <input type="text" id="customer-name" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="customer-address">Address:</label>
-                            <input type="text" id="customer-address" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="customer-mobile">Mobile Number:</label>
-                            <input type="tel" id="customer-mobile" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="customer-email">Email:</label>
-                            <input type="email" id="customer-email" class="form-control" required>
-                        </div>
-                
-                        <!-- Add Guest Checkbox -->
-                        <div class="form-group mt-3">
-                            <input type="checkbox" id="add-guest-checkbox">
-                            <label for="add-guest-checkbox">Add Guest Information (Optional)</label>
-                        </div>
-                
-                        <!-- Guest Information Section (Initially Hidden) -->
-                        <div id="guest-container" style="display: none;">
-                            <h4>Guest Information</h4>
-                            <div class="guest-details">
-                                <div class="form-group">
-                                    <label for="guest-name">Guest Name:</label>
-                                    <input type="text" class="form-control guest-name">
-                                </div>
-                                <div class="form-group">
-                                    <label for="guest-mobile">Guest Mobile:</label>
-                                    <input type="tel" class="form-control guest-mobile">
-                                </div>
-                                <div class="form-group">
-                                    <label for="guest-email">Guest Email:</label>
-                                    <input type="email" class="form-control guest-email">
-                                </div>
-                                <div class="form-group">
-                                    <label for="flight-number">Flight Number (Optional):</label>
-                                    <input type="text" class="form-control flight-number">
-                                </div>
-                            </div>
-                        </div>
-                
-                        <button type="submit" id="submit-customer-info" class="btn btn-primary mt-3">Book Now</button>
-                    </form>
-                </div>            
             </div>
         </div>
     </div>
@@ -724,6 +690,60 @@ label {
     <!-- New "Book Your Journey" Button -->
     <button class="btn btn-primary mt-3" id="book-your-journey">Book Your Journey</button>
 </div>
+
+ <!-- Customer Information Tab -->
+ <div id="customer-info-section" class="quote-book-tool hidden" style="display: none;">
+    <h3>Customer Information</h3>
+    <form id="customer-info-form">
+        <div class="form-group">
+            <label for="customer-name">Customer Name:</label>
+            <input type="text" id="customer-name" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="customer-address">Address:</label>
+            <input type="text" id="customer-address" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="customer-mobile">Mobile Number:</label>
+            <input type="tel" id="customer-mobile" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="customer-email">Email:</label>
+            <input type="email" id="customer-email" class="form-control" required>
+        </div>
+
+        <!-- Add Guest Checkbox -->
+        <div class="form-group mt-3">
+            <input type="checkbox" id="add-guest-checkbox">
+            <label for="add-guest-checkbox">Add Guest Information (Optional)</label>
+        </div>
+
+        <!-- Guest Information Section (Initially Hidden) -->
+        <div id="guest-container" style="display: none;">
+            <h4>Guest Information</h4>
+            <div class="guest-details">
+                <div class="form-group">
+                    <label for="guest-name">Guest Name:</label>
+                    <input type="text" class="form-control guest-name">
+                </div>
+                <div class="form-group">
+                    <label for="guest-mobile">Guest Mobile:</label>
+                    <input type="tel" class="form-control guest-mobile">
+                </div>
+                <div class="form-group">
+                    <label for="guest-email">Guest Email:</label>
+                    <input type="email" class="form-control guest-email">
+                </div>
+                <div class="form-group">
+                    <label for="flight-number">Flight Number (Optional):</label>
+                    <input type="text" class="form-control flight-number">
+                </div>
+            </div>
+        </div>
+
+        <button type="submit" id="submit-customer-info" class="btn btn-primary mt-3">Book Now</button>
+    </form>
+</div>            
 
 <!-- Confirmation Popup -->
 <div id="confirmationPopup" class="confirmation-popup">
@@ -784,11 +804,16 @@ label {
         return isCompleted;
     }
 
+    // Show a warning message if the form is incomplete
+    function showWarning(message) {
+        $('#booking-warning').text(message).fadeIn();
+        setTimeout(() => $('#booking-warning').fadeOut(), 3000); // Auto-hide after 3 seconds
+    }
+
     // Function to add each section's data to the booking summary
     function addToSummary(formId, title) {
         if (isFormCompleted(formId)) {
-            // Remove previous entry for the form to avoid duplicates
-            $(`#${formId}-summary`).remove();
+            $(`#${formId}-summary`).remove(); // Avoid duplicate entries
             let summaryItem = `<li id="${formId}-summary"><strong>${title}</strong> <button class="remove-summary" data-id="${formId}-summary">×</button><ul>`;
             // Append each input/select value from the form
             $('#' + formId + ' input, #' + formId + ' select').each(function () {
@@ -802,9 +827,8 @@ label {
             summaryItem += '</ul></li>';
             $('#booking-summary-list').append(summaryItem);
             $('#book-your-journey').prop('disabled', false); // Enable button
-            $('#booking-warning').hide();
         } else {
-            $('#booking-warning').text(`Please complete all fields in the ${title} section.`).show();
+            showWarning(`Please complete all fields in the ${title} section.`);
         }
     }
 
@@ -822,14 +846,11 @@ label {
         }
     });
 
-    // "Book Your Journey" button click - shows the customer information form
+    // Handle "Book Your Journey" button click
     $('#book-your-journey').on('click', function () {
-        if ($('#booking-summary-list').children().length > 0) {
-            $('#quote-book-tool').addClass('hidden');
-            $('#customer-info-section').addClass('show').removeClass('hidden');
-        } else {
-            $('#booking-warning').text("Please add at least one booking to proceed.").show();
-        }
+        $('#quote-book-tool').addClass('hidden');
+        $('#customer-info-section').removeClass('hidden').addClass('show');
+        $('#booking-warning').hide();
     });
 
     // Customer information form submission handling
@@ -839,7 +860,7 @@ label {
         $('#confirmationPopup').fadeIn();
     });
 
-    // Close confirmation popup and reset forms for a new booking
+    // Reset and start a new booking
     $('#closePopup, #makeAnotherBooking').on('click', function () {
         $('#confirmationPopup').fadeOut();
         $('#quote-book-tool').removeClass('hidden');
