@@ -10,7 +10,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
     <!-- Google Maps API -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAxwx9IOUvKqNLXLEC7LpZbo2hSidLzkSY&libraries=places"></script>
     <!-- Bootstrap JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 </head>
@@ -1109,7 +1109,120 @@ body {
         selectedBookings[type].splice(index, 1);
         updateSummary();
     });
+    
+    // ========== MAP ==========
+    // Google Maps instances
+    let flightMap, chauffeurMap, hotelMap;
+    let flightDirectionsService, flightDirectionsRenderer;
+    let chauffeurDirectionsService, chauffeurDirectionsRenderer;
+    let hotelMarker;
+
+    // Initialize Maps
+    function initMaps() {
+        // Flight Map
+        flightMap = new google.maps.Map(document.getElementById("flight-map"), {
+            center: { lat: 51.470020, lng: -0.454295 }, // Default: London Heathrow
+            zoom: 6,
+        });
+        flightDirectionsService = new google.maps.DirectionsService();
+        flightDirectionsRenderer = new google.maps.DirectionsRenderer();
+        flightDirectionsRenderer.setMap(flightMap);
+
+        // Chauffeur Map
+        chauffeurMap = new google.maps.Map(document.getElementById("chauffeur-map"), {
+            center: { lat: 51.470020, lng: -0.454295 }, // Default: London Heathrow
+            zoom: 6,
+        });
+        chauffeurDirectionsService = new google.maps.DirectionsService();
+        chauffeurDirectionsRenderer = new google.maps.DirectionsRenderer();
+        chauffeurDirectionsRenderer.setMap(chauffeurMap);
+
+        // Hotel Map
+        hotelMap = new google.maps.Map(document.getElementById("hotel-map"), {
+            center: { lat: 51.470020, lng: -0.454295 }, // Default: London Heathrow
+            zoom: 10,
+        });
+        hotelMarker = new google.maps.Marker({ map: hotelMap });
+    }
+
+    // Show flight route
+    function showFlightRoute(departure, arrival) {
+        flightDirectionsService.route(
+            {
+                origin: departure,
+                destination: arrival,
+                travelMode: google.maps.TravelMode.DRIVING,
+            },
+            (response, status) => {
+                if (status === "OK") {
+                    flightDirectionsRenderer.setDirections(response);
+                } else {
+                    alert("Could not display flight route: " + status);
+                }
+            }
+        );
+    }
+
+    // Show chauffeur route
+    function showChauffeurRoute(pickup, dropoff) {
+        chauffeurDirectionsService.route(
+            {
+                origin: pickup,
+                destination: dropoff,
+                travelMode: google.maps.TravelMode.DRIVING,
+            },
+            (response, status) => {
+                if (status === "OK") {
+                    chauffeurDirectionsRenderer.setDirections(response);
+                } else {
+                    alert("Could not display chauffeur route: " + status);
+                }
+            }
+        );
+    }
+
+    // Show hotel location
+    function showHotelLocation(hotelAddress) {
+        const geocoder = new google.maps.Geocoder();
+        geocoder.geocode({ address: hotelAddress }, (results, status) => {
+            if (status === "OK") {
+                hotelMap.setCenter(results[0].geometry.location);
+                hotelMarker.setPosition(results[0].geometry.location);
+            } else {
+                alert("Could not find hotel location: " + status);
+            }
+        });
+    }
+
+    // Event listeners
+    $('#add-flight').on('click', function () {
+        const departure = $('#departure-airport').val();
+        const arrival = $('#arrival-airport').val();
+        if (departure && arrival) {
+            showFlightRoute(departure, arrival);
+        }
+    });
+
+    $('#add-chauffeur').on('click', function () {
+        const pickup = $('#pickup-location').val();
+        const dropoff = $('#dropoff-location').val();
+        if (pickup && dropoff) {
+            showChauffeurRoute(pickup, dropoff);
+        }
+    });
+
+    $('#add-hotel').on('click', function () {
+        const hotel = $('#hotel-name').val();
+        if (hotel) {
+            showHotelLocation(hotel);
+        }
+    });
+
+    // Initialize maps on page load
+    initMaps();
 });
 </script>
 
 </html>
+
+D
