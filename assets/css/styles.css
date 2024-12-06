@@ -290,6 +290,122 @@ a:hover {
 }
 
 /*********************************
+ * Explore UK Page
+ *********************************/
+
+/* Container for city cards */
+#cityCardsContainer {
+    margin-top: 20px;
+}
+
+/* Individual city card styling */
+.card {
+    border: none; /* Removes border for a clean look */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Adds subtle shadow for depth */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover transition */
+}
+
+/* City card hover effects */
+.card:hover {
+    transform: scale(1.05); /* Slight zoom effect */
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
+}
+
+/* City card image styling */
+.card-img-top {
+    height: 200px;
+    object-fit: cover; /* Ensures consistent image display */
+    border-radius: 8px 8px 0 0; /* Rounded top corners */
+}
+
+/* City card body styling */
+.card-body {
+    padding: 15px;
+    text-align: center;
+    background-color: #f9f9f9; /* Light background for text contrast */
+}
+
+/* City card title */
+.card-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #333;
+}
+
+/* Explore button styling */
+.card-body .btn {
+    background-color: #F2BA1E;
+    color: #fff;
+    font-size: 0.9rem;
+    padding: 8px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+/* Button hover effect */
+.card-body .btn:hover {
+    background-color: #333;
+    transform: scale(1.1); /* Slight zoom effect */
+    color: #fff;
+}
+
+/* Modal styling */
+.modal .modal-content {
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow for modals */
+}
+
+/* Modal header */
+.modal-header {
+    background-color: #262A2B; /* Dark header background */
+    color: #fff;
+    border-bottom: 2px solid #F2BA1E;
+    border-radius: 10px 10px 0 0; /* Rounded top corners */
+}
+
+/* Modal title styling */
+.modal-header .modal-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+/* Modal body styling */
+.modal-body {
+    padding: 20px;
+    text-align: center;
+    background-color: #fff; /* White background for content */
+}
+
+/* Carousel image styling */
+.carousel-item img {
+    height: 300px;
+    object-fit: cover; /* Ensures consistent image display */
+    border-radius: 8px; /* Rounded corners for images */
+}
+
+/* Carousel controls styling */
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    background-color: #333;
+    border-radius: 50%;
+    padding: 10px;
+    transition: background-color 0.3s ease;
+}
+
+/* Carousel controls hover effect */
+.carousel-control-prev-icon:hover,
+.carousel-control-next-icon:hover {
+    background-color: #F2BA1E;
+}
+
+/* Modal footer */
+.modal-footer {
+    border-top: none;
+    text-align: center;
+    background-color: #f9f9f9; /* Matches card body background */
+}
+
+/*********************************
  * RESPONSIVE STYLES
  *********************************/
 
@@ -427,5 +543,65 @@ a:hover {
     .footer-links ul li {
         font-size: 0.9rem;
         text-align: center;
+    }
+
+    /* City card adjustments: stack cards vertically with adjusted image height */
+    .card {
+        margin-bottom: 20px; /* Adds spacing between stacked cards */
+    }
+
+    .card-img-top {
+        height: 150px; /* Reduces image height for better scaling */
+    }
+
+    /* Adjust card body padding and font size */
+    .card-body {
+        padding: 10px;
+    }
+
+    .card-title {
+        font-size: 1rem;
+    }
+
+    /* Modal carousel image height adjustment */
+    .carousel-item img {
+        height: 200px; /* Optimized for mobile view */
+    }
+
+    /* Modal header title adjustment */
+    .modal-header .modal-title {
+        font-size: 1.25rem;
+    }
+
+    /* Modal body padding adjustment */
+    .modal-body {
+        padding: 15px;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    /* Adjust city card image height for tablet screens */
+    .card-img-top {
+        height: 180px;
+    }
+
+    /* Adjust card body font size */
+    .card-body .btn {
+        font-size: 0.85rem;
+    }
+
+    /* Modal carousel image height adjustment for tablet screens */
+    .carousel-item img {
+        height: 250px;
+    }
+
+    /* Modal header title font-size adjustment */
+    .modal-header .modal-title {
+        font-size: 1.5rem;
+    }
+
+    /* Modal body padding adjustment */
+    .modal-body {
+        padding: 20px;
     }
 }

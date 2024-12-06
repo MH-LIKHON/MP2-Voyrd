@@ -1,0 +1,737 @@
+
+// ========== Data Initialisation ==========
+const cityAttractions = {
+    London: [
+        {
+            name: "Big Ben",
+            description: "Big Ben is the nickname for the Great Bell of the clock at the north end of the Palace of Westminster. It is one of the most recognizable symbols of the United Kingdom and a must-see for anyone visiting London.",
+            images: ["assets/images/bigben.1.jpg"]
+        },
+        {
+            name: "London Eye",
+            description: "The London Eye is a giant Ferris wheel on the South Bank of the River Thames. It offers stunning views of the city skyline, making it one of London's most popular attractions.",
+            images: ["assets/images/londoneye.1.jpg"]
+        },
+        {
+            name: "Tower of London",
+            description: "A historic castle located on the north bank of the River Thames, the Tower of London is famous for its role in British history and for housing the Crown Jewels.",
+            images: ["assets/images/toweroflondon.1.jpg"]
+        },
+        {
+            name: "British Museum",
+            description: "This world-renowned museum houses a vast collection of world art and artifacts, including the Rosetta Stone and the Elgin Marbles, spanning over two million years of history.",
+            images: ["assets/images/britishmuseum.1.jpg"]
+        },
+        {
+            name: "Buckingham Palace",
+            description: "The official residence of the monarch, Buckingham Palace is known for its grandeur. Visitors can witness the Changing of the Guard ceremony and explore the lavish state rooms.",
+            images: ["assets/images/buckinghampalace.1.jpg"]
+        }
+    ],
+
+    Manchester: [
+        {
+            name: "Old Trafford",
+            description: "The iconic home stadium of Manchester United Football Club, Old Trafford offers fans an immersive experience with guided tours showcasing its history.",
+            images: ["assets/images/oldtrafford.1.jpg"]
+        },
+        {
+            name: "Science and Industry Museum",
+            description: "Explore the history of Manchester’s industrial and scientific achievements at this fascinating museum located in the world’s first passenger railway station.",
+            images: ["assets/images/scienceandindustrymuseum.1.jpg"]
+        },
+        {
+            name: "Manchester Art Gallery",
+            description: "This gallery features one of the UK’s finest collections of fine and decorative art. Visitors can enjoy works by renowned artists alongside contemporary exhibitions.",
+            images: ["assets/images/manchesterartgallery.1.jpg"]
+        },
+        {
+            name: "Heaton Park",
+            description: "A sprawling park offering scenic walking trails, a boating lake, and various activities for visitors of all ages. It’s one of Europe’s largest urban parks.",
+            images: ["assets/images/heatonpark.1.jpg"]
+        },
+        {
+            name: "John Rylands Library",
+            description: "A neo-Gothic masterpiece, this library holds one of the most significant collections of rare books and manuscripts in the world. A haven for bibliophiles.",
+            images: ["assets/images/johnrylandslibrary.1.jpg"]
+        }
+    ],
+
+    Edinburgh: [
+        {
+            name: "Edinburgh Castle",
+            description: "Perched atop Castle Rock, this iconic fortress offers breathtaking views of the city and is steeped in Scotland's turbulent history.",
+            images: ["assets/images/edinburghcastle.1.jpg"]
+        },
+        {
+            name: "Arthur's Seat",
+            description: "An extinct volcano that provides one of the best vantage points in Edinburgh. It’s a popular spot for hiking and offers panoramic views of the city.",
+            images: ["assets/images/arthursseat.1.jpg"]
+        },
+        {
+            name: "Holyrood Palace",
+            description: "The official residence of the British monarch in Scotland. Visitors can explore its stunning gardens and royal apartments.",
+            images: ["assets/images/holyroodpalace.1.jpg"]
+        },
+        {
+            name: "Royal Mile",
+            description: "This historic street connects Edinburgh Castle to Holyrood Palace. It’s lined with shops, restaurants, and historic landmarks.",
+            images: ["assets/images/royalmile.1.jpg"]
+        },
+        {
+            name: "National Museum of Scotland",
+            description: "A treasure trove of Scottish history, culture, and science. The museum’s extensive collections include everything from ancient artifacts to modern technology.",
+            images: ["assets/images/nationalmuseumofscotland.1.jpg"]
+        }
+    ],
+
+    York: [
+        {
+            name: "York Minster",
+            description: "One of the largest Gothic cathedrals in Northern Europe, known for its magnificent stained glass windows and intricate stone carvings.",
+            images: ["assets/images/yorkminster.1.jpg"]
+        },
+        {
+            name: "Clifford's Tower",
+            description: "A historic tower offering panoramic views of the city. It has served variously as a royal mint, prison, and stronghold.",
+            images: ["assets/images/cliffordstower.1.jpg"]
+        },
+        {
+            name: "The Shambles",
+            description: "This medieval street is famous for its timber-framed buildings and unique charm. It’s a must-visit for history and shopping enthusiasts.",
+            images: ["assets/images/theshambles.1.jpg"]
+        },
+        {
+            name: "York Castle Museum",
+            description: "An interactive museum that showcases the city’s history through recreated streets and exhibits on daily life from various eras.",
+            images: ["assets/images/yorkcastlemuseum.1.jpg"]
+        },
+        {
+            name: "National Railway Museum",
+            description: "The largest railway museum in the world, featuring iconic locomotives and interactive exhibits.",
+            images: ["assets/images/nationalrailwaymuseum.1.jpg"]
+        }
+    ],
+
+    Cardiff: [
+        {
+            name: "Cardiff Castle",
+            description: "A historic castle with over 2,000 years of history, featuring Roman walls, Norman keeps, and lavish Victorian interiors.",
+            images: ["assets/images/cardiffcastle.1.jpg"]
+        },
+        {
+            name: "Principality Stadium",
+            description: "A state-of-the-art sports and entertainment venue, known for hosting rugby, football, and major concerts.",
+            images: ["assets/images/principalitystadium.1.jpg"]
+        },
+        {
+            name: "Cardiff Bay",
+            description: "A vibrant waterfront area with restaurants, shops, and attractions like the Wales Millennium Centre.",
+            images: ["assets/images/cardiffbay.1.jpg"]
+        },
+        {
+            name: "National Museum Cardiff",
+            description: "A museum and gallery showcasing Welsh art, natural history, and archaeology.",
+            images: ["assets/images/nationalmuseumcardiff.1.jpg"]
+        },
+        {
+            name: "Bute Park",
+            description: "A green oasis in the heart of the city, perfect for picnics, cycling, and scenic walks.",
+            images: ["assets/images/butepark.1.jpg"]
+        },
+    ],
+
+    Brighton: [
+        { 
+            name: "Brighton Pier", 
+            description: "A classic seaside pier with arcades, rides, and food stalls, offering fun for all ages and stunning sea views.", 
+            images: ["assets/images/brightonpier.1.jpg"] 
+        },
+        { 
+            name: "Royal Pavilion", 
+            description: "An exotic palace built as a seaside retreat for King George IV, known for its stunning architecture and interiors.", 
+            images: ["assets/images/royalpavilion.1.jpg"] 
+        },
+        { 
+            name: "Brighton Beach", 
+            description: "A pebbled beach perfect for sunbathing, swimming, and enjoying the vibrant atmosphere of Brighton's seafront.", 
+            images: ["assets/images/brightonbeach.1.jpg"] 
+        },
+        { 
+            name: "The Lanes", 
+            description: "A maze of narrow streets filled with quirky shops, cafes, and vintage stores, perfect for exploration.", 
+            images: ["assets/images/thelanes.1.jpg"] 
+        },
+        { 
+            name: "British Airways i360", 
+            description: "A futuristic observation tower offering breathtaking views of the coastline and surrounding areas.", 
+            images: ["assets/images/britishairwaysi360.1.jpg"] 
+        },
+    ],
+
+    Aberdeen: [
+        { 
+            name: "Dunnottar Castle", 
+            description: "A dramatic clifftop fortress with a rich history, offering spectacular views of the North Sea.", 
+            images: ["assets/images/dunnottarcastle.1.jpg"] 
+        },
+        { 
+            name: "Aberdeen Maritime Museum", 
+            description: "A museum detailing Aberdeen's relationship with the sea, including exhibits on oil exploration and shipping.", 
+            images: ["assets/images/aberdeenmaritimemuseum.1.jpg"] 
+        },
+        { 
+            name: "Union Terrace Gardens", 
+            description: "A tranquil green space in the heart of Aberdeen, perfect for picnics and relaxation.", 
+            images: ["assets/images/unionterracegardens.1.jpg"] 
+        },
+        { 
+            name: "Codonas Amusement Park", 
+            description: "A family-friendly amusement park with rides, arcades, and attractions for all ages.", 
+            images: ["assets/images/codonasamusementpark.1.jpg"] 
+        },
+        { 
+            name: "Footdee (Fittie)", 
+            description: "A charming and historic fishing village with unique cottages and picturesque streets.", 
+            images: ["assets/images/footdee.1.jpg"] 
+        },
+    ],
+
+    Inverness: [
+        { 
+            name: "Loch Ness", 
+            description: "World-famous freshwater lake known for its stunning scenery and the legend of the Loch Ness Monster.", 
+            images: ["assets/images/lochness.1.jpg"] 
+        },
+        { 
+            name: "Inverness Castle", 
+            description: "A picturesque castle overlooking the River Ness, offering historical exhibits and beautiful views.", 
+            images: ["assets/images/invernesscastle.1.jpg"] 
+        },
+        { 
+            name: "Culloden Battlefield", 
+            description: "The site of the last battle fought on British soil, now a visitor center dedicated to the Jacobite uprising.", 
+            images: ["assets/images/cullodenbattlefield.1.jpg"] 
+        },
+        { 
+            name: "River Ness and Islands", 
+            description: "A peaceful series of walking paths along the River Ness, with charming islands to explore.", 
+            images: ["assets/images/rivernessandislands.1.jpg"] 
+        },
+        { 
+            name: "Clava Cairns", 
+            description: "Ancient burial sites dating back to the Bronze Age, offering a glimpse into Scotland's prehistoric past.", 
+            images: ["assets/images/clavacairns.1.jpg"] 
+        },
+    ],
+
+    Dundee: [
+        { 
+            name: "V&A Dundee", 
+            description: "Scotland’s first design museum, showcasing innovative and inspiring exhibitions.", 
+            images: ["assets/images/vandundee.1.jpg"] 
+        },
+        { 
+            name: "Discovery Point", 
+            description: "A museum focused on the history of the RRS Discovery, the ship used by Scott and Shackleton for Antarctic exploration.", 
+            images: ["assets/images/discoverypoint.1.jpg"] 
+        },
+        { 
+            name: "Broughty Castle Museum", 
+            description: "A 15th-century coastal fort housing displays on Dundee's maritime history and local wildlife.", 
+            images: ["assets/images/broughtycastlemuseum.1.jpg"] 
+        },
+        { 
+            name: "The McManus", 
+            description: "An art gallery and museum celebrating Dundee’s cultural and artistic heritage.", 
+            images: ["assets/images/themcmanus.1.jpg"] 
+        },
+        { 
+            name: "Dundee Law", 
+            description: "An extinct volcano offering panoramic views of the city and surrounding landscapes.", 
+            images: ["assets/images/dundeelaw.1.jpg"] 
+        },
+    ],
+
+    Nottingham: [
+        { 
+            name: "Nottingham Castle", 
+            description: "A historic castle with an art gallery and museum, linked to the legend of Robin Hood.", 
+            images: ["assets/images/nottinghamcastle.1.jpg"] 
+        },
+        { 
+            name: "City of Caves", 
+            description: "An underground network of sandstone caves offering a unique glimpse into Nottingham's history.", 
+            images: ["assets/images/cityofcaves.1.jpg"] 
+        },
+        { 
+            name: "Wollaton Hall and Deer Park", 
+            description: "A stunning Elizabethan mansion set in expansive parkland with roaming deer.", 
+            images: ["assets/images/wollatonhallanddeerpark.1.jpg"] 
+        },
+        { 
+            name: "The National Justice Museum", 
+            description: "A museum exploring the history of crime and punishment in the UK.", 
+            images: ["assets/images/nationaljusticemuseum.1.jpg"] 
+        },
+        { 
+            name: "Sherwood Forest", 
+            description: "The legendary home of Robin Hood, featuring ancient oak trees and woodland trails.", 
+            images: ["assets/images/sherwoodforest.1.jpg"] 
+        },
+    ],
+
+    Bristol: [
+        { 
+            name: "Clifton Suspension Bridge", 
+            description: "An iconic landmark of engineering, the Clifton Suspension Bridge spans the Avon Gorge and offers breathtaking views of the surrounding countryside. Designed by Isambard Kingdom Brunel, it is a testament to Victorian innovation and remains one of the city's most visited attractions.", 
+            images: ["assets/images/cliftonsuspensionbridge.1.jpg"] 
+        },
+        { 
+            name: "Bristol Zoo Gardens", 
+            description: "Established in 1836, Bristol Zoo Gardens is one of the oldest zoos in the world. It is home to a variety of exotic and endangered species, making it a great destination for families and wildlife enthusiasts.", 
+            images: ["assets/images/bristolzoogardens.1.jpg"] 
+        },
+        { 
+            name: "SS Great Britain", 
+            description: "This historic steamship, designed by Brunel, was once the largest ship in the world. It now serves as a floating museum where visitors can explore its fascinating history and experience life aboard a 19th-century vessel.", 
+            images: ["assets/images/ssgreatbritain.1.jpg"] 
+        },
+        { 
+            name: "Bristol Museum and Art Gallery", 
+            description: "Showcasing a diverse range of artifacts, art, and natural history exhibits, the Bristol Museum and Art Gallery is a cultural hub that delves into the city's rich history and artistic achievements.", 
+            images: ["assets/images/bristolmuseumandartgallery.1.jpg"] 
+        },
+        { 
+            name: "Banksy Street Art", 
+            description: "Bristol is the birthplace of the legendary street artist Banksy. Visitors can explore his iconic works scattered throughout the city, which blend political commentary with artistic flair.", 
+            images: ["assets/images/banksystreetart.1.jpg"] 
+        },
+    ],
+
+    Liverpool: [
+        { 
+            name: "The Beatles Story", 
+            description: "This immersive museum tells the story of The Beatles, from their humble beginnings in Liverpool to their rise as global music legends. It features rare memorabilia, audio guides, and interactive exhibits.", 
+            images: ["assets/images/thebeatlesstory.1.jpg"] 
+        },
+        { 
+            name: "Liverpool Cathedral", 
+            description: "As the largest cathedral in Britain, Liverpool Cathedral is an architectural masterpiece. Its towering spire and magnificent interiors make it a must-visit for those interested in history and art.", 
+            images: ["assets/images/liverpoolcathedral.1.jpg"] 
+        },
+        { 
+            name: "Albert Dock", 
+            description: "A UNESCO World Heritage Site, Albert Dock is home to museums, galleries, and restaurants. It played a crucial role in Liverpool's maritime history and now serves as a vibrant cultural destination.", 
+            images: ["assets/images/albertdock.1.jpg"] 
+        },
+        { 
+            name: "Anfield Stadium", 
+            description: "The legendary home of Liverpool FC, Anfield Stadium offers guided tours that provide insights into the club’s rich history, trophies, and iconic players.", 
+            images: ["assets/images/anfieldstadium.1.jpg"] 
+        },
+        { 
+            name: "Walker Art Gallery", 
+            description: "Known as the 'National Gallery of the North,' this gallery houses an impressive collection of fine art, from Renaissance masterpieces to contemporary works.", 
+            images: ["assets/images/walkerartgallery.1.jpg"] 
+        },
+    ],
+
+    Birmingham: [
+        { 
+            name: "Cadbury World", 
+            description: "A chocolate lover’s paradise, Cadbury World offers interactive exhibits about the history of chocolate and the Cadbury brand, complete with tastings and a 4D cinema experience.", 
+            images: ["assets/images/cadburyworld.1.jpg"] 
+        },
+        { 
+            name: "Birmingham Museum and Art Gallery", 
+            description: "This museum is renowned for its collection of Pre-Raphaelite art, as well as displays of Birmingham’s history and industrial heritage.", 
+            images: ["assets/images/birminghammuseumandartgallery.1.jpg"] 
+        },
+        { 
+            name: "Bullring & Grand Central", 
+            description: "A shopping and dining hub, Bullring & Grand Central is an architectural marvel and a hotspot for fashion, food, and entertainment in the city.", 
+            images: ["assets/images/bullringandgrandcentral.1.jpg"] 
+        },
+        { 
+            name: "Library of Birmingham", 
+            description: "A modern architectural masterpiece, the Library of Birmingham features rooftop gardens, an extensive collection of books, and cultural exhibitions.", 
+            images: ["assets/images/libraryofbirmingham.1.jpg"] 
+        },
+        { 
+            name: "National SEA LIFE Centre", 
+            description: "An underwater adventure awaits at the National SEA LIFE Centre, which features a walk-through tunnel surrounded by sharks, rays, and other marine life.", 
+            images: ["assets/images/nationalsealifecentre.1.jpg"] 
+        },
+    ],
+
+    Glasgow: [
+        { 
+            name: "Kelvingrove Art Gallery and Museum", 
+            description: "This iconic museum houses an extensive collection of art and artifacts, ranging from Salvador Dalí’s 'Christ of Saint John of the Cross' to ancient Egyptian treasures.", 
+            images: ["assets/images/kelvingroveartgallery.1.jpg"] 
+        },
+        { 
+            name: "Glasgow Cathedral", 
+            description: "A medieval masterpiece, Glasgow Cathedral is a testament to Gothic architecture and an important site in the city’s religious history.", 
+            images: ["assets/images/glasgowcathedral.1.jpg"] 
+        },
+        { 
+            name: "George Square", 
+            description: "The heart of Glasgow, George Square is surrounded by impressive Victorian buildings and serves as a focal point for city events and gatherings.", 
+            images: ["assets/images/georgesquare.1.jpg"] 
+        },
+        { 
+            name: "The Riverside Museum", 
+            description: "This award-winning museum celebrates the history of transport with exhibits ranging from vintage cars to steam locomotives.", 
+            images: ["assets/images/riversidemuseum.1.jpg"] 
+        },
+        { 
+            name: "Glasgow Botanic Gardens", 
+            description: "A serene escape in the city, the Glasgow Botanic Gardens feature beautiful glasshouses and exotic plant collections.", 
+            images: ["assets/images/glasgowbotanicgardens.1.jpg"] 
+        },
+    ],
+
+    Bath: [
+        { 
+            name: "Roman Baths", 
+            description: "A historic site dating back to Roman Britain, the Roman Baths showcase the sophisticated engineering and culture of the Roman Empire.", 
+            images: ["assets/images/romanbaths.1.jpg"] 
+        },
+        { 
+            name: "Bath Abbey", 
+            description: "A stunning example of Gothic architecture, Bath Abbey is a place of worship and a venue for concerts and events.", 
+            images: ["assets/images/bathabbey.1.jpg"] 
+        },
+        { 
+            name: "The Royal Crescent", 
+            description: "This elegant row of Georgian houses forms a perfect crescent and is a symbol of Bath’s architectural grandeur.", 
+            images: ["assets/images/theroyalcrescent.1.jpg"] 
+        },
+        { 
+            name: "Pulteney Bridge", 
+            description: "One of the few bridges in the world with shops along its full span, Pulteney Bridge is an architectural gem.", 
+            images: ["assets/images/pulteneybridge.1.jpg"] 
+        },
+        { 
+            name: "Thermae Bath Spa", 
+            description: "Experience the naturally warm, mineral-rich waters of Bath in this modern spa offering panoramic views of the city.", 
+            images: ["assets/images/thermaebathspa.1.jpg"] 
+        },
+    ],
+    Cambridge: [
+        { 
+            name: "University of Cambridge", 
+            description: "Founded in 1209, the University of Cambridge is one of the world's most prestigious universities. Visitors can explore its historic colleges, which feature stunning architecture and centuries-old traditions.", 
+            images: ["assets/images/universityofcambridge.1.jpg"] 
+        },
+        { 
+            name: "King's College Chapel", 
+            description: "A masterpiece of Gothic architecture, King's College Chapel is famous for its magnificent stained glass windows and vaulted ceiling. It is a must-visit landmark in Cambridge.", 
+            images: ["assets/images/kingscollegechapel.1.jpg"] 
+        },
+        { 
+            name: "Fitzwilliam Museum", 
+            description: "This museum is home to an extensive collection of art and antiquities, ranging from ancient Egyptian artifacts to masterpieces by European artists like Monet and Picasso.", 
+            images: ["assets/images/fitzwilliammuseum.1.jpg"] 
+        },
+        { 
+            name: "River Cam", 
+            description: "The River Cam offers scenic views of Cambridge’s iconic colleges and bridges. Visitors can enjoy a relaxing punting experience, a quintessential activity in the city.", 
+            images: ["assets/images/rivercam.1.jpg"] 
+        },
+        { 
+            name: "The Backs", 
+            description: "This picturesque area features the landscaped gardens and green spaces of several colleges along the River Cam. It's a serene spot for walks and photography.", 
+            images: ["assets/images/thebacks.1.jpg"] 
+        },
+    ],
+    Oxford: [
+        { 
+            name: "University of Oxford", 
+            description: "As the oldest university in the English-speaking world, the University of Oxford is renowned for its academic excellence and historic charm. Explore its iconic colleges and historic quads.", 
+            images: ["assets/images/universityofoxford.1.jpg"] 
+        },
+        { 
+            name: "Bodleian Library", 
+            description: "One of the oldest libraries in Europe, the Bodleian Library is a treasure trove of knowledge and history. Its Radcliffe Camera reading room is particularly famous for its striking architecture.", 
+            images: ["assets/images/bodleianlibrary.1.jpg"] 
+        },
+        { 
+            name: "Ashmolean Museum", 
+            description: "The Ashmolean Museum is the world's first university museum and houses an incredible collection of art and archaeology, including ancient Egyptian relics and Renaissance masterpieces.", 
+            images: ["assets/images/ashmoleanmuseum.1.jpg"] 
+        },
+        { 
+            name: "Radcliffe Camera", 
+            description: "This iconic circular building is part of the Bodleian Library and a symbol of Oxford. It’s a must-see for architecture enthusiasts and history buffs.", 
+            images: ["assets/images/radcliffecamera.1.jpg"] 
+        },
+        { 
+            name: "Christ Church Cathedral", 
+            description: "A unique combination of college and cathedral, Christ Church is known for its stunning interiors and its inspiration for Hogwarts in the Harry Potter films.", 
+            images: ["assets/images/christchurchcathedral.1.jpg"] 
+        },
+    ],
+    Belfast: [
+        { 
+            name: "Titanic Belfast", 
+            description: "An award-winning visitor attraction located at the very site where the Titanic was built. The museum offers interactive exhibits and insights into the ship's construction and ill-fated voyage.", 
+            images: ["assets/images/titanicbelfast.1.jpg"] 
+        },
+        { 
+            name: "Giant's Causeway", 
+            description: "A UNESCO World Heritage Site, this natural wonder features over 40,000 interlocking basalt columns formed by volcanic activity. It’s steeped in local myths and legends.", 
+            images: ["assets/images/giantscauseway.1.jpg"] 
+        },
+        { 
+            name: "Belfast Castle", 
+            description: "Nestled on the slopes of Cave Hill, Belfast Castle offers panoramic views of the city and a fascinating history dating back to the 12th century.", 
+            images: ["assets/images/belfastcastle.1.jpg"] 
+        },
+        { 
+            name: "St. George's Market", 
+            description: "One of Belfast's oldest attractions, St. George's Market is a lively hub offering fresh produce, local crafts, and live music, making it a must-visit for food and culture enthusiasts.", 
+            images: ["assets/images/stgeorgesmarket.1.jpg"] 
+        },
+        { 
+            name: "Ulster Museum", 
+            description: "This museum showcases a diverse range of exhibits, from fine art and historical artifacts to displays on natural history and modern science.", 
+            images: ["assets/images/ulstermuseum.1.jpg"] 
+        },
+    ],
+    Newcastle: [
+        { 
+            name: "Tyne Bridge", 
+            description: "A symbol of Newcastle, the Tyne Bridge is an iconic structure that spans the River Tyne. Its impressive design has made it one of the most photographed landmarks in the city.", 
+            images: ["assets/images/tynebridge.1.jpg"] 
+        },
+        { 
+            name: "Newcastle Castle", 
+            description: "This medieval fortress offers a glimpse into the city’s past. Visitors can explore its ancient halls and enjoy panoramic views from the rooftop.", 
+            images: ["assets/images/newcastlecastle.1.jpg"] 
+        },
+        { 
+            name: "Angel of the North", 
+            description: "Standing at 20 meters tall, the Angel of the North is one of the most famous sculptures in the UK. It symbolizes the strength and resilience of the North East.", 
+            images: ["assets/images/angelofthe_north.1.jpg"] 
+        },
+        { 
+            name: "Baltic Centre for Contemporary Art", 
+            description: "Housed in a converted flour mill, the Baltic Centre features cutting-edge contemporary art exhibitions and a rooftop viewing platform with stunning views of the city.", 
+            images: ["assets/images/balticcentre.1.jpg"] 
+        },
+        { 
+            name: "St. Nicholas Cathedral", 
+            description: "This medieval cathedral is a stunning example of Gothic architecture and remains an active place of worship and community events.", 
+            images: ["assets/images/stnicholascathedral.1.jpg"] 
+        },
+    ],
+
+    Leeds: [
+        { 
+            name: "Royal Armouries Museum", 
+            description: "The Royal Armouries Museum is home to a world-class collection of arms and armor. Visitors can explore exhibits on medieval warfare, jousting, and even modern weaponry.", 
+            images: ["assets/images/royalarmouriesmuseum.1.jpg"] 
+        },
+        { 
+            name: "Kirkstall Abbey", 
+            description: "A stunning, well-preserved medieval abbey located in a scenic parkland setting along the River Aire. It offers a glimpse into monastic life in the 12th century.", 
+            images: ["assets/images/kirkstallabbey.1.jpg"] 
+        },
+        { 
+            name: "Leeds Art Gallery", 
+            description: "This gallery features an impressive collection of British and international art, from traditional works to contemporary installations, making it a must-visit for art enthusiasts.", 
+            images: ["assets/images/leedsartgallery.1.jpg"] 
+        },
+        { 
+            name: "Harewood House", 
+            description: "A grand 18th-century country house surrounded by beautifully landscaped gardens. The house contains exquisite art collections and offers stunning views of the Yorkshire countryside.", 
+            images: ["assets/images/harewoodhouse.1.jpg"] 
+        },
+        { 
+            name: "Roundhay Park", 
+            description: "One of the largest city parks in Europe, Roundhay Park boasts lakes, gardens, and plenty of open space for walking, cycling, and family activities.", 
+            images: ["assets/images/roundhaypark.1.jpg"] 
+        },
+    ],
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*********************************
+ * Explore UK Page
+ *********************************/
+
+/* Container for city cards */
+#cityCardsContainer {
+    margin-top: 20px;
+}
+
+/* Individual city card styling */
+.card {
+    border: none; /* Removes border for a clean look */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Adds subtle shadow for depth */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover transition */
+}
+
+/* City card hover effects */
+.card:hover {
+    transform: scale(1.05); /* Slight zoom effect */
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
+}
+
+/* City card image styling */
+.card-img-top {
+    height: 200px;
+    object-fit: cover; /* Ensures consistent image display */
+    border-radius: 8px 8px 0 0; /* Rounded top corners */
+}
+
+/* City card body styling */
+.card-body {
+    padding: 15px;
+    text-align: center;
+    background-color: #f9f9f9; /* Light background for text contrast */
+}
+
+/* City card title */
+.card-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #333;
+}
+
+/* Explore button styling */
+.card-body .btn {
+    background-color: #F2BA1E;
+    color: #fff;
+    font-size: 0.9rem;
+    padding: 8px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+/* Button hover effect */
+.card-body .btn:hover {
+    background-color: #333;
+    transform: scale(1.1); /* Slight zoom effect */
+    color: #fff;
+}
+
+/* Modal styling */
+.modal .modal-content {
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow for modals */
+}
+
+/* Modal header */
+.modal-header {
+    background-color: #262A2B; /* Dark header background */
+    color: #fff;
+    border-bottom: 2px solid #F2BA1E;
+    border-radius: 10px 10px 0 0; /* Rounded top corners */
+}
+
+/* Modal title styling */
+.modal-header .modal-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+/* Modal body styling */
+.modal-body {
+    padding: 20px;
+    text-align: center;
+    background-color: #fff; /* White background for content */
+}
+
+/* Carousel image styling */
+.carousel-item img {
+    height: 300px;
+    object-fit: cover; /* Ensures consistent image display */
+    border-radius: 8px; /* Rounded corners for images */
+}
+
+/* Carousel controls styling */
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    background-color: #333;
+    border-radius: 50%;
+    padding: 10px;
+    transition: background-color 0.3s ease;
+}
+
+/* Carousel controls hover effect */
+.carousel-control-prev-icon:hover,
+.carousel-control-next-icon:hover {
+    background-color: #F2BA1E;
+}
+
+/* Modal footer */
+.modal-footer {
+    border-top: none;
+    text-align: center;
+    background-color: #f9f9f9; /* Matches card body background */
+}
+
+/*********************************
+ * RESPONSIVE STYLES FOR CITY CARDS AND MODALS
+ *********************************/
+
+@media (max-width: 767px) {
+    /* Adjust city card image height for smaller screens */
+    .card-img-top {
+        height: 150px;
+    }
+
+    /* Reduce padding and font size in card body */
+    .card-body {
+        padding: 10px;
+    }
+
+    .card-title {
+        font-size: 1rem;
+    }
+
+    /* Adjust modal carousel image height for mobile screens */
+    .carousel-item img {
+        height: 200px;
+    }
+
+    /* Modal title font-size adjustment for smaller screens */
+    .modal-header .modal-title {
+        font-size: 1.25rem;
+    }
+
+    /* Modal body padding adjustment */
+    .modal-body {
+        padding: 15px;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    /* Adjust city card image height for tablet screens */
+    .card-img-top {
+        height: 180px;
+    }
+
+    /* Modal carousel image height for tablet screens */
+    .carousel-item img {
+        height: 250px;
+    }
+}
