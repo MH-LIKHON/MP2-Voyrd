@@ -8,7 +8,7 @@ $(document).ready(function () {
         "London Heathrow Terminal 5 (LHR-T5)",
         "London Gatwick North Terminal (LGW-N)",
         "London Gatwick South Terminal (LGW-S)",
-        "Manchester Terminal 1 (MAN-T1)",
+        "Manchester Terminal 1 (MAN-T1) - SUSPENDED",
         "Manchester Terminal 2 (MAN-T2)",
         "Manchester Terminal 3 (MAN-T3)",
         "Edinburgh Airport (EDI)",

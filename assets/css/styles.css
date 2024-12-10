@@ -265,12 +265,12 @@ footer {
 }
 
 /*********************************
- * MAIN CONTENT STYLING
+ * EXPLORE UK STYLING
  *********************************/
 
 /* Styling for the main container */
 main {
-    padding-top: 100px;
+    padding-top: 150px;
     margin-bottom: 0px;
 }
 
@@ -807,5 +807,206 @@ body {
     /* Styling for buttons inside popup messages */
     #popup-message .btn {
         font-size: 0.85rem;
+    }
+}
+
+/*********************************
+ * CONTACT US PAGE STYLING
+ *********************************/
+
+/* Styling for the container */
+ .container-fluid {
+    margin-top: 150px;
+}
+
+                    /***** FORM STYLING *****/
+
+ /* Styling for the contact form container */
+.contact-form {
+    background-color: #F9F9F9;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-top: 10px;
+}
+
+/* Input and textarea styling */
+.contact-form input,
+.contact-form textarea {
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    padding: 10px;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+/* Styling for the submit button */
+.contact-form button {
+    background-color: #5a5a5a;
+    color: #FFFFFF;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 6px;
+    padding: 10px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    width: 100%;
+}
+
+/* Hover effect for the submit button */
+.contact-form button:hover {
+    background-color: #F2BA1E;
+    transform: scale(1.05);
+}
+
+                    /***** FAQ STYLING *****/
+
+/* FAQ container styling */
+.faq-container {
+    margin-top: 20px;
+}
+
+/* Dropdown styling with an icon on the right */
+.faq-container select {
+    font-size: 1rem;
+    border: 2px solid #ccc;
+    border-radius: 6px;
+    padding: 10px;
+    padding-right: 40px;
+    width: 100%;
+    margin-bottom: 15px;
+    background: #fff url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" fill="%23333" viewBox="0 0 16 16"><path d="M1.5 6.5a.5.5 0 0 1 .5-.5h12a.5.5 0 0 1 .4.8l-6 7a.5.5 0 0 1-.8 0l-6-7a.5.5 0 0 1-.1-.3z"/></svg>') no-repeat right 10px center;
+    background-size: 15px;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+/* Adjust the hover state for dropdown */
+.faq-container select:hover {
+    border-color: #999;
+}
+
+/* FAQ answers styling */
+.faq-answer {
+    display: none;
+    font-size: 1rem;
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+}
+
+/* FAQ answer when active */
+.faq-answer.active {
+    display: block !important;
+}
+
+                    /***** MODAL STYLING *****/
+
+/* Modal styling */
+.modal-content {
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Modal header styling */
+.modal-header {
+    background-color: #262A2B;
+    color: #fff;
+    border-bottom: 2px solid #F2BA1E;
+    border-radius: 10px 10px 0 0;
+}
+
+/* Modal body styling */
+.modal-body {
+    padding: 20px;
+    background-color: #fff;
+    text-align: center;
+    font-size: 1.1rem;
+}
+
+/* Modal links styling */
+.modal-body a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* Modal links hover effect */
+.modal-body a:hover {
+    text-decoration: underline;
+}
+
+/* Close button styling in modal */
+.modal-content .btn-close {
+    background-color: #F2BA1E;
+    border: none;
+    color: #FFFFFF;
+    font-size: 1.2rem;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+/* Close button hover effect */
+.modal-content .btn-close:hover {
+    transform: scale(1.2);
+}
+
+                    /***** MAP STYLING *****/
+
+/* Map styling */
+.map iframe {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    height: 200px;
+}
+
+                    /***** RESPONSIVE STYLING *****/
+                    
+/* Adjustments for screens smaller than 768px */
+@media (max-width: 767px) {
+    .contact-form {
+        padding: 15px;
+    }
+
+    /* Styling for the submit button in the contact form for smaller screens */
+    .contact-form button {
+        font-size: 1rem;
+    }
+
+    /* Styling for the modal body for smaller screens */
+    .modal-body {
+        padding: 15px;
+        font-size: 1rem;
+    }
+}
+
+/* Adjustments for screens between 768px and 1024px */
+@media (min-width: 768px) and (max-width: 1024px) {
+    .contact-form {
+        padding: 20px;
+    }
+
+    /* Styling for the submit button in the contact form */
+    .contact-form button {
+        font-size: 1.1rem;
+    }
+
+    /* Styling for the modal body */
+    .modal-body {
+        padding: 20px;
+        font-size: 1.05rem;
     }
 }
