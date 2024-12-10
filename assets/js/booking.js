@@ -148,10 +148,22 @@ $(document).ready(function () {
         "Kimpton Clocktower Hotel - Grand Victorian Architecture (Manchester)"
     ];    
 
+    // Tours and Packages
     const tours = [
-        "London Highlights Tour", "Scotland Adventure Tour",
-        "UK Grand Tour", "Complete UK Experience"
+        "London Highlights Tour", 
+        "Scotland Adventure Tour",
+        "Walse Adventure Tour",
+        "Lake District Experience",
+        "UK Grand Tour",
     ];
+
+    // Pricing
+    const pricing = {
+    flights: { economy: 100, business: 300, first: 500 },
+    hotels: { single: 80, double: 120, suite: 250 },
+    chauffeur: { standard: 50, executive: 100, luxury: 200, mpv: 150 },
+    tours: { educational: 50, adventure: 100, luxury: 200 },
+};
 
     // ========== Populate Dropdowns ==========
     airports.forEach((airport) => {
@@ -162,7 +174,7 @@ $(document).ready(function () {
 
     hotels.forEach((hotel) => {
         $('#hotel-name, #dropoff-location').append(`<option value="${hotel}">${hotel}</option>`);
-    });    
+    });
 
     tours.forEach((tour) => {
         $('#tour-destination').append(`<option value="${tour}">${tour}</option>`);
@@ -208,62 +220,96 @@ $(document).ready(function () {
         const summaryList = $('#summary-list');
         summaryList.empty();
 
+        let totalCost = 0;
+
         // Flights
         selectedBookings.flights.forEach((flight, index) => {
+            const flightCost = 100 * flight.adults + 50 * flight.children;
+            totalCost += flightCost;
+
             summaryList.append(`
                 <li class="list-group-item">
                     <strong>Flight:</strong> ${flight.departure} to ${flight.arrival}, ${flight.date} at ${flight.time}
                     (Cabin: ${flight.cabin}, Adults: ${flight.adults}, Children: ${flight.children})
                     ${flight.return ? `Return: ${flight.returnDate} at ${flight.returnTime}` : ''}
-                    <button class="btn btn-sm btn-danger float-end remove-item" data-type="flights" data-index="${index}">X</button>
+                    <span class="float-end">Price: £${flightCost}</span>
+                    <button class="btn btn-sm btn-danger float-end remove-item" data-type="flights" data-index="${index}" style="margin-right: 10px;">X</button>
                 </li>
             `);
         });
 
         // Hotels
         selectedBookings.hotels.forEach((hotel, index) => {
+            const hotelCost = 100 * hotel.rooms;
+            totalCost += hotelCost;
+
             summaryList.append(`
                 <li class="list-group-item">
                     <strong>Hotel:</strong> ${hotel.name}, Check-in: ${hotel.checkin}, Check-out: ${hotel.checkout},
                     Rooms: ${hotel.rooms}, Guests: ${hotel.guests}, Extra: ${hotel.extra.join(", ")}
-                    <button class="btn btn-sm btn-danger float-end remove-item" data-type="hotels" data-index="${index}">X</button>
+                    <span class="float-end">Price: £${hotelCost}</span>
+                    <button class="btn btn-sm btn-danger float-end remove-item" data-type="hotels" data-index="${index}" style="margin-right: 10px;">X</button>
                 </li>
             `);
         });
 
         // Chauffeurs
         selectedBookings.chauffeurs.forEach((chauffeur, index) => {
+            const chauffeurCost = 50 * chauffeur.passengers;
+            totalCost += chauffeurCost;
+
             summaryList.append(`
                 <li class="list-group-item">
                     <strong>Chauffeur:</strong> ${chauffeur.pickup} to ${chauffeur.dropoff}, ${chauffeur.date} at ${chauffeur.time}
                     (Vehicle: ${chauffeur.vehicle}, Passengers: ${chauffeur.passengers}, Seats: ${chauffeur.seats.join(", ")})
                     ${chauffeur.return ? `Return: ${chauffeur.returnDate} at ${chauffeur.returnTime}` : ''}
-                    <button class="btn btn-sm btn-danger float-end remove-item" data-type="chauffeurs" data-index="${index}">X</button>
+                    <span class="float-end">Price: £${chauffeurCost}</span>
+                    <button class="btn btn-sm btn-danger float-end remove-item" data-type="chauffeurs" data-index="${index}" style="margin-right: 10px;">X</button>
                 </li>
             `);
         });
 
         // Tours
         selectedBookings.tours.forEach((tour, index) => {
+            const tourPricing = {
+                "London Highlights Tour": 100,
+                "Scotland Adventure Tour": 150,
+                "UK Grand Tour": 250,
+                "Complete UK Experience": 300,
+                "Walse Adventure Tour": 200,
+                "Lake District Experience": 180
+            };
+
+            const tourCost = tourPricing[tour.destination] * tour.people;
+            totalCost += tourCost;
+
             summaryList.append(`
                 <li class="list-group-item">
                     <strong>Tour:</strong> ${tour.destination}, ${tour.date}, People: ${tour.people}, Type: ${tour.type}, Level: ${tour.level}
-                    <button class="btn btn-sm btn-danger float-end remove-item" data-type="tours" data-index="${index}">X</button>
+                    <span class="float-end">Price: £${tourCost}</span>
+                    <button class="btn btn-sm btn-danger float-end remove-item" data-type="tours" data-index="${index}" style="margin-right: 10px;">X</button>
                 </li>
             `);
         });
+
+        // Display total cost
+        summaryList.append(`
+            <li class="list-group-item list-group-item-dark text-center">
+                <strong>Total Cost: £${totalCost}</strong>
+            </li>
+        `);
     }
 
     // ========== Popup Functions ==========
     function showPopup(message) {
         $('#popup-message .popup-content p').text(message);
         $('#popup-message').removeClass('d-none');
-        $('#popup-overlay').removeClass('d-none'); // Show overlay
+        $('#popup-overlay').removeClass('d-none');
     }
 
     function closePopup() {
         $('#popup-message').addClass('d-none');
-        $('#popup-overlay').addClass('d-none'); // Hide overlay
+        $('#popup-overlay').addClass('d-none');
     }
 
     // Attach close event to buttons and the close icon
@@ -279,21 +325,27 @@ $(document).ready(function () {
     // Add flight to booking
     $('#add-flight').on('click', function () {
         if (validateForm('flight-form')) {
+            const cabinType = $('#cabin-type').val();
+            const adults = parseInt($('#adults').val());
+            const children = parseInt($('#children').val() || 0);
+            const price = pricing.flights[cabinType] * (adults + children * 0.5);
+
             const flight = {
                 departure: $('#departure-airport').val(),
                 arrival: $('#arrival-airport').val(),
                 date: $('#flight-date').val(),
                 time: $('#flight-time').val(),
-                cabin: $('#cabin-type').val(),
-                adults: $('#adults').val(),
-                children: $('#children').val() || 0,
+                cabin: cabinType,
+                adults: adults,
+                children: children,
                 return: $('#add-return-flight').is(':checked'),
                 returnDate: $('#return-date').val(),
-                returnTime: $('#return-time').val()
+                returnTime: $('#return-time').val(),
+                price: price,
             };
             selectedBookings.flights.push(flight);
             updateSummary();
-            showPopup('Flight added to booking summary!');
+            showPopup(`Flight added! Price: £${price}`);
             resetForm('flight-form');
         }
     });
@@ -301,20 +353,25 @@ $(document).ready(function () {
     // Add hotel to booking
     $('#add-hotel').on('click', function () {
         if (validateForm('hotel-form')) {
+            const roomType = $('#room-type').val();
+            const numRooms = parseInt($('#num-rooms').val());
+            const price = pricing.hotels[roomType] * numRooms;
+
             const hotel = {
                 name: $('#hotel-name').val(),
                 checkin: $('#checkin-date').val(),
                 checkout: $('#checkout-date').val(),
-                rooms: $('#num-rooms').val(),
+                rooms: numRooms,
                 guests: $('#num-guests').val(),
                 extra: [
                     $('#baby-cot').is(':checked') ? "Baby Cot" : null,
-                    $('#extra-bed').is(':checked') ? "Extra Bed" : null
-                ].filter(Boolean)
+                    $('#extra-bed').is(':checked') ? "Extra Bed" : null,
+                ].filter(Boolean),
+                price: price,
             };
             selectedBookings.hotels.push(hotel);
             updateSummary();
-            showPopup('Hotel added to booking summary!');
+            showPopup(`Hotel added! Price: £${price}`);
             resetForm('hotel-form');
         }
     });
@@ -322,24 +379,28 @@ $(document).ready(function () {
     // Add chauffeur to booking
     $('#add-chauffeur').on('click', function () {
         if (validateForm('chauffeur-form')) {
+            const vehicleType = $('#vehicle-type').val();
+            const price = pricing.chauffeur[vehicleType];
+
             const chauffeur = {
                 pickup: $('#pickup-location').val(),
                 dropoff: $('#dropoff-location').val(),
                 date: $('#chauffeur-date').val(),
                 time: $('#chauffeur-time').val(),
-                vehicle: $('#vehicle-type').val(),
+                vehicle: vehicleType,
                 passengers: $('#num-passengers').val(),
                 seats: [
                     $('#child-seat').is(':checked') ? "Child Seat" : null,
-                    $('#booster-seat').is(':checked') ? "Booster Seat" : null
+                    $('#booster-seat').is(':checked') ? "Booster Seat" : null,
                 ].filter(Boolean),
                 return: $('#add-return-chauffeur').is(':checked'),
                 returnDate: $('#return-chauffeur-date').val(),
-                returnTime: $('#return-chauffeur-time').val()
+                returnTime: $('#return-chauffeur-time').val(),
+                price: price,
             };
             selectedBookings.chauffeurs.push(chauffeur);
             updateSummary();
-            showPopup('Chauffeur added to booking summary!');
+            showPopup(`Chauffeur added! Price: £${price}`);
             resetForm('chauffeur-form');
         }
     });
@@ -347,16 +408,21 @@ $(document).ready(function () {
     // Add tour to booking
     $('#add-tour').on('click', function () {
         if (validateForm('tour-form')) {
+            const tourType = $('#tour-type').val();
+            const numPeople = parseInt($('#tour-num-people').val());
+            const price = pricing.tours[tourType] * numPeople;
+
             const tour = {
                 destination: $('#tour-destination').val(),
                 date: $('#tour-date').val(),
-                people: $('#tour-num-people').val(),
-                type: $('#tour-type').val(),
-                level: $('#tour-level').val()
+                people: numPeople,
+                type: tourType,
+                level: $('#tour-level').val(),
+                price: price,
             };
             selectedBookings.tours.push(tour);
             updateSummary();
-            showPopup('Tour added to booking summary!');
+            showPopup(`Tour added! Price: £${price}`);
             resetForm('tour-form');
         }
     });
@@ -369,6 +435,24 @@ $(document).ready(function () {
         } else {
             $('#return-flight-section').slideUp();
             $('#return-date, #return-time').val('');
+        }
+    });
+
+        
+    $('#book-journey').on('click', function () {
+    $('#customer-info-modal').modal('show');
+    });
+
+    $('#confirm-booking').on('click', function () {
+        const name = $('#customer-name').val();
+        const email = $('#customer-email').val();
+        const phone = $('#customer-phone').val();
+
+        if (name && email && phone) {
+            alert(`Booking confirmed for ${name}. A confirmation email will be sent to ${email}.`);
+            $('#customer-info-modal').modal('hide');
+        } else {
+            alert('Please fill in all required fields.');
         }
     });
 
@@ -392,4 +476,143 @@ $(document).ready(function () {
         selectedBookings[type].splice(index, 1);
         updateSummary();
     });
+    
+    // ========== MAP ==========
+    // Google Maps instances
+    let flightMap, chauffeurMap, hotelMap, flightDirectionsService, flightDirectionsRenderer, chauffeurDirectionsService, chauffeurDirectionsRenderer, hotelMarker;
+
+    // Initialize Maps
+    function initMaps() {
+    // Flight Map
+    flightMap = new google.maps.Map(document.getElementById("flight-map"), {
+        center: { lat: 51.470020, lng: -0.454295 },
+        zoom: 6,
+    });
+    flightDirectionsService = new google.maps.DirectionsService();
+    flightDirectionsRenderer = new google.maps.DirectionsRenderer();
+    flightDirectionsRenderer.setMap(flightMap);
+
+    // Chauffeur Map
+    chauffeurMap = new google.maps.Map(document.getElementById("chauffeur-map"), {
+        center: { lat: 51.470020, lng: -0.454295 },
+        zoom: 6,
+    });
+    chauffeurDirectionsService = new google.maps.DirectionsService();
+    chauffeurDirectionsRenderer = new google.maps.DirectionsRenderer();
+    chauffeurDirectionsRenderer.setMap(chauffeurMap);
+
+    // Hotel Map
+    hotelMap = new google.maps.Map(document.getElementById("hotel-map"), {
+        center: { lat: 51.470020, lng: -0.454295 },
+        zoom: 10,
+    });
+    hotelMarker = new google.maps.Marker({ map: hotelMap });
+}
+
+    // Show flight route
+    function showFlightRoute(departure, arrival) {
+    flightDirectionsService.route(
+        {
+            origin: departure,
+            destination: arrival,
+            travelMode: google.maps.TravelMode.DRIVING,
+        },
+        (response, status) => {
+            if (status === "OK") {
+                flightDirectionsRenderer.setDirections(response);
+            } else {
+                alert("Could not display flight route: " + status);
+            }
+        }
+    );
+}
+
+    // Show chauffeur route
+    function showChauffeurRoute(pickup, dropoff) {
+    chauffeurDirectionsService.route(
+        {
+            origin: pickup,
+            destination: dropoff,
+            travelMode: google.maps.TravelMode.DRIVING,
+        },
+        (response, status) => {
+            if (status === "OK") {
+                chauffeurDirectionsRenderer.setDirections(response);
+            } else {
+                alert("Could not display chauffeur route: " + status);
+            }
+        }
+    );
+}
+
+    // Show hotel location
+    function showHotelLocation(hotelAddress) {
+    const geocoder = new google.maps.Geocoder();
+    geocoder.geocode({ address: hotelAddress }, (results, status) => {
+        if (status === "OK") {
+            hotelMap.setCenter(results[0].geometry.location);
+            hotelMarker.setPosition(results[0].geometry.location);
+        } else {
+            alert("Could not find hotel location: " + status);
+        }
+    });
+}
+
+    // Attach change event listeners to dropdowns
+    $(document).ready(function () {
+    initMaps();
+
+    // Flights: Update points and routes on selection
+    $('#departure-airport').on('change', function () {
+        const departure = $(this).val();
+        if (departure) {
+            const geocoder = new google.maps.Geocoder();
+            geocoder.geocode({ address: departure }, (results, status) => {
+                if (status === "OK") {
+                    flightMap.setCenter(results[0].geometry.location);
+                }
+            });
+        }
+    });
+
+    $('#arrival-airport').on('change', function () {
+        const departure = $('#departure-airport').val();
+        const arrival = $(this).val();
+        if (departure && arrival) {
+            showFlightRoute(departure, arrival);
+        }
+    });
+
+    // Chauffeur: Update points and routes on selection
+    $('#pickup-location').on('change', function () {
+        const pickup = $(this).val();
+        if (pickup) {
+            const geocoder = new google.maps.Geocoder();
+            geocoder.geocode({ address: pickup }, (results, status) => {
+                if (status === "OK") {
+                    chauffeurMap.setCenter(results[0].geometry.location);
+                }
+            });
+        }
+    });
+
+    $('#dropoff-location').on('change', function () {
+        const pickup = $('#pickup-location').val();
+        const dropoff = $(this).val();
+        if (pickup && dropoff) {
+            showChauffeurRoute(pickup, dropoff);
+        }
+    });
+
+    // Hotels: Show pin on hotel selection
+    $('#hotel-name').on('change', function () {
+        const hotel = $(this).val();
+        if (hotel) {
+            showHotelLocation(hotel);
+        }
+    });
+});
+
+    // Initialize maps on page load
+    initMaps();
 });

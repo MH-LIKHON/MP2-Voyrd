@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <!-- Required meta tags for responsive design -->
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+     
+     <!-- Page title -->
+     <title>Voyrd - Your Service Title</title>
+     
+     <!-- Link to Bootstrap CSS for responsive design -->
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+     
+     <!-- Link to Font Awesome for social icons -->
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+
+<body>
+    <!-- Header Section -->
+        <!-- Top Bar Section -->
+        <div class="top-bar py-2">
+            <div class="container d-flex justify-content-between">
+                <!-- Contact Info Section -->
+                <div class="contact-info">
+                    <!-- Email link with mailto functionality -->
+                    <span>
+                        <a href="mailto:hello@voyrd.com" class="email-link" aria-label="Email Voyrd">
+                            <i class="fas fa-envelope"></i> hello@voyrd.com
+                        </a>
+                    </span>
+                </div>
+                
+                <!-- Social Media Icons Section -->
+                <div class="social-icons">
+                    <!-- Facebook link -->
+                    <a href="https://www.facebook.com" target="_blank" class="social-link" aria-label="Facebook">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    
+                    <!-- Instagram link -->
+                    <a href="https://www.instagram.com" target="_blank" class="social-link" aria-label="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    
+                    <!-- WhatsApp link -->
+                    <a href="https://www.whatsapp.com" target="_blank" class="social-link" aria-label="WhatsApp">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Navigation Section -->
+        <nav class="navbar navbar-expand-lg navbar-light main-nav">
+            <div class="container">
+                <!-- Logo and Branding -->
+                <a class="navbar-brand" href="index.html">
+                    <img src="assets/images/Logo.png" alt="Voyrd Logo" class="logo">
+                </a>
+                
+                <!-- Mobile Navigation Toggle Button -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                
+                <!-- Navigation Links -->
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="booking.html">Quote & Book</a></li>
+                        <li class="nav-item"><a class="nav-link" href="exploreuk.html">Explore UK</a></li>
+                        <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+
+    <!-- Body Section -->
+        <!-- Main Content Section -->
+        <main class="container my-5">
+            <h1 class="text-center mb-5">Explore UK Cities</h1>
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4" id="cityCardsContainer">
+                <!-- City Cards Loaded Dynamically -->
+            </div>
+        </main>
+
+        <!-- Modal for City Attractions -->
+        <div class="modal fade" id="cityAttractionsModal" tabindex="-1" aria-labelledby="modalTitle" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalTitle"></h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body" id="modalBody">
+                        <!-- Dynamic Content for Attractions -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    <!-- Footer Section -->
+        <!-- Footer Logo & Text -->
+        <footer>
+            <div class="footer-container text-center">
+                <img src="assets/images/Logo.png" alt="Voyrd Logo" class="footer-logo">
+                <p class="footer-text">&copy; 2024 VOYRD: Your One-Stop Travel Shop</p>
+            </div>
+        </footer>
+
+    <!-- Bootstrap JS and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/exploreuk.js"></script>
+</body>
+</html>

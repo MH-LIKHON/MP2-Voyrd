@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explore UK</title>
+    <!-- Bootstrap 5 CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+        .city-card {
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .city-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .card-img-top {
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .modal-content {
+            border-radius: 8px;
+        }
+
+        .carousel-item img {
+            height: 300px;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body>
+    <!-- Main Content Section -->
+    <main class="container my-5">
+        <h1 class="text-center mb-5">Explore UK Cities</h1>
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4" id="cityCardsContainer">
+            <!-- Dynamic City Cards -->
+        </div>
+    </main>
+
+    <!-- Dynamic Modals -->
+    <div id="cityModalsContainer"></div>
+
+    <!-- Bootstrap Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+        // ========== Data Initialization ==========
+        const cityAttractions = {
+            London: [
+                { name: "Big Ben", description: "Iconic clock tower.", images: ["assets/images/bigben.1.jpg"] },
+                { name: "London Eye", description: "A giant Ferris wheel.", images: ["assets/images/londoneye.1.jpg"] },
+                { name: "Tower of London", description: "Historic castle.", images: ["assets/images/toweroflondon.1.jpg"] },
+                { name: "British Museum", description: "World-renowned museum.", images: ["assets/images/britishmuseum.1.jpg"] },
+                { name: "Buckingham Palace", description: "Royal residence.", images: ["assets/images/buckinghampalace.1.jpg"] },
+            ],
+            Manchester: [
+                { name: "Old Trafford", description: "Home of Manchester United.", images: ["assets/images/oldtrafford.1.jpg"] },
+                { name: "Science and Industry Museum", description: "Learn about Manchester's industrial history.", images: ["assets/images/scienceandindustrymuseum.1.jpg"] },
+                { name: "John Rylands Library", description: "Neo-Gothic masterpiece.", images: ["assets/images/johnrylandslibrary.1.jpg"] },
+                { name: "Heaton Park", description: "Large park with activities.", images: ["assets/images/heatonpark.1.jpg"] },
+                { name: "Manchester Art Gallery", description: "Art and culture.", images: ["assets/images/manchesterartgallery.1.jpg"] },
+            ],
+
+            B: [
+                {
+                    name: "Big Ben",
+                    description: "Big Ben is the nickname for the Great Bell of the clock at the north end of the Palace of Westminster. It is one of the most recognizable symbols of the United Kingdom and a must-see for anyone visiting London.",
+                    images: ["assets/images/bigben.1.jpg"]
+                },
+                {
+                    name: "London Eye",
+                    description: "The London Eye is a giant Ferris wheel on the South Bank of the River Thames. It offers stunning views of the city skyline, making it one of London's most popular attractions.",
+                    images: ["assets/images/londoneye.1.jpg"]
+                },
+                {
+                    name: "Tower of London",
+                    description: "A historic castle located on the north bank of the River Thames, the Tower of London is famous for its role in British history and for housing the Crown Jewels.",
+                    images: ["assets/images/toweroflondon.1.jpg"]
+                },
+                {
+                    name: "British Museum",
+                    description: "This world-renowned museum houses a vast collection of world art and artifacts, including the Rosetta Stone and the Elgin Marbles, spanning over two million years of history.",
+                    images: ["assets/images/britishmuseum.1.jpg"]
+                },
+                {
+                    name: "Buckingham Palace",
+                    description: "The official residence of the monarch, Buckingham Palace is known for its grandeur. Visitors can witness the Changing of the Guard ceremony and explore the lavish state rooms.",
+                    images: ["assets/images/buckinghampalace.1.jpg"]
+                }
+            ],
+        };
+
+        // ========== Populate City Cards ==========
+        function populateCities() {
+            const $cityContainer = $("#cityCardsContainer");
+            $.each(cityAttractions, function (city) {
+                const cityCard = `
+                    <div class="col">
+                        <div class="card city-card" data-city="${city}">
+                            <img src="assets/images/${city.toLowerCase()}.1.jpg" class="card-img-top" alt="${city}">
+                            <div class="card-body text-center">
+                                <h5 class="card-title">${city}</h5>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                $cityContainer.append(cityCard);
+            });
+        }
+
+        // ========== Create City Modals ==========
+        function createCityModals() {
+            const $modalContainer = $("#cityModalsContainer");
+            $.each(cityAttractions, function (city, attractions) {
+                let carouselItems = '';
+                attractions.forEach((attraction, index) => {
+                    carouselItems += `
+                        <div class="carousel-item ${index === 0 ? 'active' : ''}">
+                            <img src="${attraction.images[0]}" class="d-block w-100" alt="${attraction.name}">
+                            <div class="carousel-caption d-none d-md-block">
+                                <h5>${attraction.name}</h5>
+                                <p>${attraction.description}</p>
+                            </div>
+                        </div>
+                    `;
+                });
+
+                const cityModal = `
+                    <div class="modal fade" id="${city.replace(/\s+/g, '')}Modal" tabindex="-1" aria-labelledby="${city.replace(/\s+/g, '')}ModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="${city.replace(/\s+/g, '')}ModalLabel">${city} Attractions</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <div id="${city.replace(/\s+/g, '')}Carousel" class="carousel slide" data-bs-ride="carousel">
+                                        <div class="carousel-inner">
+                                            ${carouselItems}
+                                        </div>
+                                        <button class="carousel-control-prev" type="button" data-bs-target="#${city.replace(/\s+/g, '')}Carousel" data-bs-slide="prev">
+                                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                            <span class="visually-hidden">Previous</span>
+                                        </button>
+                                        <button class="carousel-control-next" type="button" data-bs-target="#${city.replace(/\s+/g, '')}Carousel" data-bs-slide="next">
+                                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                            <span class="visually-hidden">Next</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                $modalContainer.append(cityModal);
+            });
+        }
+
+        // ========== Initialize ==========
+        $(document).ready(function () {
+            populateCities();
+            createCityModals();
+
+            // Event Delegation for Dynamic Content
+            $("#cityCardsContainer").on("click", ".city-card", function () {
+                const city = $(this).data("city");
+                $(`#${city.replace(/\s+/g, '')}Modal`).modal("show");
+            });
+        });
+    </script>
+</body>
+</html>
