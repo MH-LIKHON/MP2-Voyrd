@@ -327,8 +327,7 @@ main h1 {
     margin: 0;
 }
 
-                    /***** MMODAL STYLING *****/
- 
+                    /***** MODAL STYLING *****/
 
 /* Styling for modal container */
 .modal-content {
@@ -358,6 +357,22 @@ main h1 {
     text-align: center;
 }
 
+/* Attraction Name Styling */
+.modal-body h5 {
+    text-transform: uppercase;
+    font-weight: bold;
+    color: #F2BA1E;
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+}
+
+/* Description Text Styling */
+.modal-body p {
+    font-size: 1rem;
+    color: #333;
+    margin-bottom: 15px;
+}
+
 /* Styling for links in the modal */
 .modal-body a {
     color: #007bff;
@@ -375,12 +390,12 @@ main h1 {
     display: inline-block;
     background-color: #5a5a5a;
     color: #FFFFFF !important;
-    padding: 10px 20px;
-    font-size: 1rem;
+    padding: 5px 10px;
+    font-size: 0.85rem;
     font-weight: bold;
     text-decoration: none;
     border: none;
-    border-radius: 5px;
+    border-radius: 3px;
     text-align: center;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.3s ease;
@@ -389,7 +404,7 @@ main h1 {
 /* Hover Effect for Learn More Button */
 .btn-primary:hover {
     background-color: #F2BA1E;
-    transform: scale(1.05);
+    transform: scale(00.95);
     text-decoration: none !important;
 }
 
