@@ -540,6 +540,12 @@ $(document).ready(function () {
                     alert(`Booking confirmed! Your booking number is ${bookingNumber}. A confirmation email has been sent.`);
                     $('#customer-info-modal').modal('hide');
                     $('#customer-info-form')[0].reset(); // Reset the form
+                    
+                    // Refresh the page after a brief delay
+                    setTimeout(() => {
+                        location.reload();
+                    }, 0);
+                    
                 } else {
                     alert("There was an issue sending the confirmation email. Please try again.");
                 }

@@ -137,23 +137,29 @@ a:hover {
     background-image: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23333' viewBox='0 0 30 30'%3E%3Cpath stroke='rgba%280, 0, 0, 0.5%29' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
 }
 
-/***** HEADER RESPONSIVE STYLES *****/
+                    /***** HEADER RESPONSIVE STYLES *****/
 
 /* Extra Small Screens (Mobile, less than 576px) */
 @media (max-width: 575.98px) {
     /* Top Bar Adjustments for Mobile */
     .top-bar {
         font-size: 0.8rem;
-        flex-direction: column;
-        align-items: flex-start;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
         padding: 10px;
     }
 
-    /* Contact Info and Social Icons Layout for Mobile */
-    .top-bar .contact-info,
+    /* Contact Info Styling for Mobile */
+    .top-bar .contact-info {
+        flex: 1;
+        justify-content: flex-start;
+    }
+
+    /* Social Icons Styling for Mobile */
     .top-bar .social-icons {
-        flex-direction: column;
-        gap: 10px;
+        flex: 0;
+        justify-content: flex-end;
     }
 
     /* Navbar Brand Logo Size for Mobile */
@@ -170,6 +176,9 @@ a:hover {
     /* Navbar Layout for Mobile */
     .navbar-nav {
         flex-direction: column;
+        text-align: center;
+        align-items: center;
+        justify-content: center;
     }
 }
 
@@ -178,6 +187,7 @@ a:hover {
     /* Top Bar Adjustments for Tablets */
     .top-bar {
         font-size: 0.85rem;
+        align-items: center;
     }
 
     /* Navbar Brand Logo Size for Tablets */
@@ -188,11 +198,17 @@ a:hover {
     /* Navbar Link Styling for Tablets */
     .navbar-nav .nav-link {
         font-size: 0.95rem;
+        text-align: center;
     }
 }
 
 /* Medium Screens (Tablets, 768px to 991px) */
 @media (min-width: 768px) and (max-width: 991.98px) {
+    /* Top Bar Adjustments for Tablets */
+    .top-bar {
+        align-items: center;
+    }
+
     /* Navbar Brand Logo Size for Medium Screens */
     .navbar-brand img {
         height: 50px;
@@ -201,6 +217,7 @@ a:hover {
     /* Navbar Link Styling for Medium Screens */
     .navbar-nav .nav-link {
         font-size: 0.95rem;
+        text-align: center;
     }
 }
 
@@ -527,12 +544,25 @@ body {
 
                     /***** NAVIGATION TAB STYLING *****/
 
+
+/* Navigation tabs */
+.nav-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+}
+
 /* Navigation tab links */
 .nav-tabs .nav-link {
     color: #333;
     font-weight: bold;
     border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    text-align: center;
     text-transform: uppercase;
+    flex: 1;
 }
 
 /* Navigation tab hover effect */
@@ -804,6 +834,9 @@ body {
     /* Font size adjustment for navigation tab links */
     .nav-tabs .nav-link {
         font-size: 0.85rem;
+        flex: 1 1 calc(50% - 10px);
+        text-align: center;
+        margin-bottom: 10px;
     }
 }
 
@@ -822,6 +855,28 @@ body {
     /* Styling for buttons inside popup messages */
     #popup-message .btn {
         font-size: 0.85rem;
+    }
+    
+    /* Adjustment for navigation */
+    .nav-tabs {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0px;
+    }
+    
+    /* Adjustment for navigation tab links */
+    .nav-tabs .nav-link {
+        flex: 1 1 calc(25% - 5px);
+        text-align: center;
+        font-size: 0.5rem;
+        margin-bottom: 1px;
+    }
+
+    /* Adjustment for navigation and links */
+    .nav-tabs .nav-link:nth-child(5) { 
+        flex: 1 1 100%;
+        margin-top: 10px;
     }
 }
 
@@ -996,6 +1051,11 @@ body {
         padding: 15px;
     }
 
+    /* Add space below the FAQ answers */
+    #faqAnswers {
+        margin-bottom: 30px;
+    }
+
     /* Styling for the submit button in the contact form for smaller screens */
     .contact-form button {
         font-size: 1rem;
@@ -1013,6 +1073,11 @@ body {
     .contact-form {
         padding: 20px;
     }
+
+    /* Add space below the FAQ answers */
+    #faqAnswers {
+        margin-bottom: 30px;
+    }    
 
     /* Styling for the submit button in the contact form */
     .contact-form button {
