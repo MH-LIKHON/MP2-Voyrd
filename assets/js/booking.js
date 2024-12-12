@@ -300,6 +300,67 @@ $(document).ready(function () {
         `);
     }
 
+    // Utility: Generate random booking number
+    function generateBookingNumber() {
+        const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+        let bookingNumber = '';
+        for (let i = 0; i < 7; i++) {
+            bookingNumber += chars.charAt(Math.floor(Math.random() * chars.length));
+        }
+        return bookingNumber;
+    }
+
+    // Function to format booking summary
+    function formatBookingSummary() {
+        let summary = '';
+
+        // Flights
+        if (selectedBookings.flights.length > 0) {
+            summary += '<strong>Flights:</strong><br>';
+            selectedBookings.flights.forEach((flight, index) => {
+                summary += `Flight ${index + 1}: ${flight.departure} to ${flight.arrival}, Date: ${flight.date}, Time: ${flight.time}, Cabin: ${flight.cabin}, Adults: ${flight.adults}, Children: ${flight.children}`;
+                if (flight.return) {
+                    summary += `, Return Date: ${flight.returnDate}, Return Time: ${flight.returnTime}`;
+                }
+                summary += '<br>';
+            });
+        }
+
+        // Hotels
+        if (selectedBookings.hotels.length > 0) {
+            summary += '<strong>Hotels:</strong><br>';
+            selectedBookings.hotels.forEach((hotel, index) => {
+                summary += `Hotel ${index + 1}: ${hotel.name}, Check-in: ${hotel.checkin}, Check-out: ${hotel.checkout}, Rooms: ${hotel.rooms}, Guests: ${hotel.guests}`;
+                if (hotel.extra.length > 0) {
+                    summary += `, Extras: ${hotel.extra.join(', ')}`;
+                }
+                summary += '<br>';
+            });
+        }
+
+        // Chauffeurs
+        if (selectedBookings.chauffeurs.length > 0) {
+            summary += '<strong>Chauffeurs:</strong><br>';
+            selectedBookings.chauffeurs.forEach((chauffeur, index) => {
+                summary += `Chauffeur ${index + 1}: From ${chauffeur.pickup} to ${chauffeur.dropoff}, Date: ${chauffeur.date}, Time: ${chauffeur.time}, Vehicle: ${chauffeur.vehicle}, Passengers: ${chauffeur.passengers}`;
+                if (chauffeur.return) {
+                    summary += `, Return Date: ${chauffeur.returnDate}, Return Time: ${chauffeur.returnTime}`;
+                }
+                summary += '<br>';
+            });
+        }
+
+        // Tours
+        if (selectedBookings.tours.length > 0) {
+            summary += '<strong>Tours:</strong><br>';
+            selectedBookings.tours.forEach((tour, index) => {
+                summary += `Tour ${index + 1}: ${tour.destination}, Date: ${tour.date}, People: ${tour.people}, Type: ${tour.type}, Level: ${tour.level}<br>`;
+            });
+        }
+
+        return summary || 'No bookings added yet.';
+    }
+
     // ========== Popup Functions ==========
     function showPopup(message) {
         $('#popup-message .popup-content p').text(message);
@@ -443,18 +504,51 @@ $(document).ready(function () {
     $('#customer-info-modal').modal('show');
     });
 
+    // Booking confirmation button handler
     $('#confirm-booking').on('click', function () {
-        const name = $('#customer-name').val();
-        const email = $('#customer-email').val();
-        const phone = $('#customer-phone').val();
-
-        if (name && email && phone) {
-            alert(`Booking confirmed for ${name}. A confirmation email will be sent to ${email}.`);
-            $('#customer-info-modal').modal('hide');
-        } else {
+        console.log(formatBookingSummary());
+        const name = $('#customer-name').val().trim();
+        const email = $('#customer-email').val().trim();
+        const phone = $('#customer-phone').val().trim();
+    
+        // Validate form fields
+        if (!name || !email || !phone) {
             alert('Please fill in all required fields.');
+            return;
         }
-    });
+    
+        // Generate random booking number
+        const bookingNumber = generateBookingNumber();
+    
+        // Format the booking summary
+        const bookingSummary = formatBookingSummary();
+    
+        // Prepare email data
+        const emailData = {
+            customer_name: name,
+            customer_email: email,
+            customer_phone: phone,
+            booking_number: bookingNumber,
+            booking_summary: formatBookingSummary(),
+        };
+
+    
+        // Send email using EmailJS
+        emailjs.send("service_9fhnu4c", "template_ic8z6td", emailData)
+            .then((response) => {
+                if (response.status === 200) {
+                    alert(`Booking confirmed! Your booking number is ${bookingNumber}. A confirmation email has been sent.`);
+                    $('#customer-info-modal').modal('hide');
+                    $('#customer-info-form')[0].reset(); // Reset the form
+                } else {
+                    alert("There was an issue sending the confirmation email. Please try again.");
+                }
+            })
+            .catch((error) => {
+                console.error("EmailJS Error:", error);
+                alert("Failed to send confirmation email. Please try again later.");
+            });
+    });        
 
     // Toggle return chauffeur section
     $('#add-return-chauffeur').on('change', function () {

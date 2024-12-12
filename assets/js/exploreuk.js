@@ -636,7 +636,7 @@ function populateCityModal(city) {
     $("#cityAttractionsModal").modal("show");
 }
 
-// ========== Initialize ==========
+// ========== Initialise ==========
 $(document).ready(function () {
     populateCities();
 

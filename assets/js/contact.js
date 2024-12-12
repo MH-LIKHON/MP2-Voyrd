@@ -11,7 +11,7 @@ $(document).ready(function() {
             $(`.faq-answer[data-faq="${selectedValue}"]`).addClass('active');
         }
     
-        // Initialize with the first answer visible
+        // Initialise with the first answer visible
         if ($faqDropdown.length) {
             showFaqAnswer($faqDropdown.val());
             $faqDropdown.on('change', function () {
@@ -72,11 +72,11 @@ $(document).ready(function() {
     });
 });
 
-    // ========== EMAIL JS ==========
+    // ========== EMAIL JS FOR CONTACT ==========
     document.addEventListener("DOMContentLoaded", () => {
         const contactForm = document.getElementById("contactForm");
 
-        // Ensure EmailJS is initialized once DOM is ready
+        // Ensure EmailJS is initialised once DOM is ready
         emailjs.init("W2YSRyqhhCt5N8kVj");
 
         contactForm.addEventListener("submit", (e) => {
@@ -96,10 +96,11 @@ $(document).ready(function() {
                     (response) => {
                         console.log("Email sent successfully:", response.status, response.text);
                         alert("Your message has been sent successfully! The page will now refresh.");
+                        
+                        // Reset form fields
+                        contactForm.reset();
 
-                        contactForm.reset(); // Reset form fields
-
-                        // Refresh the page
+                        // Refresh the page after a brief delay
                         setTimeout(() => {
                             location.reload();
                         }, 0);
