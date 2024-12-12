@@ -522,16 +522,16 @@ $(document).ready(function () {
     
         // Format the booking summary
         const bookingSummary = formatBookingSummary();
+        console.log("Generated Booking Summary:", bookingSummary);
     
         // Prepare email data
         const emailData = {
             customer_name: name,
             customer_email: email,
             customer_phone: phone,
+            bookingSummary: formatBookingSummary(),
             booking_number: bookingNumber,
-            booking_summary: formatBookingSummary(),
-        };
-
+        };        
     
         // Send email using EmailJS
         emailjs.send("service_9fhnu4c", "template_ic8z6td", emailData)
@@ -707,6 +707,6 @@ $(document).ready(function () {
     });
 });
 
-    // Initialize maps on page load
+    // Initialise maps on page load
     initMaps();
 });
