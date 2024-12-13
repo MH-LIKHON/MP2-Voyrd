@@ -46,6 +46,40 @@ The project was developed as part of the Interactive Frontend Development Milest
 
 ---
 
+## Pre-Project Planning
+
+To kick off this project, I evaluated several service-based industries that would benefit from a well-designed, user-centric website. I scored each industry on a set of criteria to determine which would provide the best balance between showcasing my skills and meeting market demands. The criteria were:
+
+- **Portfolio-Weight**: How well the website would represent my capabilities in web development.
+- **Complexity**: The complexity of the site features and content.
+- **Time to Research**: The amount of time required to understand and implement the content.
+- **Revenue Potential**: The potential for generating income by building similar websites for businesses in the industry.
+
+| Type                       | Portfolio-Weight | Complexity | Time to Research | Revenue Potential | Total Score |
+|----------------------------|------------------|------------|------------------|-------------------|-------------|
+| Travel & Tourism          | 9                | 8          | 7                | 9                 | 33          |
+| Event Planning            | 8                | 7          | 6                | 8                 | 29          |
+| Small Business Websites   | 9                | 6          | 7                | 8                 | 30          |
+| Entertainment Services    | 7                | 6          | 5                | 7                 | 25          |
+
+From this analysis, I chose to create a website for the Travel & Tourism industry. This project was ideal for demonstrating a wide range of web development skills, including responsive design, media integration, and user interaction, while also catering to a real-world market need.
+
+### Service Industry Ranking
+
+I also ranked specific services within the travel and tourism industry to identify which would offer the most engaging content and user experience:
+
+| No. | Service Type           | Rank |
+|-----|------------------------|------|
+| 1   | Guided Tours          | 1    |
+| 2   | Chauffeur Services    | 2    |
+| 3   | Luxury Hotels         | 3    |
+| 4   | Flight Booking        | 4    |
+| 5   | Travel Packages       | 5    |
+
+The focus on guided tours and chauffeur services reflected the growing demand for these experiences in the luxury travel market, making it a good fit for the target audience.
+
+---
+
 ## User Experience (UX)
 
 ### Project Goals
@@ -151,22 +185,57 @@ High-resolution AI-generated images are used to represent UK landmarks and servi
 ## Testing
 
 ### Manual Testing
+The website was manually tested across multiple browsers (Chrome, Firefox, Safari, and Edge) and on different devices (mobile, tablet, desktop) to ensure responsiveness, functionality, and user experience. Below is a detailed overview of the tests conducted and their outcomes.
 
-| Page        | Element Tested              | Outcome |
-|-------------|-----------------------------|---------|
-| index.html  | Navigation Bar              | Pass    |
-| index.html  | Dynamic Hero Slideshow      | Pass    |
-| index.html  | Welcome Section Video       | Pass    |
-| contact.html| Multi-step Contact Form     | Pass    |
+#### Testing for Links and Forms
+
+| Test                                         | Outcome |
+|----------------------------------------------|---------|
+| All links in the navigation bar lead to their correct pages | Pass    |
+| "Book Now" button in the hero section directs users to the contact page | Pass    |
+| Footer social links lead to respective social media pages  | Pass    |
+| Contact form submits successfully when all fields are filled correctly | Pass    |
+| User is prevented from submitting the form without filling in the required fields | Pass    |
+| Form validation presents errors when incorrect data types are entered (e.g., email field) | Pass    |
+
+#### Testing for Responsiveness
+
+| Test                                        | Outcome |
+|---------------------------------------------|---------|
+| The website displays correctly on screens larger than 950px (desktop) | Pass    |
+| The website displays correctly on screens smaller than 950px (tablet, mobile) | Pass    |
+
+### User Testing
+
+#### User Testing Challenge
+Five users were asked to complete specific tasks on the website before receiving any instructions. The tasks and their respective results are listed below.
+
+| Test                                                       | Result |
+|------------------------------------------------------------|--------|
+| Upon arrival, navigate to the Contact Form and submit a message | 100%   |
+| Locate and access the company's Facebook social media page from the footer | 100%   |
+| Fill in the contact form and opt-in for promotional offers | 100%   |
+| Provide the company's phone number for 24/7 breakdown services | 100%   |
+| Navigate to the Fleet page and count the number of vehicle images | 100%   |
+
+#### User Responsive Testing
+Five users tested the website on mobile devices and/or tablets. Feedback was gathered on any issues related to overlapping content, page layout, or navigation problems.
+
+| Test                | Result |
+|---------------------|--------|
+| Issues Reported     | None   |
+
+### Google Lighthouse Testing
+Google Lighthouse was used to assess the site's performance, accessibility, best practices, and SEO across all major pages. Below are the results for each page tested.
+
+#### Lighthouse Reports
+- **Index Page**: ![Lighthouse Report](assets/pdfs/lighthouse-index.pdf)
+- **Explore Page**: ![Lighthouse Report](assets/pdfs/lighthouse-explore.pdf)
+- **Contact Page**: ![Lighthouse Report](assets/pdfs/lighthouse-contact.pdf)
 
 ### Validation Testing
 - **HTML Validation**: [W3C Validator Results](assets/pdfs/index-validation.pdf)
 - **CSS Validation**: [W3C CSS Validator Results](assets/pdfs/styles-validation.pdf)
-
-### Google Lighthouse Testing
-
-#### Index Page
-![Lighthouse Report](assets/pdfs/lighthouse-index.pdf)
 
 ---
 
