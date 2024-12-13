@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    // ========== Data Initialization ==========
+    // ========== Data Initialisation ==========
     const airports = [
         "London Heathrow Terminal 1 (LHR-T1)",
         "London Heathrow Terminal 2 (LHR-T2)",
@@ -8,9 +8,8 @@ $(document).ready(function () {
         "London Heathrow Terminal 5 (LHR-T5)",
         "London Gatwick North Terminal (LGW-N)",
         "London Gatwick South Terminal (LGW-S)",
-        "Manchester Terminal 1 (MAN-T1) - SUSPENDED",
+        "Manchester Terminal 1 (MAN-T1)",
         "Manchester Terminal 2 (MAN-T2)",
-        "Manchester Terminal 3 (MAN-T3)",
         "Edinburgh Airport (EDI)",
         "Birmingham Airport (BHX)",
         "Glasgow Airport (GLA)",
@@ -59,7 +58,6 @@ $(document).ready(function () {
         "Holiday Inn Manchester Airport - Wilmslow Road",
     
         // Edinburgh Airport
-        "Hilton Edinburgh Airport - Near Terminal",
         "Moxy Edinburgh Airport - Walking Distance to Terminal",
     
         // Birmingham Airport
@@ -241,7 +239,7 @@ $(document).ready(function () {
 
         // Flights
         selectedBookings.flights.forEach((flight, index) => {
-            const flightCost = 100 * flight.adults + 50 * flight.children;
+            const flightCost = pricing.flights[flight.cabin] * (flight.adults + flight.children * 0.5);
             totalCost += flightCost;
 
             summaryList.append(`
@@ -257,9 +255,13 @@ $(document).ready(function () {
 
         // Hotels
         selectedBookings.hotels.forEach((hotel, index) => {
-            const hotelCost = 100 * hotel.rooms;
+            const roomType = pricing.hotels[hotel.roomType] ? hotel.roomType : "single";
+            const roomPrice = pricing.hotels[roomType];
+            const rooms = parseInt(hotel.rooms, 10) || 0;
+        
+            const hotelCost = roomPrice * rooms;
             totalCost += hotelCost;
-
+        
             summaryList.append(`
                 <li class="list-group-item">
                     <strong>Hotel:</strong> ${hotel.name}, Check-in: ${hotel.checkin}, Check-out: ${hotel.checkout},
@@ -268,11 +270,11 @@ $(document).ready(function () {
                     <button class="btn btn-sm btn-danger float-end remove-item" data-type="hotels" data-index="${index}" style="margin-right: 10px;">X</button>
                 </li>
             `);
-        });
+        });        
 
         // Chauffeurs
         selectedBookings.chauffeurs.forEach((chauffeur, index) => {
-            const chauffeurCost = 50 * chauffeur.passengers;
+            const chauffeurCost = pricing.chauffeur[chauffeur.vehicle] * chauffeur.passengers;
             totalCost += chauffeurCost;
 
             summaryList.append(`
@@ -297,7 +299,7 @@ $(document).ready(function () {
                 "Lake District Experience": 180
             };
 
-            const tourCost = tourPricing[tour.destination] * tour.people;
+            const tourCost = pricing.tours[tour.type] * tour.people;
             totalCost += tourCost;
 
             summaryList.append(`
@@ -330,53 +332,57 @@ $(document).ready(function () {
     // Function to format booking summary
     function formatBookingSummary() {
         let summary = '';
-
+    
         // Flights
         if (selectedBookings.flights.length > 0) {
             summary += '<strong>Flights:</strong><br>';
             selectedBookings.flights.forEach((flight, index) => {
-                summary += `Flight ${index + 1}: ${flight.departure} to ${flight.arrival}, Date: ${flight.date}, Time: ${flight.time}, Cabin: ${flight.cabin}, Adults: ${flight.adults}, Children: ${flight.children}`;
+                const flightCost = pricing.flights[flight.cabin] * (flight.adults + flight.children * 0.5);
+                summary += `Flight ${index + 1}: ${flight.departure} to ${flight.arrival}, Date: ${flight.date}, Time: ${flight.time}, Cabin: ${flight.cabin}, Adults: ${flight.adults}, Children: ${flight.children}, Price: £${flightCost}`;
                 if (flight.return) {
                     summary += `, Return Date: ${flight.returnDate}, Return Time: ${flight.returnTime}`;
                 }
                 summary += '<br>';
             });
         }
-
+    
         // Hotels
         if (selectedBookings.hotels.length > 0) {
             summary += '<strong>Hotels:</strong><br>';
             selectedBookings.hotels.forEach((hotel, index) => {
-                summary += `Hotel ${index + 1}: ${hotel.name}, Check-in: ${hotel.checkin}, Check-out: ${hotel.checkout}, Rooms: ${hotel.rooms}, Guests: ${hotel.guests}`;
+                const hotelCost = pricing.hotels[hotel.roomType] * hotel.rooms;
+                summary += `Hotel ${index + 1}: ${hotel.name}, Check-in: ${hotel.checkin}, Check-out: ${hotel.checkout}, Rooms: ${hotel.rooms}, Guests: ${hotel.guests}, Price: £${hotelCost}`;
                 if (hotel.extra.length > 0) {
                     summary += `, Extras: ${hotel.extra.join(', ')}`;
                 }
                 summary += '<br>';
             });
         }
-
+    
         // Chauffeurs
         if (selectedBookings.chauffeurs.length > 0) {
             summary += '<strong>Chauffeurs:</strong><br>';
             selectedBookings.chauffeurs.forEach((chauffeur, index) => {
-                summary += `Chauffeur ${index + 1}: From ${chauffeur.pickup} to ${chauffeur.dropoff}, Date: ${chauffeur.date}, Time: ${chauffeur.time}, Vehicle: ${chauffeur.vehicle}, Passengers: ${chauffeur.passengers}`;
+                const chauffeurCost = pricing.chauffeur[chauffeur.vehicle] * chauffeur.passengers;
+                summary += `Chauffeur ${index + 1}: From ${chauffeur.pickup} to ${chauffeur.dropoff}, Date: ${chauffeur.date}, Time: ${chauffeur.time}, Vehicle: ${chauffeur.vehicle}, Passengers: ${chauffeur.passengers}, Price: £${chauffeurCost}`;
                 if (chauffeur.return) {
                     summary += `, Return Date: ${chauffeur.returnDate}, Return Time: ${chauffeur.returnTime}`;
                 }
                 summary += '<br>';
             });
         }
-
+    
         // Tours
         if (selectedBookings.tours.length > 0) {
             summary += '<strong>Tours:</strong><br>';
             selectedBookings.tours.forEach((tour, index) => {
-                summary += `Tour ${index + 1}: ${tour.destination}, Date: ${tour.date}, People: ${tour.people}, Type: ${tour.type}, Level: ${tour.level}<br>`;
+                const tourCost = pricing.tours[tour.type] * tour.people;
+                summary += `Tour ${index + 1}: ${tour.destination}, Date: ${tour.date}, People: ${tour.people}, Type: ${tour.type}, Level: ${tour.level}, Price: £${tourCost}<br>`;
             });
         }
-
+    
         return summary || 'No bookings added yet.';
-    }
+    }    
 
     // ========== Popup Functions ==========
     function showPopup(message) {
@@ -431,14 +437,17 @@ $(document).ready(function () {
     // Add hotel to booking
     $('#add-hotel').on('click', function () {
         if (validateForm('hotel-form')) {
+            // Capture room type
             const roomType = $('#room-type').val();
-            const numRooms = parseInt($('#num-rooms').val());
+            const numRooms = parseInt($('#num-rooms').val(), 10) || 0;
             const price = pricing.hotels[roomType] * numRooms;
-
+    
+            // Construct the hotel object
             const hotel = {
                 name: $('#hotel-name').val(),
                 checkin: $('#checkin-date').val(),
                 checkout: $('#checkout-date').val(),
+                roomType: roomType,
                 rooms: numRooms,
                 guests: $('#num-guests').val(),
                 extra: [
@@ -447,12 +456,14 @@ $(document).ready(function () {
                 ].filter(Boolean),
                 price: price,
             };
+    
+            // Add hotel booking to selectedBookings
             selectedBookings.hotels.push(hotel);
             updateSummary();
             showPopup(`Hotel added! Price: £${price}`);
             resetForm('hotel-form');
         }
-    });
+    });    
 
     // Add chauffeur to booking
     $('#add-chauffeur').on('click', function () {
