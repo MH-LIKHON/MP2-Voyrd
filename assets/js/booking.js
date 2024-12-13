@@ -159,11 +159,28 @@ $(document).ready(function () {
 
     // Pricing
     const pricing = {
-    flights: { economy: 100, business: 300, first: 500 },
-    hotels: { single: 80, double: 120, suite: 250 },
-    chauffeur: { standard: 50, executive: 100, luxury: 200, mpv: 150 },
-    tours: { educational: 50, adventure: 100, luxury: 200 },
-};
+        flights: { 
+            economy: 100,
+            business: 300,
+            first: 500
+        },
+        hotels: { 
+            single: 80,
+            double: 120,
+            suite: 250
+        },
+        chauffeur: { 
+            standard: 50,
+            executive: 100,
+            luxury: 200,
+            mpv: 150
+        },
+        tours: { 
+            educational: 100,
+            adventure: 150,
+            luxury: 300
+        }
+    };    
 
     // ========== Populate Dropdowns ==========
     airports.forEach((airport) => {

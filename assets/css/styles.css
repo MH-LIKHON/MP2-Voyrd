@@ -282,6 +282,468 @@ footer {
 }
 
 /*********************************
+ * HOME STYLING
+ *********************************/
+
+                     /***** BODY STYLING *****/
+
+/* Background color for the entire page */
+body {
+    background-color: #d1d9dd !important;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+                     /***** HERO SECTION *****/
+
+/* General Hero Section Styling */
+.hero-section {
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* Background slideshow for the hero section */
+.hero-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    animation: slideShow 20s infinite;
+}
+
+/* Images inside the background slideshow */
+.hero-background img {
+    flex: 1;
+    object-fit: cover;
+    opacity: 0.8;
+}
+
+/* Animation for the background slideshow */
+@keyframes slideShow {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-100%); }
+    50% { transform: translateX(-200%); }
+    75% { transform: translateX(-300%); }
+    100% { transform: translateX(0); }
+}
+
+/* Hero content layout */
+.hero-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: #fff;
+    text-shadow: 0 0 15px #ffffff, 0 0 30px #ffffff;
+}
+
+/* Styling for the hero title */
+.hero-title {
+    font-size: 3.5rem;
+    font-weight: bold;
+    color: wheat;
+    text-shadow: 0 0 15px #F2BA1E, 0 0 30px black;
+    white-space: nowrap;
+}
+
+/* Styling for the hero description text */
+.hero-description {
+    font-size: 1.5rem;
+    margin-top: 20px;
+    color: black;
+    font-weight: bold;
+}
+
+/* Styling for the hero button */
+.hero-button {
+    display: inline-block;
+    width: 75px;
+    height: 50px;
+    background-color: #F2BA1E;
+    border-radius: 20%;
+    text-decoration: none;
+    color: #fff;
+    font-size: 1.2rem;
+    font-weight: bold;
+    line-height: 50px;
+    animation: glowGrow 2s infinite;
+    margin-top: 30px;
+}
+
+/* Animation for the glow and grow effect on the button */
+@keyframes glowGrow {
+    0%, 100% { transform: scale(1); box-shadow: 0 0 10px #FFD700; }
+    50% { transform: scale(1.1); box-shadow: 0 0 20px #FFD700; }
+}
+
+                     /***** WELCOME SECTION *****/
+
+/* General styling for the welcome section */
+.welcome-section {
+    background-color: #d1d9dd;
+    padding: 50px 15px;
+    text-align: left;
+}
+
+/* Container layout for the welcome section */
+.container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+/* Styling for the welcome text */
+.welcome-text {
+    max-width: 50%;
+}
+
+/* Styling for the welcome title */
+.welcome-title {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+/* Styling for the welcome subtitle */
+.welcome-subtitle {
+    font-size: 2rem;
+    font-weight: 600;
+    color: #5a5a5a;
+    margin-bottom: 20px;
+}
+
+/* Styling for the welcome description */
+.welcome-description {
+    font-size: 1rem;
+    color: #5a5a5a;
+    line-height: 1.6;
+    text-align: justify;
+}
+
+/* Styling for the media section */
+.welcome-media {
+    text-align: center;
+    max-width: 40%;
+}
+
+/* Styling for the video container */
+.welcome-video-container {
+    width: 500px;
+    max-width: 600px;
+    height: auto;
+    aspect-ratio: 16/9;
+    overflow: hidden;
+    border-radius: 15px;
+    margin: 0 auto 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    position: relative;
+    background: none;
+}
+
+/* Styling for the video inside the container */
+.welcome-video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 15px;
+    transform: scale(1.5);
+}
+
+/* Styling for the welcome button */
+.welcome-button {
+    display: inline-block;
+    padding: 15px 25px;
+    background-color: #5a5a5a;
+    color: #fff;
+    border-radius: 50px;
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: bold;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+/* Hover effect for the welcome button */
+.welcome-button:hover {
+    background-color: #F2BA1E;
+    transform: scale(1.05);
+}
+
+                     /***** WHY CHOOSE US SECTION *****/
+
+/* General styling for the "Why Choose Us" section */
+.why-choose-us {
+    background-color: #d1d9dd;
+    padding: 50px 15px;
+    text-align: center;
+    color: #5a5a5a;
+}
+
+/* Styling for the section title */
+.why-choose-us h2 {
+    font-size: 3rem;
+    margin-bottom: 30px;
+    font-weight: bold;
+    color: #333;
+}
+
+/* Styling for individual service cards */
+.why-choose-us .service {
+    text-align: center;
+    margin-bottom: 20px;
+    padding: 20px;
+    background-color: #d1d9dd;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px d1d9dd(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    color: #333;
+}
+
+/* Hover effect for service cards */
+.why-choose-us .service:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Styling for service icons */
+.why-choose-us .service i {
+    font-size: 2.5rem;
+    color: #F2BA1E;
+    margin-bottom: 10px;
+}
+
+/* Styling for service titles */
+.why-choose-us .service h3 {
+    font-size: 1.5rem;
+    color: #333;
+}
+
+/* Styling for service descriptions */
+.why-choose-us .service p {
+    font-size: 1rem;
+    color: #5a5a5a;
+}
+                     /***** HOME PAGE RESPONSIVE STYLES *****/
+
+/* Extra Small Screens (Mobile, less than 576px) */
+@media (max-width: 575.98px) {
+    /* Hero Title Adjustments */
+    .hero-title {
+        font-size: 1.5rem;
+    }
+
+    /* Hero Description Adjustments */
+    .hero-description {
+        font-size: 1rem;
+    }
+
+    /* Hero Button Adjustments */
+    .hero-button {
+        width: 65px;
+        height: 40px;
+        line-height: 40px;
+        font-size: 1rem;
+    }
+
+    /* Welcome Section Text Adjustments */
+    .welcome-text, .welcome-media {
+        max-width: 100%;
+        text-align: center;
+    }
+
+    /* Welcome Section Title Adjustments */
+    .welcome-title {
+        font-size: 2.5rem;
+    }
+
+    /* Welcome Section SUbtitle Adjustments */
+    .welcome-subtitle {
+        font-size: 1.2rem;
+    }
+
+    /* Welcome Section Video Container Adjustments */
+    .welcome-video-container {
+        width: 100%;
+        height: 200px;
+        margin: 20px auto;
+    }
+
+    /* Styling for the video inside the container */
+    .welcome-video-container iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 15px;
+        transform: scale(1.8);
+    }
+
+    /* Why Choose Us Service Adjustments */
+    .why-choose-us .service {
+        margin-bottom: 15px;
+        padding: 15px;
+    }
+
+    /* Why Choose Us Service Size Adjustments */
+    .why-choose-us .service i {
+        font-size: 2rem;
+    }
+
+    /* Why Choose Us H2 Adjustments */
+    .why-choose-us h2 {
+        font-size: 2.2rem;
+    }
+}
+
+/* Small Screens (Tablets, 576px to 767px) */
+@media (min-width: 576px) and (max-width: 767.98px) {
+    /* Hero Title Adjustments */
+    .hero-title {
+        font-size: 3rem;
+    }
+
+    /* Hero Description Adjustments */
+    .hero-description {
+        font-size: 1.2rem;
+    }
+
+    /* Welcome Title Adjustments */
+    .welcome-title {
+        font-size: 2.8rem;
+    }
+
+    /* Welcome Subtitle Adjustments */
+    .welcome-subtitle {
+        font-size: 1.5rem;
+    }
+
+    /* Welcome Video Adjustments */
+    .welcome-video-container {
+        width: 100%;
+        height: 250px;
+        margin: 20px auto;
+    }
+
+    /* Styling for the video inside the container */
+    .welcome-video-container iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 15px;
+        transform: scale(1.5);
+    }
+
+    /* Why Choose Us Section Adjustments */
+    .why-choose-us .service {
+        margin-bottom: 20px;
+    }
+
+    /* Why Choose Adjustments */
+    .why-choose-us h2 {
+        font-size: 2.5rem;
+    }
+}
+
+/* Medium Screens (Tablets, 768px to 991px) */
+@media (min-width: 768px) and (max-width: 991.98px) {
+    /* Hero Title Adjustments */
+    .hero-title {
+        font-size: 2.5rem;
+    }
+
+    /* Hero Description Adjustments */
+    .hero-description {
+        font-size: 1.3rem;
+    }
+
+    /* Welcome Section Adjustments */
+    .welcome-title {
+        font-size: 3rem;
+    }
+
+    /* Welcome Subtitle Adjustments */
+    .welcome-subtitle {
+        font-size: 1.6rem;
+    }
+
+    /* Welcome Video Adjustments */
+    .welcome-video-container {
+        width: 100%;
+        height: 200px;
+        margin: 20px auto;
+    }
+
+    /* Styling for the video inside the container */
+    .welcome-video-container iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 15px;
+        transform: scale(1.8);
+}
+
+    /* Why Choose Us Section Adjustments */
+    .why-choose-us h2 {
+        font-size: 2.8rem;
+    }
+
+    /* Why Choose Adjustments */
+    .why-choose-us .service {
+        margin-bottom: 20px;
+        padding: 20px;
+    }
+}
+
+/* Large Screens (Desktop, 992px and up) */
+@media (min-width: 992px) {
+    /* Hero Title Adjustments */
+    .hero-title {
+        font-size: 3.5rem;
+    }
+
+    /* Hero Description Adjustments */
+    .hero-description {
+        font-size: 1.5rem;
+    }
+
+    /* Welcome Title Adjustments */
+    .welcome-title {
+        font-size: 3rem;
+    }
+
+    /* Welcome Subtitle Adjustments */
+    .welcome-subtitle {
+        font-size: 2rem;
+    }
+
+    /* Welcome Video Adjustments */
+    .welcome-video-container {
+        width: 500px;
+    }
+
+    /* Why Choose Us Section Adjustments */
+    .why-choose-us h2 {
+        font-size: 3rem;
+    }
+}
+
+/*********************************
  * EXPLORE UK STYLING
  *********************************/
 
@@ -297,7 +759,7 @@ main h1 {
     font-weight: bold;
     color: #333;
     margin-bottom: 5px;
-    text-align: center;
+    text-align: center !important;
 }
 
                     /***** CITY CARDS STYLING *****/
@@ -1034,10 +1496,16 @@ body {
 
                     /***** MAP STYLING *****/
 
-/* Map styling */
+/* Map Container Styling */
+.map {
+    max-width: 600px;
+    margin: auto;
+}
+
+/* Map Styling */
 .map iframe {
     border: 1px solid #ccc;
-    border-radius: 10px;
+    border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     width: 100%;
     height: 200px;

@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VoYrD - Your One-Stop Travel Shop</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        
+/*********************************
+ * GENERAL STYLES
+*********************************/
+
+                     /***** BODY STYLING *****/
+
+/* Background color for the entire page */
+body {
+    background-color: #d1d9dd !important;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+                     /***** HERO SECTION *****/
+
+/* General Hero Section Styling */
+.hero-section {
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* Background slideshow for the hero section */
+.hero-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    animation: slideShow 20s infinite;
+}
+
+/* Images inside the background slideshow */
+.hero-background img {
+    flex: 1;
+    object-fit: cover;
+    opacity: 0.8;
+}
+
+/* Animation for the background slideshow */
+@keyframes slideShow {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-100%); }
+    50% { transform: translateX(-200%); }
+    75% { transform: translateX(-300%); }
+    100% { transform: translateX(0); }
+}
+
+/* Hero content layout */
+.hero-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: #fff;
+    text-shadow: 0 0 15px #ffffff, 0 0 30px #ffffff;
+}
+
+/* Styling for the hero title */
+.hero-title {
+    font-size: 3.5rem;
+    font-weight: bold;
+    color: wheat;
+    text-shadow: 0 0 15px #F2BA1E, 0 0 30px black;
+    white-space: nowrap;
+}
+
+/* Styling for the hero description text */
+.hero-description {
+    font-size: 1.5rem;
+    margin-top: 20px;
+    color: black;
+    font-weight: bold;
+}
+
+/* Styling for the hero button */
+.hero-button {
+    display: inline-block;
+    width: 75px;
+    height: 50px;
+    background-color: #F2BA1E;
+    border-radius: 20%;
+    text-decoration: none;
+    color: #fff;
+    font-size: 1.2rem;
+    font-weight: bold;
+    line-height: 50px;
+    animation: glowGrow 2s infinite;
+    margin-top: 30px;
+}
+
+/* Animation for the glow and grow effect on the button */
+@keyframes glowGrow {
+    0%, 100% { transform: scale(1); box-shadow: 0 0 10px #FFD700; }
+    50% { transform: scale(1.1); box-shadow: 0 0 20px #FFD700; }
+}
+
+                     /***** WELCOME SECTION *****/
+
+/* General styling for the welcome section */
+.welcome-section {
+    background-color: #d1d9dd;
+    padding: 50px 15px;
+    text-align: left;
+}
+
+/* Container layout for the welcome section */
+.container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+/* Styling for the welcome text */
+.welcome-text {
+    max-width: 50%;
+}
+
+/* Styling for the welcome title */
+.welcome-title {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+/* Styling for the welcome subtitle */
+.welcome-subtitle {
+    font-size: 2rem;
+    font-weight: 600;
+    color: #5a5a5a;
+    margin-bottom: 20px;
+}
+
+/* Styling for the welcome description */
+.welcome-description {
+    font-size: 1rem;
+    color: #5a5a5a;
+    line-height: 1.6;
+    text-align: justify;
+}
+
+/* Styling for the media section */
+.welcome-media {
+    text-align: center;
+    max-width: 40%;
+}
+
+/* Styling for the video container */
+.welcome-video-container {
+    width: 500px;
+    max-width: 600px;
+    height: auto;
+    aspect-ratio: 16/9;
+    overflow: hidden;
+    border-radius: 15px;
+    margin: 0 auto 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    position: relative;
+    background: none;
+}
+
+/* Styling for the video inside the container */
+.welcome-video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 15px;
+    transform: scale(1.5);
+}
+
+/* Styling for the welcome button */
+.welcome-button {
+    display: inline-block;
+    padding: 15px 25px;
+    background-color: #5a5a5a;
+    color: #fff;
+    border-radius: 50px;
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: bold;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+/* Hover effect for the welcome button */
+.welcome-button:hover {
+    background-color: #F2BA1E;
+    transform: scale(1.05);
+}
+
+                     /***** WHY CHOOSE US SECTION *****/
+
+/* General styling for the "Why Choose Us" section */
+.why-choose-us {
+    background-color: #d1d9dd;
+    padding: 50px 15px;
+    text-align: center;
+    color: #5a5a5a;
+}
+
+/* Styling for the section title */
+.why-choose-us h2 {
+    font-size: 3rem;
+    margin-bottom: 30px;
+    font-weight: bold;
+    color: #333;
+}
+
+/* Styling for individual service cards */
+.why-choose-us .service {
+    text-align: center;
+    margin-bottom: 20px;
+    padding: 20px;
+    background-color: #d1d9dd;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px d1d9dd(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    color: #333;
+}
+
+/* Hover effect for service cards */
+.why-choose-us .service:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Styling for service icons */
+.why-choose-us .service i {
+    font-size: 2.5rem;
+    color: #F2BA1E;
+    margin-bottom: 10px;
+}
+
+/* Styling for service titles */
+.why-choose-us .service h3 {
+    font-size: 1.5rem;
+    color: #333;
+}
+
+/* Styling for service descriptions */
+.why-choose-us .service p {
+    font-size: 1rem;
+    color: #5a5a5a;
+}
+
+/*********************************
+ * RESPONSIVE STYLES
+ *********************************/
+
+                     /***** EXTRA SMALL SCREENS (MOBILE, LESS THAN 576PX) *****/
+
+/* Extra Small Screens (Mobile, less than 576px) */
+@media (max-width: 575.98px) {
+    /* Hero Title Adjustments */
+    .hero-title {
+        font-size: 1.5rem;
+    }
+
+    /* Hero Description Adjustments */
+    .hero-description {
+        font-size: 1rem;
+    }
+
+    /* Hero Button Adjustments */
+    .hero-button {
+        width: 65px;
+        height: 40px;
+        line-height: 40px;
+        font-size: 1rem;
+    }
+
+    /* Welcome Section Text Adjustments */
+    .welcome-text, .welcome-media {
+        max-width: 100%;
+        text-align: center;
+    }
+
+    /* Welcome Section Title Adjustments */
+    .welcome-title {
+        font-size: 2.5rem;
+    }
+
+    /* Welcome Section SUbtitle Adjustments */
+    .welcome-subtitle {
+        font-size: 1.2rem;
+    }
+
+    /* Welcome Section Video Container Adjustments */
+    .welcome-video-container {
+        width: 100%;
+        height: 200px;
+        margin: 20px auto;
+    }
+
+    /* Styling for the video inside the container */
+    .welcome-video-container iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 15px;
+        transform: scale(1.8);
+    }
+
+    /* Why Choose Us Service Adjustments */
+    .why-choose-us .service {
+        margin-bottom: 15px;
+        padding: 15px;
+    }
+
+    /* Why Choose Us Service Size Adjustments */
+    .why-choose-us .service i {
+        font-size: 2rem;
+    }
+
+    /* Why Choose Us H2 Adjustments */
+    .why-choose-us h2 {
+        font-size: 2.2rem;
+    }
+}
+
+                     /***** SMALL SCREENS (TABLETS, 576PX TO 767PX) *****/
+
+/* Small Screens (Tablets, 576px to 767px) */
+@media (min-width: 576px) and (max-width: 767.98px) {
+    /* Hero Title Adjustments */
+    .hero-title {
+        font-size: 3rem;
+    }
+
+    /* Hero Description Adjustments */
+    .hero-description {
+        font-size: 1.2rem;
+    }
+
+    /* Welcome Title Adjustments */
+    .welcome-title {
+        font-size: 2.8rem;
+    }
+
+    /* Welcome Subtitle Adjustments */
+    .welcome-subtitle {
+        font-size: 1.5rem;
+    }
+
+    /* Welcome Video Adjustments */
+    .welcome-video-container {
+        width: 100%;
+        height: 250px;
+        margin: 20px auto;
+    }
+
+    /* Styling for the video inside the container */
+    .welcome-video-container iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 15px;
+        transform: scale(1.5);
+    }
+
+    /* Why Choose Us Section Adjustments */
+    .why-choose-us .service {
+        margin-bottom: 20px;
+    }
+
+    /* Why Choose Adjustments */
+    .why-choose-us h2 {
+        font-size: 2.5rem;
+    }
+}
+
+                     /***** MEDIUM SCREENS (TABLETS, 768PX TO 991PX) *****/
+
+/* Medium Screens (Tablets, 768px to 991px) */
+@media (min-width: 768px) and (max-width: 991.98px) {
+    /* Hero Title Adjustments */
+    .hero-title {
+        font-size: 2.5rem;
+    }
+
+    /* Hero Description Adjustments */
+    .hero-description {
+        font-size: 1.3rem;
+    }
+
+    /* Welcome Section Adjustments */
+    .welcome-title {
+        font-size: 3rem;
+    }
+
+    /* Welcome Subtitle Adjustments */
+    .welcome-subtitle {
+        font-size: 1.6rem;
+    }
+
+    /* Welcome Video Adjustments */
+    .welcome-video-container {
+        width: 100%;
+        height: 200px;
+        margin: 20px auto;
+    }
+
+    /* Styling for the video inside the container */
+    .welcome-video-container iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 15px;
+        transform: scale(1.8);
+}
+
+    /* Why Choose Us Section Adjustments */
+    .why-choose-us h2 {
+        font-size: 2.8rem;
+    }
+
+    /* Why Choose Adjustments */
+    .why-choose-us .service {
+        margin-bottom: 20px;
+        padding: 20px;
+    }
+}
+
+                     /***** LARGE SCREENS (DESKTOP, GREATER THAN 992PX) *****/
+
+/* Large Screens (Desktop, 992px and up) */
+@media (min-width: 992px) {
+    /* Hero Title Adjustments */
+    .hero-title {
+        font-size: 3.5rem;
+    }
+
+    /* Hero Description Adjustments */
+    .hero-description {
+        font-size: 1.5rem;
+    }
+
+    /* Welcome Title Adjustments */
+    .welcome-title {
+        font-size: 3rem;
+    }
+
+    /* Welcome Subtitle Adjustments */
+    .welcome-subtitle {
+        font-size: 2rem;
+    }
+
+    /* Welcome Video Adjustments */
+    .welcome-video-container {
+        width: 500px;
+    }
+
+    /* Why Choose Us Section Adjustments */
+    .why-choose-us h2 {
+        font-size: 3rem;
+    }
+}
+
+
+
+
+    </style>
+</head>
+<body>
+
+<!-- Hero Section -->
+<section class="hero-section">
+    <div class="hero-background">
+        <img src="assets/images/london.1.jpg" alt="London">
+        <img src="assets/images/edinburgh.1.jpg" alt="Edinburgh">
+        <img src="assets/images/oxford.1.jpg" alt="Oxford">
+        <img src="assets/images/cardiff.1.jpg" alt="Cardiff">
+        <img src="assets/images/liverpool.1.jpg" alt="Liverpool">
+        <img src="assets/images/belfast.1.jpg" alt="Belfast">
+        <img src="assets/images/cornwall.1.jpg" alt="Cornwall">
+        <img src="assets/images/york.1.jpg" alt="York">
+        <img src="assets/images/glasgow.1.jpg" alt="Glasgow">
+        <img src="assets/images/inverness.1.jpg" alt="Inverness">
+    </div>
+    <div class="hero-content">
+        <h1 class="hero-title">VoYrD | Your One-Stop Travel Shop</h1>
+        <p class="hero-description">Explore the beauty and culture of the UK with VoYrD as your trusted companion.</p>
+        <a href="booking.html" class="hero-button">Book</a>
+    </div>
+</section>
+
+<!-- Welcome Section -->
+<section class="welcome-section">
+    <div class="container d-flex align-items-center flex-wrap">
+        <!-- Left Content -->
+        <div class="welcome-text me-auto">
+            <h1 class="welcome-title">Welcome to the UK!</h1>
+            <h2 class="welcome-subtitle">Discover endless possibilities with VoYrD</h2>
+            <p class="welcome-description">
+                United Kingdom – a land of timeless history, vibrant culture, and stunning landscapes. 
+                From London’s iconic landmarks to the scenic beauty of the Lake District, the UK offers 
+                endless adventures. Explore Edinburgh’s royal charm, Oxford’s historic colleges, or Brighton’s 
+                lively coastline. At VoYrD, we make every journey seamless and memorable. Whether it’s booking 
+                flights, enjoying luxury chauffeur services, relaxing in handpicked hotels, or joining guided 
+                tours, we tailor every detail to your needs. Discover ancient castles, bustling cities, and serene 
+                countryside. With VoYrD, your journey is more than travel – it’s an unforgettable experience crafted with care.
+            </p>
+        </div>
+        <!-- Right Content -->
+        <div class="welcome-media ms-auto">
+            <div class="welcome-video-container">
+                <iframe
+                    src="https://www.youtube.com/embed/ZMhuwDNHAj8?start=30&autoplay=1&mute=1&controls=0&loop=1&rel=0&showinfo=0&modestbranding=1"
+                    frameborder="0"
+                    allow="autoplay; encrypted-media; fullscreen"
+                    allowfullscreen>
+                </iframe>
+            </div>                          
+            <a href="exploreuk.html" class="welcome-button">Explore UK</a>
+        </div>
+    </div>
+</section>
+
+<!-- Why Choose Us Section -->
+<section class="why-choose-us">
+    <h2>Why Choose Us?</h2>
+    <div class="row container mx-auto">
+        <div class="col-md-3 col-sm-6 service">
+            <i class="fas fa-plane"></i>
+            <h3>Flights</h3>
+            <p>Book seamless flights to your favorite destinations with ease.</p>
+        </div>
+        <div class="col-md-3 col-sm-6 service">
+            <i class="fas fa-car"></i>
+            <h3>Chauffeurs</h3>
+            <p>Travel in style and comfort with our professional chauffeurs.</p>
+        </div>
+        <div class="col-md-3 col-sm-6 service">
+            <i class="fas fa-hotel"></i>
+            <h3>Hotels</h3>
+            <p>Enjoy luxurious stays with our curated hotel selections.</p>
+        </div>
+        <div class="col-md-3 col-sm-6 service">
+            <i class="fas fa-map-marked-alt"></i>
+            <h3>Tours</h3>
+            <p>Explore iconic destinations with guided tours for memorable experiences.</p>
+        </div>
+    </div>
+</section>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
