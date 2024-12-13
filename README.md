@@ -168,53 +168,48 @@ High-resolution AI-generated images are used to represent UK landmarks and servi
   - A carousel featuring a collection of iconic UK city images, transitioning smoothly for a visually engaging experience.
   - Developed with CSS animations and JavaScript for interactivity, ensuring a seamless user experience.
   - Fully responsive across devices, maintaining image clarity and alignment on screens of all sizes.
-  - ![Hero Section - Dynamic Image Slideshow](assets/screenshots/hero-dynamic-image-slideshow.png)
 
 - **Neon-Styled Text**:
   - Headings and descriptions are styled with a neon glow effect, achieved using CSS `text-shadow` and gradient colour properties.
   - Matches the site’s thematic colours of gold (#F2BA1E) and white.
-  - ![Hero Section - Neon-Styled Text](assets/screenshots/hero-neon-text.png)
 
-- **Interactive Book Now Button**:
+- **Interactive Book Button**:
   - A large circular button with hover animations that glow and slightly enlarge, creating an inviting call-to-action.
   - The button links directly to the booking page, designed for maximum accessibility.
-  - ![Hero Section - Book Now Button](assets/screenshots/hero-book-now-button.png)
+  - ![Hero Section](assets/images/hero.png)
 
 #### Welcome Section
 - **Embedded Video**:
   - Features a YouTube video configured to autoplay at 30 seconds, loop continuously, and play without controls for a sleek design.
   - Uses `object-fit: cover` for a dynamic fit within the responsive container.
-  - ![Welcome Section - Embedded Video](assets/screenshots/welcome-embedded-video.png)
 
 - **Responsive Layout**:
   - Built using Bootstrap’s grid system, dividing the section into text (left) and media content (right).
   - Adapts seamlessly to various screen sizes, ensuring readability and accessibility.
-  - ![Welcome Section - Responsive Layout](assets/screenshots/welcome-layout.png)
 
 - **Explore UK Button**:
   - A button linking to the Explore UK page, styled with rounded edges and hover effects.
   - Changes colour from grey to gold (#F2BA1E) when hovered over, guiding users effectively.
-  - ![Welcome Section - Explore UK Button](assets/screenshots/welcome-explore-uk-button.png)
+  - ![Welcome Section](assets/screenshots/welcome-explore-uk-button.png)
 
 #### Why Choose Us Section
 - **Service Features**:
   - Highlights core services: Flights, Chauffeurs, Hotels, and Tours, presented as interactive cards.
   - Each card contains an icon (styled in gold), a title, and a brief description to inform users.
-  - ![Why Choose Us - Service Features](assets/screenshots/why-choose-us-service-features.png)
 
 - **Hover Animations**:
   - Cards respond to hover events by enlarging slightly and casting subtle shadows, creating a 3D-like interaction.
-  - ![Why Choose Us - Hover Animations](assets/screenshots/why-choose-us-hover-animations.png)
+  - ![Why Choose Us Section](assets/images/whychooseus.png)
 
 #### Explore UK Page
 - **Interactive Destination Showcase**:
   - A section featuring popular UK attractions, each displayed as a card with high-resolution imagery.
   - Cards expand on hover and include brief descriptions and links for further exploration.
-  - ![Explore UK Page - Interactive Destination Showcase](assets/screenshots/explore-uk-showcase.png)
+  - ![Explore UK Page - Interactive Destination Showcase](assets/images/explore.png)
 
 - **Featured Destinations**:
   - London, Edinburgh, Bath, and other iconic cities are highlighted with engaging content.
-  - ![Explore UK Page - Featured Destinations](assets/screenshots/explore-uk-featured-destinations.png)
+  - ![Explore UK Page - Featured Destinations](assets/images/attractions.png)
 
 #### Booking Page
 - **Multi-step Booking Form**:
@@ -227,13 +222,13 @@ High-resolution AI-generated images are used to represent UK landmarks and servi
     - **Step 5**: Review and confirm booking details.
   - Includes real-time validation to ensure users input correct data formats, such as valid email addresses and mandatory fields.
   - Provides user-friendly error messages for missing or incorrect fields.
-  - ![Booking Page - Multi-step Booking Form](assets/screenshots/booking-multi-step-form.png)
+  - ![Booking Page - Multi-step Booking Form](assets/images/bookingtool.png)
 
 - **Dynamic Pricing Calculator**:
   - Automatically updates the total price based on user selections, including the type of service, duration, and any additional options selected.
   - Displays pricing changes instantly, providing transparency and clarity for users before confirming their booking.
   - Ensures users can make informed decisions based on budget constraints.
-  - ![Booking Page - Dynamic Pricing Calculator](assets/screenshots/booking-pricing-calculator.png)
+  - ![Booking Page - Dynamic Pricing Calculator](assets/images/price.png)
 
 - **Integrated EmailJS API**:
   - The booking confirmation is powered by EmailJS, enabling real-time notifications to both the user and the site owner.
@@ -242,60 +237,55 @@ High-resolution AI-generated images are used to represent UK landmarks and servi
     - The site owner receives an email notification with all the booking information, streamlining the management process.
   - Email templates are designed to reflect the website's branding, maintaining consistency and professionalism.
   - The integration eliminates the need for a backend server, making the process lightweight and efficient.
-  - ![Booking Page - EmailJS Integration](assets/screenshots/booking-emailjs-integration.png)
+  - ![Booking Page - EmailJS Integration](assets/images/bookingemail.jpeg)
 
 - **User Feedback and Confirmation**:
   - Upon successful submission, users are presented with a confirmation modal thanking them for their booking and providing an estimated response time.
   - Real-time feedback ensures users are aware of the submission status, reducing the likelihood of repeated submissions.
-  - ![Booking Page - Confirmation Modal](assets/screenshots/booking-confirmation-modal.png)
+  - ![Booking Page - Confirmation Modal](assets/images/bookingemailmessage.png)
 
 - **Accessibility and Responsiveness**:
   - The entire booking page is optimised for various devices, ensuring a seamless experience on mobile, tablet, and desktop.
   - Form fields and buttons are sized appropriately for easy navigation on touchscreens.
-  - ![Booking Page - Mobile Friendly Design](assets/screenshots/booking-mobile-friendly.png)
+  - ![Booking Page - Mobile Friendly Design](assets/images/mobilebooking.png)
 
 #### Contact Page
 - **Modern Contact Form**:
   - A responsive form featuring fields for name, email, phone number (optional), and a message box.
   - Includes client-side validation for required fields to prevent submission errors.
-  - ![Contact Page - Modern Contact Form](assets/screenshots/contact-form.png)
+  - ![Contact Page - Modern Contact Form](assets/images/contactform.png)
 
 - **Integrated Email Functionality**:
   - Uses EmailJS for direct communication, sending user inquiries to the site owner.
-  - ![Contact Page - Email Integration](assets/screenshots/contact-email-integration.png)
+  - ![Contact Page - Email Integration](assets/images/contactemail.jpeg)
 
 #### Header and Footer
 - **Responsive Navigation Bar**:
   - The header features a navigation bar with links to Home, Explore UK, Booking, and Contact pages.
   - The active page is highlighted for improved user navigation.
   - On smaller devices, the navigation bar collapses into a hamburger menu for better usability.
-  - ![Header - Responsive Navigation Bar](assets/screenshots/header-navigation-bar.png)
 
 - **Social Media Links**:
   - The header includes links to Email, Facebook, Instagram, and other platforms, styled with hover effects for visual feedback.
   - Hover effects include colour changes and slight scaling to make the icons interactive.
-  - ![Header - Social Media](assets/screenshots/header-social-links.png)
 
 - **Logo with Home Link**:
   - The header contains a logo that serves as a quick link to return to the homepage.
   - The logo scales slightly on hover to enhance interactivity.
-  - ![Header - Logo Link](assets/screenshots/header-logo-link.png)
+  - ![Header Section](assets/images/header.png)
 
 - **Footer Design**:
-  - The footer includes quick links to key sections of the site, such as Terms of Service, Privacy Policy, and social media.
-  - Icons for Facebook, Instagram, and YouTube are styled to align with the site’s overall theme.
+  - Site logo in the center and grows when hover.
   - A copyright notice is displayed at the bottom for professionalism.
-  - ![Footer - Design Overview](assets/screenshots/footer-design.png)
+  - ![Footer Section](assets/images/footer.png)
 
-- **Interactive Hover Effects in Footer**:
-  - Social media icons in the footer respond to hover with animations, changing colour to gold and slightly enlarging.
-  - Footer text links also change colour when hovered over for improved usability.
-  - ![Footer - Hover Effects](assets/screenshots/footer-hover-effects.png)
+  #### VoYrD
+  - **Google Maps Integration**:
+   - Interactive map to display destinations, attractions, and service locations.
+   - Directions, point A to point B.
+   - ![Booking MAP Section](assets/images/map.png)
 
 ### Future Features
-
-- **Google Maps Integration**:
-   - Add an interactive map to display destinations, attractions, and service locations.
 
 - **Live Chat Assistance**:
    - Implement a real-time chat feature for instant customer support and inquiries.
@@ -307,7 +297,7 @@ High-resolution AI-generated images are used to represent UK landmarks and servi
    - AI-driven suggestions for travel plans based on user preferences and past interactions.
 
 - **Advanced Search Functionality**:
-   - Filters for narrowing down flights, hotels, and tours by budget, date, and location.
+   - Expand flights, hotels, and tours by budget, date, and location all over the world.
 
 - **User Account System**:
    - Enable user accounts for managing bookings, saving preferences, and accessing exclusive deals.
