@@ -749,17 +749,17 @@ body {
 
 /* Styling for the main container */
 main {
-    padding-top: 150px;
+    padding-top: 100px;
     margin-bottom: 0px;
 }
 
 /* Styling for page heading */
 main h1 {
+    text-align: center  !important;
     font-size: 2.5rem;
     font-weight: bold;
     color: #333;
     margin-bottom: 5px;
-    text-align: center !important;
 }
 
                     /***** CITY CARDS STYLING *****/
@@ -979,6 +979,11 @@ body {
     top: -10vh;
     left: -10vw;
     pointer-events: none;
+}
+
+/* Removes any border */
+iframe {
+    border: none;
 }
 
                     /***** BOOKING TOOL STYLING *****/
