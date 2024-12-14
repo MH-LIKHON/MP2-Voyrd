@@ -146,19 +146,19 @@ High-resolution AI-generated images are used to represent UK landmarks and servi
 ---
 
 ### HOME
-![HOME](index.html)
+![HOME](assets/images/homedesktop.png)
 ---
 
 ### BOOKING
-![BOOKING](booking.html)
+![BOOKING](assets/images/bookingdesktop.png)
 ---
 
 ### EXPLORE
-![SERVICES](exploreuk.html)
+![EXPLORE](assets/images/exploredesktop.png)
 ---
 
 ### CONTACT
-![CONTACT](contact.html)
+![CONTACT](assets/images/contactdesktop.png)
 ---
 
 ### Existing Features
@@ -205,7 +205,7 @@ High-resolution AI-generated images are used to represent UK landmarks and servi
 - **Interactive Destination Showcase**:
   - A section featuring popular UK attractions, each displayed as a card with high-resolution imagery.
   - Cards expand on hover and include brief descriptions and links for further exploration.
-  - ![Explore UK Page - Interactive Destination Showcase](assets/images/explore.png)
+  - ![Explore UK Page - Interactive Destination Showcase](assets/images/explorecities.png)
 
 - **Featured Destinations**:
   - London, Edinburgh, Bath, and other iconic cities are highlighted with engaging content.
@@ -245,9 +245,15 @@ High-resolution AI-generated images are used to represent UK landmarks and servi
   - ![Booking Page - Confirmation Modal](assets/images/bookingemailmessage.png)
 
 - **Accessibility and Responsiveness**:
-  - The entire booking page is optimised for various devices, ensuring a seamless experience on mobile, tablet, and desktop.
-  - Form fields and buttons are sized appropriately for easy navigation on touchscreens.
-  - ![Booking Page - Mobile Friendly Design](assets/images/mobilebooking.png)
+  - The entire site, home, explore, booking & contact pages are optimised for various devices, ensuring a seamless experience on mobile, tablet, and desktop.
+  - ![Home Page - Mobile Friendly Design](assets/images/mobilehome.png)
+  - ![BOOKING Page - Mobile Friendly Design](assets/images/mobilebooking.png)
+  - ![EXPLORE Page - Mobile Friendly Design](assets/images/mobileexplore.png)
+  - ![CONTACT Page - Mobile Friendly Design](assets/images/mobilecontact.png)
+  - ![Home Page - TABLET Friendly Design](assets/images/tabhome.png)
+  - ![BOOKING Page - TABLET Friendly Design](assets/images/tabbooking.png)
+  - ![EXPLORE Page - TABLET Friendly Design](assets/images/tabexplore.png)
+  - ![CONTACT Page - TABLET Friendly Design](assets/images/tabcontact.png)
 
 #### Contact Page
 - **Modern Contact Form**:
