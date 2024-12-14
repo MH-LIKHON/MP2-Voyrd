@@ -190,7 +190,7 @@ High-resolution AI-generated images are used to represent UK landmarks and servi
 - **Explore UK Button**:
   - A button linking to the Explore UK page, styled with rounded edges and hover effects.
   - Changes colour from grey to gold (#F2BA1E) when hovered over, guiding users effectively.
-  - ![Welcome Section](assets/screenshots/welcome-explore-uk-button.png)
+  - ![Welcome Section](assets/images/welcome.png)
 
 #### Why Choose Us Section
 - **Service Features**:
@@ -673,7 +673,7 @@ This project was deployed using GitHub Pages, which provides a free and reliable
 
 7. **Access the Deployed Site**:
    - The live link to the deployed project was available in the **GitHub Pages** section of the repository settings.
-   - [Live Site](https://username.github.io/voyrd-project)
+   - [Live Site](https://mh-likhon.github.io/MP2-Voyrd/)
 
 ---
 
@@ -684,7 +684,7 @@ To run this project locally on your computer, follow these steps:
 1. **Clone the Repository**:
    - Use the following command to clone the repository:
      ```bash
-     git clone https://github.com/username/voyrd-project.git
+     git clone https://github.com/MH-LIKHON/MP2-Voyrd.git
      ```
 
 2. **Navigate to the Project Directory**:
