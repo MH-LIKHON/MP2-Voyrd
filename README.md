@@ -36,13 +36,13 @@ The project was developed as part of the Interactive Frontend Development Milest
 
 ## Live Site
 
-[VoYrD - Live Site](https://example.com)
+[VoYrD - Live Site](https://mh-likhon.github.io/MP2-Voyrd/)
 
 ---
 
 ## Repository
 
-[GitHub Repository](https://github.com/username/voyrd-project)
+[GitHub Repository](https://github.com/MH-LIKHON/MP2-Voyrd.git)
 
 ---
 
